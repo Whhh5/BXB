@@ -121,6 +121,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                     animaName = showClip.name;
                     break;
             }
+            anima.GetClip(animaName).events = null;
             anima.Play(animaName);
             handleActive = !handleActive;
         });

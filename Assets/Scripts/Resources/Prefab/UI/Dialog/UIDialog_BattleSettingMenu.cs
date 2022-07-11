@@ -33,6 +33,7 @@ public class UIDialog_BattleSettingMenu : MiUIDialog
             {
                 item.Value.Destroy();
             }
+            BattleSceneManager.Instance.mainPlayer.gameObject.SetActive(false);
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Battle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         });
