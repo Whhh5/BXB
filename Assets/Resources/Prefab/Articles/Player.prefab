@@ -78,7 +78,17 @@ MonoBehaviour:
   id: 0
   original: {fileID: 0}
   main: {fileID: 805015375956188675}
+  nowBlood: 0
   point: {x: -1, y: -1}
+  scope: {x: 0, y: 0}
+  mode: 0
+  property:
+    name: 
+    maxBlood: 0
+    attack: 0
+    defence: 0
+  lastMoveTime: 0
+  attackInterval: 0.5
 --- !u!1 &8743739134346333099
 GameObject:
   m_ObjectHideFlags: 0

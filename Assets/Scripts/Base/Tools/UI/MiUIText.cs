@@ -31,4 +31,9 @@ public class MiUIText : MiBaseMonoBeHaviourClass
         textPro.enabled = active;
         await AsyncDefaule();
     }
+    public async Task SetColor(Color color)
+    {
+        await AsyncDefaule();
+        textPro.color = color;
+    }
 }

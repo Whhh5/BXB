@@ -4,6 +4,8 @@ using UnityEngine;
 using BXB.Core;
 using DG.Tweening;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 public class Wap : WordPoolBase
 {
@@ -11,8 +13,6 @@ public class Wap : WordPoolBase
     [SerializeField] float hideTime = 1f;
     [SerializeField] float maxTransparency = 0.5f;
     Tween setColorTween = null;
-    [SerializeField] float tweenTime = 0.0f;
-    [SerializeField] float tweenEndValue = 0.0f;
     [SerializeField] SpriteRenderer mainColor;
 
     [SerializeField, ReadOnly] GameObject article;
@@ -39,19 +39,15 @@ public class Wap : WordPoolBase
     private void OnMouseEnter()
     {
         BattleSceneManager.Instance.SetMouseWap(this);
-        tweenTime = showTime;
-        tweenEndValue = maxTransparency;
-        SetMouseWap();
+        SetMouseWap(maxTransparency, showTime);
     }
 
     private void OnMouseExit()
     {
-        tweenTime = hideTime;
-        tweenEndValue = 0.0f;
-        SetMouseWap();
+        SetMouseWap(0.0f, hideTime);
     }
 
-    private void SetMouseWap()
+    public void SetMouseWap(float tweenEndValue, float tweenTime)
     {
         setColorTween.Kill();
         setColorTween = DOTween.To(() => mainColor.color.a, value =>
@@ -91,5 +87,15 @@ public class Wap : WordPoolBase
     public void SetPoint(Vector2 point)
     {
         this.point = point;
+    }
+
+    public int GetLayerMask()
+    {
+        int layer = 0;
+        if (article != null)
+        {
+            layer = article.layer;
+        }
+        return (int)Mathf.Pow(2, layer);
     }
 }

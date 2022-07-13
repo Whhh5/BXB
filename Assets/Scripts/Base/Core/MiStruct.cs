@@ -35,6 +35,15 @@ namespace BXB
             }
         }
 
+        [System.Serializable]
+        public struct ObjBaseproperty
+        {
+            public string name;
+            public float maxBlood;
+            public float attack;
+            public float defence;
+            public float attackInterval;
+        }
         public struct Valuable
         {
             public ulong id;
