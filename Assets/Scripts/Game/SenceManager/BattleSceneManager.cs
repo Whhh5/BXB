@@ -120,6 +120,11 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
         var enemyPath = ResourceManager.Instance.GetWorldObject<WapObjBase>(charPath, "TestEnemy1", new Vector3(0, 0, 0), null, f_id: 110020001);
         mapWapController.PlaceArticle(enemyPath, new Vector2(3, 3), pointToWap, 0, Ease.Linear);
+
+        var enemyPath2 = ResourceManager.Instance.GetWorldObject<WapObjBase>(charPath, "TestEnemy1", new Vector3(0, 0, 0), null, f_id: 110020001);
+        mapWapController.PlaceArticle(enemyPath2, new Vector2(4, 5), pointToWap, 0, Ease.Linear);
+
+        mainConsole.UpdatePlayerProperty().Wait();
     }
 
     public void SetWap(WapObjBase obj, MoveMode mode)
@@ -316,6 +321,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
                 throw;
             }
+            mainConsole.UpdatePlayerProperty().Wait();
             yield return new WaitForSeconds(obj1.property.attackInterval);
         }
     }
@@ -351,6 +357,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
                 throw;
             }
+            mainConsole.UpdatePlayerProperty().Wait();
             yield return new WaitForSeconds(obj1.property.attackInterval);
         }
     }
@@ -392,29 +399,37 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
     public void RecruitLegion(WapObjBase obj1, WapObjBase obj2)
     {
-        var pro = obj2.Recruit();
-        //var pros = pro.Split
-        foreach (var item in pro.Split(';'))
+        if (obj2.TryRecruit(obj1, out string pro))
         {
-            var para = item.Split(':');
-            var number = float.Parse(para[1]);
-            switch (int.Parse(para[0]))
+            foreach (var item in pro.Split(';'))
             {
-                case 1:
-                    obj1.nowBlood += number;
-                    break;
-                case 2:
-                    obj1.property.attack += number;
-                    break;
-                case 3:
-                    obj1.property.defence += number;
-                    break;
-                case 4:
-                    obj1.property.attackInterval += number;
-                    break;
-                default:
-                    break;
+                var para = item.Split(':');
+                var number = float.Parse(para[1]);
+                switch (int.Parse(para[0]))
+                {
+                    case 1:
+                        obj1.nowBlood += number;
+                        break;
+                    case 2:
+                        obj1.property.attack += number;
+                        break;
+                    case 3:
+                        obj1.property.defence += number;
+                        break;
+                    case 4:
+                        obj1.property.attackInterval += number;
+                        break;
+                    default:
+                        break;
+                }
             }
+            mainConsole.UpdatePlayerProperty().Wait();
+            BattleSceneManager.Instance.RemoveEnemyObj(obj2);
+        }
+        else
+        {
+            var path = CommonManager.Instance.filePath.PreUIDialogPath;
+            var hint = ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_Common_Hint_01", CanvasLayer.System, "Scant supply of material ! ");
         }
     }
 

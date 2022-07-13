@@ -11,7 +11,7 @@ public class Dialog_Common_Hint_01 : MiUIDialog
 
     public override void OnInit()
     {
-        throw new System.NotImplementedException();
+        
     }
     public override async Task OnSetInitAsync<T>(params object[] value)
     {
@@ -32,11 +32,26 @@ public class Dialog_Common_Hint_01 : MiUIDialog
             })
             .SetUpdate(false);
 
-       
+
     }
     public override void OnSetInit(object[] value)
     {
-
+        var str = (string)value[0];
+        gameObject.SetActive(true);
+        title.SetRawText(str).Wait();
+        ShowAsync().Wait();
+        group.alpha = 0;
+        DOTween.To(() => group.alpha, value => { group.alpha = value; }, 1, time.x)
+            .OnComplete(() =>
+            {
+                DOTween.To(() => 2, value => { }, 1, time.y)
+                    .OnComplete(() =>
+                    {
+                        DOTween.To(() => group.alpha, value => { group.alpha = value; }, 0, time.z)
+                            .OnComplete(() => { HideAsync().Wait(); });
+                    });
+            })
+            .SetUpdate(false);
     }
     public override async Task ShowAsync(DialogMode mode = DialogMode.none)
     {

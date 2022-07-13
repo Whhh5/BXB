@@ -297,7 +297,7 @@ MonoBehaviour:
   sceneMode: 2
   mainPlayer: {fileID: 0}
   playerMoveInterval: 0.3
-  leglon: []
+  legion: []
   lastDetectionWaps: []
   playerNoDetectionLayer:
     serializedVersion: 2

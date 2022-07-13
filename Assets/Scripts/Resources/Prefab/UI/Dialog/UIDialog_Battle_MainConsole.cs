@@ -26,6 +26,14 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] MiUIText goldText;
     [SerializeField] RectTransform enemyInformationListParent;
     [SerializeField, ReadOnly] List<MiUIBase> enemyList = new List<MiUIBase>();
+
+    [SerializeField] Image playerIcon;
+    [SerializeField] MiUIText tex_PlayerName;
+    [SerializeField] MiUIText tex_Blood;
+    [SerializeField] MiUIText tex_Attack;
+    [SerializeField] MiUIText tex_Defent;
+    [SerializeField] MiUIText tex_AttackInterval;
+
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -244,5 +252,21 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
             var obj = await ResourceManager.Instance.GetUIElementAsync<UIDialog_Battle_MainConsole_EnemyInformation>(path, "UIDialog_Battle_MainConsole_EnemyInformation", enemyInformationListParent, Vector3.zero, item);
             enemyList.Add(obj);
         }
+    }
+
+    public async Task UpdatePlayerProperty()
+    {
+        await AsyncDefaule();
+        var mainPlayer = BattleSceneManager.Instance.mainPlayer;
+        await tex_PlayerName.SetRawText(mainPlayer.property.name);
+        await tex_Blood.SetRawText(mainPlayer.nowBlood);
+        await tex_Attack.SetRawText(mainPlayer.property.attack);
+        await tex_Defent.SetRawText(mainPlayer.property.defence);
+        await tex_AttackInterval.SetRawText(mainPlayer.property.attackInterval);
+        playerIcon.sprite = ResourceManager.Instance.Load<Sprite>($"Images/Sprite/Icon", mainPlayer.GetId().ToString());
+    }
+    public int GetGlod()
+    {
+        return int.Parse(goldText.GetRawText());
     }
 }

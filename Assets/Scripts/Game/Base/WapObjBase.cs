@@ -15,6 +15,8 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     public float nowBlood;
     [SerializeField] protected Vector2 point = new Vector2(-1, -1);
     [SerializeField] protected Vector2 scope = new Vector2(0, 0);
+    [SerializeField] protected string recruitSetArticle = "1:10;2:20;3:30";
+    [SerializeField] protected string recruitDemandArticle = "120050001:1";//120050001:½ð±Ò
 
     [SerializeField] StatusMode mode;
 
@@ -81,9 +83,32 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     }
 
     public abstract void Die();
-    public virtual string Recruit()
+    public virtual bool TryRecruit(WapObjBase obj,out string article)
     {
-        BattleSceneManager.Instance.RemoveEnemyObj(this);
-        return "1:10;2:20;3:30";
+        bool ret = false;
+        article = null;
+        var glod = BattleSceneManager.Instance.mainConsole.GetGlod();
+
+        foreach (var item in recruitDemandArticle.Split(';'))
+        {
+            var para = item.Split(':');
+            var number = int.Parse(para[1]);
+            switch (int.Parse(para[0]))
+            {
+                case 120050001:
+                    if (glod >= number)
+                    {
+                        BattleSceneManager.Instance.mainConsole.AddSystemItems(BattleSceneManager.ItemsType.Gold, -number);
+                        ret = true;
+                        article = recruitSetArticle;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return ret;
+        
     }
 }
