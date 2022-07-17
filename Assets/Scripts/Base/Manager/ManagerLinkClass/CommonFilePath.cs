@@ -27,4 +27,6 @@ public class CommonFilePath : MiBaseClass
     public readonly string ResArt = "Art";
 
     public readonly string ResArticle = "Prefab/Articles";
+
+    public readonly string ResImSpIcon = "Images/Sprite/Icon";
 }

@@ -7,6 +7,8 @@ public class LocalItemData
 
 	public string name = default;
 
-	public string effect = default;
+	public string[] effect = default;
+
+	public int type = default;
  
 } 

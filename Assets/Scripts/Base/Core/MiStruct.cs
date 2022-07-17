@@ -10,10 +10,10 @@ namespace BXB
         public struct Attribute
         {
             public ulong id;
-            public float HP; 
+            public float HP;
             public float ATK;
             public float DEF;
-            public Attribute(ulong id,float HP,float ATK,float DEF)
+            public Attribute(ulong id, float HP, float ATK, float DEF)
             {
                 this.id = id;
                 this.HP = HP;
@@ -27,7 +27,7 @@ namespace BXB
             public List<ulong> equip;
             public ulong glodCoin;
             public ulong diaMonds;
-            public Knapsack(List<ulong> equip,ulong glodCoin,ulong diaMonds)
+            public Knapsack(List<ulong> equip, ulong glodCoin, ulong diaMonds)
             {
                 this.equip = equip;
                 this.glodCoin = glodCoin;
@@ -43,6 +43,8 @@ namespace BXB
             public float attack;
             public float defence;
             public float attackInterval;
+            public List<string> recruitGetArticle;
+            public List<string> recruitDemandArticle;
         }
         public struct Valuable
         {

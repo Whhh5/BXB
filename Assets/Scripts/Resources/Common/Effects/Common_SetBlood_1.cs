@@ -6,7 +6,7 @@ public class Common_SetBlood_1 : CommonAnimationHint
     [SerializeField] Common_Horizontal_Word horizontalList;
     [SerializeField] GameObject textPrefab;
 
-    public override void Active(object[] value)
+    public override void Action(object[] value)
     {
         horizontalList.Setting(textPrefab, interval_MoveTime: new Vector2(0.3f, 0.2f));
         Show(endEvent: () =>

@@ -7,6 +7,8 @@ public partial class MasterData
 	public Dictionary<ulong, LocalizeRolesData> LocalizeRolesData = new Dictionary<ulong, LocalizeRolesData>();
 	public Dictionary<ulong, LocalizeSkillsData> LocalizeSkillsData = new Dictionary<ulong, LocalizeSkillsData>();
 	public Dictionary<ulong, LocalizeUIDialogData> LocalizeUIDialogData = new Dictionary<ulong, LocalizeUIDialogData>();
+	public Dictionary<ulong, LocalPropertyData> LocalPropertyData = new Dictionary<ulong, LocalPropertyData>();
 	public Dictionary<ulong, LocalRolesData> LocalRolesData = new Dictionary<ulong, LocalRolesData>();
+	public Dictionary<ulong, LocalRolesLevelData> LocalRolesLevelData = new Dictionary<ulong, LocalRolesLevelData>();
 
 }

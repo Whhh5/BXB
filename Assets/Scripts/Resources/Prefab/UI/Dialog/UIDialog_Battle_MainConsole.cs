@@ -34,6 +34,10 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] MiUIText tex_Defent;
     [SerializeField] MiUIText tex_AttackInterval;
 
+    [SerializeField] RectTransform playerArticleListParent;
+    [SerializeField] List<MiUIBase> playerArticleList = new List<MiUIBase>();
+    [SerializeField] RectTransform playerConsumableListParent;
+    [SerializeField] List<MiUIBase> playerConsumableList = new List<MiUIBase>();
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -257,16 +261,55 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     public async Task UpdatePlayerProperty()
     {
         await AsyncDefaule();
+        //更新属性
         var mainPlayer = BattleSceneManager.Instance.mainPlayer;
-        await tex_PlayerName.SetRawText(mainPlayer.property.name);
-        await tex_Blood.SetRawText(mainPlayer.nowBlood);
-        await tex_Attack.SetRawText(mainPlayer.property.attack);
-        await tex_Defent.SetRawText(mainPlayer.property.defence);
-        await tex_AttackInterval.SetRawText(mainPlayer.property.attackInterval);
+        await tex_PlayerName.SetRawText(mainPlayer.GetName());
+        await tex_Blood.SetRawText(mainPlayer.GetSetBlood());
+        await tex_Attack.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attack));
+        await tex_Defent.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.defend));
+        await tex_AttackInterval.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attackInterval));
         playerIcon.sprite = ResourceManager.Instance.Load<Sprite>($"Images/Sprite/Icon", mainPlayer.GetId().ToString());
+
+        //更新物品
+        foreach (var item in playerArticleList)
+        {
+            item.Destroy();
+        }
+        playerArticleList.Clear();
+        var articles = BattleSceneManager.Instance.mainPlayer.articleGet;
+        foreach (var item in articles)
+        {
+            var iconPath = CommonManager.Instance.filePath.ResImSpIcon;
+            var icon = ResourceManager.Instance.Load<Sprite>(iconPath, item.Key.ToString());
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            var dialog = await ResourceManager.Instance.GetUIElementAsync<UIDialog_Battle_MainConsole_PlayerOriginal>(path, "UIDialog_Battle_MainConsole_PlayerOriginal", playerArticleListParent, Vector3.zero, icon, item.Value.ToString());
+            playerArticleList.Add(dialog);
+        }
+
+        //更新消耗品
+        foreach (var item in playerConsumableList)
+        {
+            item.Destroy();
+        }
+        playerConsumableList.Clear();
+        var consumables = BattleSceneManager.Instance.mainPlayer.consumableGet;
+        foreach (var item in consumables)
+        {
+            var iconPath = CommonManager.Instance.filePath.ResImSpIcon;
+            var icon = ResourceManager.Instance.Load<Sprite>(iconPath, item.Key.ToString());
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            var number = item.Value;
+            var dialog = await ResourceManager.Instance.GetUIElementAsync<UIDialog_Battle_MainConsole_Consumable>(path, "UIDialog_Battle_MainConsole_Consumable", playerConsumableListParent, Vector3.zero, item.Key, number);
+            playerConsumableList.Add(dialog);
+        }
     }
     public int GetGlod()
     {
         return int.Parse(goldText.GetRawText());
+    }
+    public async Task HintInformation(string hint)
+    {
+        var path = CommonManager.Instance.filePath.PreUIDialogPath;
+        await ResourceManager.Instance.ShowDialogAsync<Dialog_Common_Hint_01>(path, "Dialog_Common_Hint_01", CanvasLayer.System, hint);
     }
 }

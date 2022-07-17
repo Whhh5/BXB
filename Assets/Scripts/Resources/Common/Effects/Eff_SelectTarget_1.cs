@@ -16,7 +16,7 @@ public class Eff_SelectTarget_1 : CommonEffectsBase
         }
     }
 
-    public override void Active(params object[] target)
+    public override void Action(params object[] target)
     {
         gameObject.SetActive(true);
         if (target == null)

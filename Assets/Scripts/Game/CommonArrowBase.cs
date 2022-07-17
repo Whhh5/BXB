@@ -11,7 +11,7 @@ public abstract class CommonArrowBase : MiObjPoolPublicParameter, ICommon_Weapon
         return main;
     }
     public abstract void OnInit();
-    public abstract void Active(params object[] value);
+    public abstract void Action(params object[] value);
 
     public virtual object Clone()
     {

@@ -27,18 +27,30 @@ public class MapWapController : MiBaseClass
 
     public void PlaceArticle(WapObjBase obj, Vector2 point, Dictionary<Vector2, Wap> pointToWap, float time, Ease ease)
     {
-        var wap = pointToWap[point];
-        var oldPoint = obj.GetPoint();
-        if (!(oldPoint.x < 0 || oldPoint.y < 0))
+        try
         {
-            var oldWap = pointToWap[oldPoint];
-            oldWap.SetArticle(null);
+            var wap = pointToWap[point];
+            var oldPoint = obj.GetPoint();
+            if (!(oldPoint.x < 0 || oldPoint.y < 0))
+            {
+                var oldWap = pointToWap[oldPoint];
+                if (oldWap.TryGetObject(out Transform oldObj))
+                {
+                    if (oldObj.gameObject == obj.gameObject)
+                    {
+                        oldWap.SetArticle(null);
+                    }
+                }
+            }
+            obj.SetPont(point);
+            wap.SetArticle(obj.gameObject);
+            var endPostion = obj.transform.position;
+            endPostion.x = wap.transform.position.x;
+            endPostion.y = wap.transform.position.y;
+            obj.transform.DOMove(endPostion, time, false).SetEase(ease: ease);
         }
-        obj.SetPont(point);
-        wap.SetArticle(obj.gameObject);
-        var endPostion = obj.transform.position;
-        endPostion.x = wap.transform.position.x;
-        endPostion.y = wap.transform.position.y;
-        obj.transform.DOMove(endPostion, time, false).SetEase(ease: ease);
+        catch (Exception)
+        {
+        }
     }
 }

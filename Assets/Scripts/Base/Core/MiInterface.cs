@@ -70,7 +70,7 @@ namespace BXB
         }
         public interface ICommon_Weapon : ICommon_GameObject
         {
-            public void Active(params object[] value);
+            public void Action(params object[] value);
         }
         public interface ICommon_Object : ICommon_GameObject
         {

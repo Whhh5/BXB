@@ -18,7 +18,7 @@ public class Common_Line_2 : CommonEffectsBase
             mainLine.SetPositions(new Vector3[] { startPos, endPos });
         }
     }
-    public override void Active(params object[] objs)
+    public override void Action(params object[] objs)
     {
 
     }

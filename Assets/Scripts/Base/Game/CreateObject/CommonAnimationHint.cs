@@ -50,7 +50,7 @@ public abstract class CommonAnimationHint : MiObjPoolPublicParameter, ICommonAni
         return MemberwiseClone();
     }
 
-    public abstract void Active(params object[] value);
+    public abstract void Action(params object[] value);
 
     public virtual void Hide(Action startEvent)
     {

@@ -7,10 +7,10 @@ public class LocalRolesData
 
 	public string name = default;
 
-	public float attack = default;
+	public int level = default;
 
-	public float armor = default;
+	public string[] recruitDemandArticle = default;
 
-	public float maxBlood = default;
+	public string[] recruitGetArticle = default;
  
 } 

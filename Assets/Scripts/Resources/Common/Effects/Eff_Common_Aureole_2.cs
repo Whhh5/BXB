@@ -5,7 +5,7 @@ using BXB.Core;
 public class Eff_Common_Aureole_2 : CommonEffectsBase
 {
     [SerializeField, ReadOnly] bool isDestroy = false;
-    public override void Active(params object[] objs)
+    public override void Action(params object[] objs)
     {
         Play();
         gameObject.SetActive(true);

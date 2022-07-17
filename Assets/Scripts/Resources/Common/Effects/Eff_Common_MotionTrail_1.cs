@@ -6,7 +6,7 @@ public class Eff_Common_MotionTrail_1 : CommonEffectsBase
     [SerializeField] float moveSpeed;
     [SerializeField, ReadOnly] Transform target;
     [SerializeField, ReadOnly] bool isDestroy;
-    public override void Active(params object[] target)
+    public override void Action(params object[] target)
     {
         Play();
     }

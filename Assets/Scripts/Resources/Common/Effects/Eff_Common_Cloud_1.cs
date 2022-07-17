@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Eff_Common_Cloud_1 : CommonEffectsBase
 {
-    public override void Active(params object[] objs)
+    public override void Action(params object[] objs)
     {
         Play();
     }

@@ -38,7 +38,7 @@ public abstract class CommonEffectsBase : MiObjPoolPublicParameter, IEffects
         mainParticle.Play();
     }
 
-    public abstract void Active(params object[] objs);
+    public abstract void Action(params object[] objs);
 
     public abstract void OnInit();
 

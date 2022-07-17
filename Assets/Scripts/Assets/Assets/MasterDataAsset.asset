@@ -18,4 +18,6 @@ MonoBehaviour:
   LocalizeRolesData: []
   LocalizeSkillsData: []
   LocalizeUIDialogData: []
+  LocalPropertyData: []
   LocalRolesData: []
+  LocalRolesLevelData: []

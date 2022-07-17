@@ -32,7 +32,7 @@ public class Common_Line_1 : CommonEffectsBase
             DrawCallSphere();
         }
     }
-    public override void Active(params object[] objs)
+    public override void Action(params object[] objs)
     {
 
     }

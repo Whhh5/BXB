@@ -19,7 +19,7 @@ public class Eff_Common_Aureole_1 : CommonEffectsBase
         transform.SetPositionAndRotation((Vector3)objs[0], (Quaternion)objs[1]);
     }
 
-    public override void Active(params object[] objs)
+    public override void Action(params object[] objs)
     {
         gameObject.SetActive(true);
         Play();

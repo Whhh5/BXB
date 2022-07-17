@@ -52,12 +52,11 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
     //plsyer
     public CharacterController mainPlayer;
-    public float playerMoveInterval = 0.0f;
-    public List<WapObjBase> legion = new List<WapObjBase>();
+    public float playerMoveInterval = 0.3f;
+    //public List<WapObjBase> legionPoint = new List<WapObjBase>();
     public List<Wap> lastDetectionWaps = new List<Wap>();
     public LayerMask playerNoDetectionLayer;
     public LayerMask playerDetectionLayer;
-    public LayerMask attackLayer;
     //player
 
     //Enemy
@@ -110,10 +109,13 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     protected override void OnStart()
     {
         base.OnStart();
-        legion.Clear();
         var charPath = CommonManager.Instance.filePath.ResArticle;
         var charObj = ResourceManager.Instance.GetWorldObject<CharacterController>(charPath, "Player", new Vector3(0, 0, 0), null, f_id: 110000001);
-        Addleglon(charObj);
+        charObj.SetMoveMode(WapObjBase.StatusMode.Manual);
+        var legion1 = ResourceManager.Instance.GetWorldObject<CharacterController>(charPath, "Player", new Vector3(0, 0, 0), null, f_id: 110000001);
+        legion1.SetMoveMode(WapObjBase.StatusMode.Trusteeship, charObj, new Vector2(1, 0));
+        charObj.GetSetLegion(legion1);
+
         mainPlayer = charObj;
         mapWapController.PlaceArticle(charObj, new Vector2(0, 0), pointToWap, 0, Ease.Linear);
 
@@ -124,21 +126,16 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         var enemyPath2 = ResourceManager.Instance.GetWorldObject<WapObjBase>(charPath, "TestEnemy1", new Vector3(0, 0, 0), null, f_id: 110020001);
         mapWapController.PlaceArticle(enemyPath2, new Vector2(4, 5), pointToWap, 0, Ease.Linear);
 
+        mainPlayer.GetSetArticle(120050001, 66);
+        mainConsole.UpdatePlayerProperty().Wait();
+
         mainConsole.UpdatePlayerProperty().Wait();
     }
 
-    public void SetWap(WapObjBase obj, MoveMode mode)
+    public void MoveToDirection(WapObjBase obj, MoveMode mode)
     {
-        if (mode == MoveMode.None || mode == MoveMode.EnumCount) return;
-        var isMove = dirctionIsMove[mode];
-        switch (isMove && (sceneMode & SceneMode.Play) != 0)
-        {
-            case true:
-                break;
-            case false:
-                return;
-        }
-        var oldPoint = obj.GetPoint();
+        if (mode == MoveMode.None || mode == MoveMode.EnumCount || (sceneMode & SceneMode.Play) == 0) return;
+
         int x = 0, y = 0;
         switch (mode)
         {
@@ -161,21 +158,45 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
             default:
                 break;
         }
-        var newPoint = oldPoint + new Vector2(x, y);
 
-        try
+        List<WapObjBase> objs = new List<WapObjBase>(obj.GetSetLegion())
         {
-            pointToWap[newPoint].TryGetObject<WapObjBase>(out WapObjBase testWap);
-        }
-        catch (Exception)
+            obj
+        };
+        foreach (var item in objs)
         {
-            return;
+            var pos = item.GetPoint() + new Vector2(x, y);
+            if (TryGetWap(pos, out Wap wap2))
+            {
+                if ((wap2.GetLayerMask() & playerDetectionLayer) != 0)
+                {
+                    return;
+                }
+            }
         }
-        //if (newPoint.x < 0 || newPoint.y < 0 || newPoint.x >= mapWidthAndHeight.y || newPoint.y >= mapWidthAndHeight.x || pointToWap[newPoint].TryGetObject<WapObjBase>(out WapObjBase wap))
+
+
+        //foreach (var item in obj.GetSetLegion())
         //{
-        //    return;
+        //    pointToWap[item.GetPoint()] = null;
         //}
-        mapWapController.PlaceArticle(obj, newPoint, pointToWap, playerMoveInterval, Ease.Linear);
+        //移动玩家自己
+        var oldPoint = obj.GetPoint();
+        var newPoint = oldPoint + new Vector2(x, y);
+        pointToWap[oldPoint].SetArticle(null);
+        MoveToVector2(obj, newPoint, playerMoveInterval);
+
+        //移动军团
+        foreach (var item in obj.GetSetLegion())
+        {
+            var point = obj.GetPoint();
+            point += item.GetOffset();
+            MoveToVector2(item, point, playerMoveInterval);
+        }
+    }
+    public void MoveToVector2(WapObjBase obj, Vector2 point, float moveTime = 1.0f, Ease ease = Ease.Linear)
+    {
+        mapWapController.PlaceArticle(obj, point, pointToWap, moveTime, ease);
     }
 
     public void SetMouseWap(Wap wap)
@@ -210,7 +231,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         List<WapObjBase> targets = new List<WapObjBase>();
         foreach (var wap in lastDetectionWaps)
         {
-            if ((wap.GetLayerMask() & attackLayer) != 0 && wap.TryGetObject(out WapObjBase wapObj))
+            if ((wap.GetLayerMask() & mainPlayer.GetSetAttackLayer()) != 0 && wap.TryGetObject(out WapObjBase wapObj))
             {
                 targets.Add(wapObj);
             }
@@ -220,6 +241,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
     private void DetectionWap()
     {
+        //计算周围检测
         var waplist = lastDetectionWaps;
         //init
         foreach (var item in waplist)
@@ -227,36 +249,19 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
             item.SetMouseWap(0, 1);
         }
         waplist.Clear();
-        foreach (var player in legion)
+
+        TryGetRound(mainPlayer, playerNoDetectionLayer, ref waplist);
+        foreach (var player in mainPlayer.GetSetLegion())
         {
             //init
-            var point = player.GetPoint();
-
-            for (int i = 1; i < (int)MoveMode.EnumCount; i++)
-            {
-                if (dirctionPoint.TryGetValue((MoveMode)i, out Vector2 points))
-                {
-                    points += point;
-                    if (TryGetWap(points, out Wap wap))
-                    {
-                        var l = wap.GetLayerMask();
-                        if ((l & playerNoDetectionLayer) == 0)
-                        {
-                            waplist.Add(wap);
-                        }
-                        bool dirctionMove = false;
-                        if ((l & playerDetectionLayer) == 0)
-                        {
-                            dirctionMove = true;
-                        }
-                        dirctionIsMove[(MoveMode)i] = dirctionMove;
-                    }
-                }
-            }
+            TryGetRound(player, playerNoDetectionLayer, ref waplist);
         }
+        //--
+
+        //区域变色
         foreach (var item in waplist)
         {
-            Vector2 endActive = new Vector2(0.5f, 0.5f);
+            Vector2 endActive = new Vector2(0.2f, 0.5f);
             var l = item.GetLayerMask();
             if ((l & playerDetectionLayer) != 0)
             {
@@ -265,10 +270,35 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
             item.SetMouseWap(endActive.x, endActive.y);
         }
     }
-
-    public void Addleglon(WapObjBase obj)
+    //根据层级检测四方 方块
+    public void TryGetRound(WapObjBase obj, LayerMask noCastlayer, ref List<Wap> wap)
     {
-        legion.Add(obj);
+        var point = obj.GetPoint();
+        for (int i = 1; i < (int)MoveMode.EnumCount; i++)
+        {
+            if (dirctionPoint.TryGetValue((MoveMode)i, out Vector2 points))
+            {
+                points += point;
+                if (TryGetWap(points, out Wap wap2))
+                {
+                    var layer = wap2.GetLayerMask();
+                    if ((layer & noCastlayer) == 0)
+                    {
+                        if (!wap.Contains(wap2))
+                        {
+                            wap.Add(wap2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void Addleglon(WapObjBase obj1, WapObjBase obj2)
+    {
+        obj1.GetSetLegion(obj2);
+        var offset = mainPlayer.GetPoint() - obj1.GetPoint();
+        obj1.SetMoveMode(WapObjBase.StatusMode.Trusteeship, mainPlayer, offset);
     }
 
 
@@ -278,95 +308,29 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         enemy.Destroy();
         pointToWap[point].SetArticle(null);
     }
+    public void SetMapPoint(Vector2 point, GameObject obj)
+    {
+        pointToWap[point].SetArticle(obj);
+    }
 
     public void ActiveBattle(WapObjBase obj1, WapObjBase obj2)
     {
         SetSceneMode(SceneMode.Acttack);
 
-        //obj1.Active(obj2, new Action(() => { SetSceneMode(SceneMode.Play); }));
-
-        StartCoroutine(Battle1(obj1, obj2));
-        StartCoroutine(Battle2(obj2, obj1));
-    }
-
-    public IEnumerator Battle1(WapObjBase obj1, WapObjBase obj2)
-    {
-        var enemy = obj2;
-
-        while (!(BattleSceneManager.Instance.sceneMode != BattleSceneManager.SceneMode.Acttack))
+        List<WapObjBase> obj1_legion = new List<WapObjBase>(obj1.GetSetLegion());
+        obj1_legion.Add(obj1);
+        List<WapObjBase> obj2_legion = new List<WapObjBase>(obj2.GetSetLegion());
+        obj2_legion.Add(obj2);
+        obj1.Action(obj2, obj2_legion);
+        foreach (var item in obj1.GetSetLegion())
         {
-            try
-            {
-                var nowEnemyBlood = enemy.nowBlood;
-                var data = BattleSceneManager.Instance.Date(obj1, enemy);
-                nowEnemyBlood -= data;
-                nowEnemyBlood = nowEnemyBlood < 0 ? 0 : nowEnemyBlood;
-                enemy.nowBlood = nowEnemyBlood;
-
-
-                //attack number hint
-                var targetPos = BattleSceneManager.Instance.sceneMainCamera.WorldToScreenPoint(enemy.transform.position);
-                var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-                var hintObj = ResourceManager.Instance.GetUIElementAsync<UIElement_NumberHint>(hintPath, "UIElement_NumberHint", BattleSceneManager.Instance.mainConsole.GetComponent<RectTransform>(), targetPos, -data);
-                //
-
-                if (nowEnemyBlood <= 0)
-                {
-                    enemy.Die();
-                    SetSceneMode(SceneMode.Play);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            mainConsole.UpdatePlayerProperty().Wait();
-            yield return new WaitForSeconds(obj1.property.attackInterval);
+            item.Action(obj2, obj2_legion);
         }
-    }
-    public IEnumerator Battle2(WapObjBase obj1, WapObjBase obj2)
-    {
-        var enemy = obj2;
-
-        while (!(BattleSceneManager.Instance.sceneMode != BattleSceneManager.SceneMode.Acttack))
+        obj2.Action(obj1, obj1_legion);
+        foreach (var item in obj2.GetSetLegion())
         {
-            try
-            {
-                var nowEnemyBlood = enemy.nowBlood;
-                var data = BattleSceneManager.Instance.Date(obj1, enemy);
-                nowEnemyBlood -= data;
-                nowEnemyBlood = nowEnemyBlood < 0 ? 0 : nowEnemyBlood;
-                enemy.nowBlood = nowEnemyBlood;
-
-
-                //attack number hint
-                var targetPos = BattleSceneManager.Instance.sceneMainCamera.WorldToScreenPoint(enemy.transform.position);
-                var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-                var hintObj = ResourceManager.Instance.GetUIElementAsync<UIElement_NumberHint>(hintPath, "UIElement_NumberHint", BattleSceneManager.Instance.mainConsole.GetComponent<RectTransform>(), targetPos, -data);
-                //
-
-                if (nowEnemyBlood <= 0)
-                {
-                    enemy.Die();
-                    SetSceneMode(SceneMode.Play);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            mainConsole.UpdatePlayerProperty().Wait();
-            yield return new WaitForSeconds(obj1.property.attackInterval);
+            item.Action(obj1, obj1_legion);
         }
-    }
-
-    public float Date(WapObjBase obj1, WapObjBase obj2)
-    {
-        float ret = obj1.property.attack - obj2.property.defence;
-        ret = ret < 0 ? 0 : ret;
-        return ret;
     }
 
     public void SetSceneMode(SceneMode sceneMode)
@@ -387,9 +351,20 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         }
     }
 
-    public void AddSystemItems(ItemsType itemsType, int number)
+    public void AddPlayerArticle(ulong id, int number)
     {
-        mainConsole.AddSystemItems(itemsType, number);
+        //增加物品
+        mainPlayer.GetSetArticle(id, number);
+    }
+    public void AddPlayerProperty(ulong id, float number)
+    {
+        //增加属性值
+        mainPlayer.GetSet((WapObjBase.PropertyFloat)id, number);
+    }
+    public void AddConsumable(ulong id, int number)
+    {
+        //增加消耗品
+        mainPlayer.GetSetConsumable(id, number);
     }
 
     public void GameFinish()
@@ -399,38 +374,300 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
     public void RecruitLegion(WapObjBase obj1, WapObjBase obj2)
     {
-        if (obj2.TryRecruit(obj1, out string pro))
+        var demandItems = obj2.GetSet(WapObjBase.PropertyListString.recruitDemandArticle);
+        List<string> items = new List<string>();
+        bool isRecuit = true;
+        string hintStr;
+        foreach (var item in demandItems)
         {
-            foreach (var item in pro.Split(';'))
+            var itemAndNumber = item.Split(':');
+            var id = ulong.Parse(itemAndNumber[0]);
+            var number = int.Parse(itemAndNumber[1]);
+            items.Add($"{id}:{-number}");
+            if (!obj1.TryArticleCount(id, number))
             {
-                var para = item.Split(':');
-                var number = float.Parse(para[1]);
-                switch (int.Parse(para[0]))
+                isRecuit = false;
+            }
+        }
+        if (isRecuit)
+        {
+            var list = obj2.GetSet(WapObjBase.PropertyListString.recruitGetArticle);
+            Dictionary<ulong, float> testDic = new Dictionary<ulong, float>();
+            foreach (var item in items)
+            {
+                var str = item.Split(':');
+                var id = ulong.Parse(str[0]);
+                var number = float.Parse(str[1]);
+                testDic.Add(id, number);
+            }
+            foreach (var item in list)
+            {
+                var str = item.Split(':');
+                var id = ulong.Parse(str[0]);
+                var number = float.Parse(str[1]);
+                if (testDic.ContainsKey(id))
                 {
-                    case 1:
-                        obj1.nowBlood += number;
-                        break;
-                    case 2:
-                        obj1.property.attack += number;
-                        break;
-                    case 3:
-                        obj1.property.defence += number;
-                        break;
-                    case 4:
-                        obj1.property.attackInterval += number;
-                        break;
-                    default:
-                        break;
+                    testDic[id] += number;
+                }
+                else
+                {
+                    testDic.Add(id, number);
                 }
             }
-            mainConsole.UpdatePlayerProperty().Wait();
-            BattleSceneManager.Instance.RemoveEnemyObj(obj2);
+            list = new List<string>();
+            foreach (var item in testDic)
+            {
+                list.Add($"{item.Key}:{item.Value}");
+            }
+            AddProperty(list);
+            var offset = obj2.GetPoint() - obj1.GetPoint();
+            obj2.SetMoveMode(WapObjBase.StatusMode.Trusteeship, obj1, offset);
+            obj1.GetSetLegion(obj2);
+            obj2.SetLayer(obj1.gameObject.layer);
+            obj2.GetSetAttackLayer(obj1.GetSetAttackLayer());
+            hintStr = $"Recuit -{obj2.GetName()}- finish ...";
         }
         else
         {
-            var path = CommonManager.Instance.filePath.PreUIDialogPath;
-            var hint = ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_Common_Hint_01", CanvasLayer.System, "Scant supply of material ! ");
+            hintStr = $"Recuit -{obj2.GetName()}- Scant supply of material ! ";
         }
+        mainConsole.HintInformation(hintStr).Wait();
     }
 
+    public void AddProperty(List<string> property)
+    {
+        Dictionary<ulong, int> articleList = new Dictionary<ulong, int>();
+        Dictionary<ulong, int> consumablesList = new Dictionary<ulong, int>();
+        Dictionary<ulong, float> propertyList = new Dictionary<ulong, float>();
+        foreach (var item in property)
+        {
+            var article = item.Split(':');
+            var id = ulong.Parse(article[0]);
+            var number = float.Parse(article[1]);
+            switch (MasterData.Instance.GetTableData<LocalItemData>(id).type)
+            {
+                case 1:
+                    propertyList.Add(id, number);
+                    break;
+                case 2:
+                    articleList.Add(id, (int)number);
+                    break;
+                case 3:
+                    consumablesList.Add(id, (int)number);
+                    break;
+                default:
+                    break;
+            }
+        }
+        foreach (var item in articleList)
+        {
+            //增加物品
+            AddPlayerArticle(item.Key, item.Value);
+        }
+        foreach (var item in consumablesList)
+        {
+            //增加消耗品
+            AddConsumable(item.Key, item.Value);
+        }
+        foreach (var item in propertyList)
+        {
+            //增加属性值
+            AddPlayerProperty(item.Key, item.Value);
+        }
+        mainConsole.UpdatePlayerProperty().Wait();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /// <summary>
+    /// 一次移动一格
+    /// </summary>
+    public List<Vector2> MoveToTarget(WapObjBase obj, Vector2 target)
+    {
+        List<Vector2> pointPath = new List<Vector2>();
+        if (pointToWap[target].TryGetObject(out Transform downObj))
+        {
+            mainConsole.HintInformation($"None move, because target point have game object ...  -{downObj.name}-").Wait();
+        }
+        else
+        {
+            var dic = dirctionPoint;
+            var obj2 = obj;
+            List<Wap> wapList = new List<Wap>();
+            foreach (var item in dic)
+            {
+                var point = item.Value + obj2.GetPoint();
+                if (TryGetWap(point, out Wap wap))
+                {
+                    if (!wap.TryGetObject(out Transform tr))
+                    {
+                        wapList.Add(wap);
+                    }
+                }
+            }
+            TreeFour node = new TreeFour(pointToWap[obj2.GetPoint()], wapList, null);
+
+
+        }
+
+        void Loop(Vector2 target, TreeFour parent)
+        {
+            var dic = dirctionPoint;
+            var obj = parent.GetNode();
+            List<Wap> wapList = new List<Wap>();
+            foreach (var item in dic)
+            {
+                var point = item.Value + obj.GetPoint();
+
+                if (TryGetWap(point, out Wap wap))
+                {
+                    if (!wap.TryGetObject(out Transform tr))
+                    {
+                        wapList.Add(wap);
+                    }
+                }
+                //if (target == point)
+                //{
+                //    return;
+                //}
+            }
+            TreeFour node = new TreeFour(pointToWap[obj.GetPoint()], wapList, parent);
+
+
+
+
+
+
+            Loop(target, node);
+        }
+
+        return pointPath;
+    }
+}
+
+public class TreeFour
+{
+    private Wap node = null;
+    private int index = 0;
+    private List<Wap> childs = new List<Wap>();
+    private TreeFour parent = null;
+    public TreeFour(Wap f_node, List<Wap> f_childs, TreeFour f_parent)
+    {
+        node = f_node;
+        childs = f_childs;
+        parent = f_parent;
+        index = 0;
+    }
+    public Wap GetNode()
+    {
+        return node;
+    }
+    public TreeFour GetSetParent()
+    {
+        return parent;
+    }
+    public bool TryGetNextWap(out Wap wap)
+    {
+        bool ret = false;
+        wap = null;
+        if (index < childs.Count)
+        {
+            wap = childs[index];
+            index++;
+            ret = true;
+        }
+        return ret;
+    }
 }
