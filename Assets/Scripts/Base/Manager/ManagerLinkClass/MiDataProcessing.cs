@@ -46,7 +46,7 @@ public class MiDataProcessing : MiBaseClass
     public float AttackData(WapObjBase obj1, WapObjBase obj2)
     {
         float ret = obj1.GetSet(WapObjBase.PropertyFloat.attack) - obj2.GetSet(WapObjBase.PropertyFloat.defend);
-        ret = ret <= 0 ? 1 : ret;
+        ret = ret <= 0 ? 1 : ret; 
         return ret;
     }
     public float GetStartAttackInterval(float interval)

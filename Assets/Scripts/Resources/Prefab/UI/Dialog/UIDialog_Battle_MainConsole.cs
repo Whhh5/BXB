@@ -200,7 +200,9 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             btn_ShowAndHideHandleClick();
                             break;
                         case KeyCode.Alpha1:
-
+                            //obj.GetSet(WapObjBase.PropertyFloat.attackInterval)
+                            var obj = BattleSceneManager.Instance.mainPlayer;
+                            obj.SetStatus(WapObjBase.Status.Attack, 0.1f, true);
                             break;
                         case KeyCode.Alpha2:
 

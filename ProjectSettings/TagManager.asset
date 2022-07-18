@@ -42,3 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Skill Layer1
+    uniqueID: 3408289169
+    locked: 0

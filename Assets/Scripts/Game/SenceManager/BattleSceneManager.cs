@@ -112,12 +112,13 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         var charPath = CommonManager.Instance.filePath.ResArticle;
         var charObj = ResourceManager.Instance.GetWorldObject<CharacterController>(charPath, "Player", new Vector3(0, 0, 0), null, f_id: 110000001);
         charObj.SetMoveMode(WapObjBase.StatusMode.Manual);
-        var legion1 = ResourceManager.Instance.GetWorldObject<CharacterController>(charPath, "Player", new Vector3(0, 0, 0), null, f_id: 110000001);
-        legion1.SetMoveMode(WapObjBase.StatusMode.Trusteeship, charObj, new Vector2(1, 0));
-        charObj.GetSetLegion(legion1);
+        //charObj.name = "Player";
+        //var legion1 = ResourceManager.Instance.GetWorldObject<CharacterController>(charPath, "Player", new Vector3(0, 0, 0), null, f_id: 110000001);
+        //legion1.SetMoveMode(WapObjBase.StatusMode.Trusteeship, charObj, new Vector2(1, 0));
+        //charObj.GetSetLegion(legion1);
 
         mainPlayer = charObj;
-        mapWapController.PlaceArticle(charObj, new Vector2(0, 0), pointToWap, 0, Ease.Linear);
+        mapWapController.PlaceArticle(charObj, new Vector2(2, 2), pointToWap, 0, Ease.Linear);
 
 
         var enemyPath = ResourceManager.Instance.GetWorldObject<WapObjBase>(charPath, "TestEnemy1", new Vector3(0, 0, 0), null, f_id: 110020001);
@@ -165,16 +166,17 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         };
         foreach (var item in objs)
         {
-            var pos = item.GetPoint() + new Vector2(x, y);
-            if (TryGetWap(pos, out Wap wap2))
+            var listPoint = item.GetAllPoint();
+            foreach (var parameter in listPoint)
             {
-                if ((wap2.GetLayerMask() & playerDetectionLayer) != 0)
+                var pos = parameter + new Vector2(x, y);
+                if (!TryGetWap(pos, out Wap wap2) || (wap2.GetLayerMask() & playerDetectionLayer) != 0)
                 {
                     return;
                 }
             }
         }
-
+        obj.SetStatus(WapObjBase.Status.Walk);
 
         //foreach (var item in obj.GetSetLegion())
         //{
@@ -183,7 +185,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         //移动玩家自己
         var oldPoint = obj.GetPoint();
         var newPoint = oldPoint + new Vector2(x, y);
-        pointToWap[oldPoint].SetArticle(null);
+        //pointToWap[oldPoint].SetArticle(null);
         MoveToVector2(obj, newPoint, playerMoveInterval);
 
         //移动军团
@@ -273,20 +275,23 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     //根据层级检测四方 方块
     public void TryGetRound(WapObjBase obj, LayerMask noCastlayer, ref List<Wap> wap)
     {
-        var point = obj.GetPoint();
-        for (int i = 1; i < (int)MoveMode.EnumCount; i++)
+        var allPoints = obj.GetAllPoint();
+        foreach (var point in allPoints)
         {
-            if (dirctionPoint.TryGetValue((MoveMode)i, out Vector2 points))
+            for (int i = 1; i < (int)MoveMode.EnumCount; i++)
             {
-                points += point;
-                if (TryGetWap(points, out Wap wap2))
+                if (dirctionPoint.TryGetValue((MoveMode)i, out Vector2 points))
                 {
-                    var layer = wap2.GetLayerMask();
-                    if ((layer & noCastlayer) == 0)
+                    points += point;
+                    if (TryGetWap(points, out Wap wap2))
                     {
-                        if (!wap.Contains(wap2))
+                        var layer = wap2.GetLayerMask();
+                        if ((layer & noCastlayer) == 0)
                         {
-                            wap.Add(wap2);
+                            if (!wap.Contains(wap2))
+                            {
+                                wap.Add(wap2);
+                            }
                         }
                     }
                 }
@@ -571,6 +576,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
 
 
+
     /// <summary>
     /// 一次移动一格
     /// </summary>
@@ -670,4 +676,5 @@ public class TreeFour
         }
         return ret;
     }
+
 }

@@ -25,29 +25,61 @@ public class MapWapController : MiBaseClass
         Log(Color.green, 1 << 80, (1 << 95), (1 << 31), 1 << 10);
     }
 
-    public void PlaceArticle(WapObjBase obj, Vector2 point, Dictionary<Vector2, Wap> pointToWap, float time, Ease ease)
+    public void PlaceArticle(WapObjBase obj, Vector2 toPoint, Dictionary<Vector2, Wap> pointToWap, float time, Ease ease)
     {
         try
         {
-            var wap = pointToWap[point];
-            var oldPoint = obj.GetPoint();
-            if (!(oldPoint.x < 0 || oldPoint.y < 0))
+            var allPoint = obj.GetAllPoint();
+
+            foreach (var item in allPoint)
             {
-                var oldWap = pointToWap[oldPoint];
-                if (oldWap.TryGetObject(out Transform oldObj))
+                if (!(item.x < 0 || item.y < 0))
                 {
-                    if (oldObj.gameObject == obj.gameObject)
+                    var oldWap = pointToWap[item];
+                    if (oldWap.TryGetObject(out Transform oldObj))
                     {
-                        oldWap.SetArticle(null);
+                        if (oldObj.gameObject == obj.gameObject)
+                        {
+                            oldWap.SetArticle(null);
+                        }
                     }
                 }
             }
-            obj.SetPont(point);
-            wap.SetArticle(obj.gameObject);
+            var oWap = pointToWap[toPoint];
+            obj.SetPont(toPoint);
+            var newWwaps = new List<Wap>() { pointToWap[toPoint] };
+            var exetend = obj.GetExtendPoint();
+            foreach (var item in exetend)
+            {
+                newWwaps.Add(pointToWap[item + toPoint]);
+            }
+            foreach (var wap in newWwaps)
+            {
+                wap.SetArticle(obj.gameObject);
+            }
             var endPostion = obj.transform.position;
-            endPostion.x = wap.transform.position.x;
-            endPostion.y = wap.transform.position.y;
+            endPostion.x = oWap.transform.position.x;
+            endPostion.y = oWap.transform.position.y;
             obj.transform.DOMove(endPostion, time, false).SetEase(ease: ease);
+            //var wap = pointToWap[point];
+            //var oldPoint = obj.GetPoint();
+            //if (!(oldPoint.x < 0 || oldPoint.y < 0))
+            //{
+            //    var oldWap = pointToWap[oldPoint];
+            //    if (oldWap.TryGetObject(out Transform oldObj))
+            //    {
+            //        if (oldObj.gameObject == obj.gameObject)
+            //        {
+            //            oldWap.SetArticle(null);
+            //        }
+            //    }
+            //}
+            //obj.SetPont(point);
+            //wap.SetArticle(obj.gameObject);
+            //var endPostion = obj.transform.position;
+            //endPostion.x = wap.transform.position.x;
+            //endPostion.y = wap.transform.position.y;
+            //obj.transform.DOMove(endPostion, time, false).SetEase(ease: ease);
         }
         catch (Exception)
         {

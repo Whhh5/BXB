@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2581302526687342066}
   - component: {fileID: 2581302526687342028}
+  - component: {fileID: 1117496423322364589}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -83,7 +84,9 @@ MonoBehaviour:
   lastMoveTime: 0
   target_Lord: {fileID: 0}
   target_Lord_Offset: {x: 0, y: 0}
-  point: {x: -1, y: -1}
+  nowPoint: {x: -1, y: -1}
+  extendPoint:
+  - {x: -1, y: 0}
   attack_Scope: {x: 1, y: 1}
   legionPoint: []
   layer_attack:
@@ -92,7 +95,27 @@ MonoBehaviour:
   moveMode: 1
   level: 0
   attackRange: {x: 0, y: 0}
-  attack_Target: {fileID: 0}
+  anima: {fileID: 1117496423322364589}
+  attack_Target: []
+--- !u!95 &1117496423322364589
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581302526687342029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e6bedbe0fdb4144faa08372325a9077, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8743739134346333099
 GameObject:
   m_ObjectHideFlags: 0

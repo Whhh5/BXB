@@ -30,6 +30,16 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         AutoPath,
         EnumCount,
     }
+    public enum Status
+    {
+        None,
+        Idle,
+        Walk,
+        Attack,
+        Skill,
+        Die,
+        EnumCound,
+    }
     [SerializeField] protected GameObject main;
     [SerializeField] string playerName = "";
     [SerializeField] private float nowBlood;
@@ -37,7 +47,8 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField, ReadOnly] float lastMoveTime;
     [SerializeField] WapObjBase target_Lord;
     [SerializeField] Vector2 target_Lord_Offset;
-    [SerializeField] protected Vector2 point = new Vector2(-1, -1);
+    [SerializeField] protected Vector2 nowPoint = new Vector2(-1, -1);
+    [SerializeField] protected List<Vector2> extendPoint = new List<Vector2>();
     [SerializeField] protected Vector2 attack_Scope = new Vector2(0, 0);
     [SerializeField] List<WapObjBase> legionPoint = new List<WapObjBase>();
     [SerializeField] protected LayerMask layer_attack;
@@ -45,7 +56,8 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField] protected StatusMode moveMode;
     [SerializeField] int level;
     [SerializeField] protected Vector2 attackRange;
-    [SerializeField, ReadOnly] WapObjBase attack_Target = null;
+    [SerializeField] Animator anima;
+    [SerializeField, ReadOnly] List<WapObjBase> attack_Target = null;
 
     [SerializeField] Dictionary<PropertyFloat, float> levelPropertyDic = new Dictionary<PropertyFloat, float>();
     [SerializeField] Dictionary<PropertyFloat, float> externalPropertyDic = new Dictionary<PropertyFloat, float>();
@@ -88,9 +100,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         return level;
     }
-    public void SetAttackTarget(WapObjBase target)
+    public void SetAttackTarget(List<WapObjBase> targets)
     {
-        attack_Target = target;
+        attack_Target = targets;
     }
     public void SetLayer(LayerMask layer)
     {
@@ -109,6 +121,8 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         //init dictionary
         legionPoint.Clear();
+        attack_Target.Clear();
+        SetStatus(Status.Idle);
         levelPropertyDic = new Dictionary<PropertyFloat, float>();
         externalPropertyDic = new Dictionary<PropertyFloat, float>();
         dieAndRecruittDic = new Dictionary<PropertyListString, List<string>>();
@@ -253,11 +267,24 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     public void SetPont(Vector2 point)
     {
-        this.point = point;
+        this.nowPoint = point;
+    }
+    public List<Vector2> GetExtendPoint()
+    {
+        return extendPoint;
     }
     public Vector2 GetPoint()
     {
-        return point;
+        return nowPoint;
+    }
+    public List<Vector2> GetAllPoint()
+    {
+        List<Vector2> list = new List<Vector2>() { GetPoint() };
+        foreach (var item in extendPoint)
+        {
+            list.Add(GetPoint() + item);
+        }
+        return list;
     }
 
 
@@ -391,10 +418,13 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         base.Destroy();
         StopCoroutine(IE_Action(null, null));
         var point = GetPoint();
-
         target_Lord?.RemoveLegion(this);
-
-        BattleSceneManager.Instance.SetMapPoint(point, null);
+        var listPoint = GetAllPoint();
+        SetStatus(Status.Die);
+        foreach (var item in listPoint)
+        {
+            BattleSceneManager.Instance.SetMapPoint(item, null);
+        }
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
     {
@@ -410,16 +440,102 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     }
 
 
-    //使用物品
-    Tween tween_usageArticle = DOTween.To(() => 2, value =>
-       {
-
-       }, 0, 1);
-    public void UsageArticle(ulong id, int number)
+    public bool TryGetAnimaController(out Animator anima)
     {
-        if (tween_usageArticle.IsPlaying())
+        bool ret = false;
+        anima = null;
+        if (this.anima != null)
         {
+            anima = this.anima;
+            ret = true;
+        }
+        return ret;
+    }
 
+    public void SetStatus(Status toState, float speed = 1, bool isforcePlay = true)
+    {
+        try
+        {
+            var name = anima.name.Split(new string[] { "(Clone)" }, StringSplitOptions.RemoveEmptyEntries);
+            var clickName = $"{name[0]}_{toState}";
+            var stateId = Animator.StringToHash(clickName);
+            var isAnimatorHash = anima.HasState(0, stateId);
+            if (isAnimatorHash)
+            {
+                var isPlay = anima.GetCurrentAnimatorStateInfo(0);
+                if (!isPlay.IsName(clickName) || isforcePlay)
+                {
+                    Log(Color.green, $"Play Animation  {clickName}");
+                    anima.Play(clickName, 0, 0);
+                    anima.speed = speed;
+                }
+            }
+        }
+        catch (Exception)
+        {
+        }
+
+    }
+    public void SetAnimatorSpeedNorm(float speed)
+    {
+        anima.speed = 1;
+    }
+
+    protected List<WapObjBase> GetAtactTargets(List<Vector2> allPointList)
+    {
+        List<WapObjBase> attack_targets = new List<WapObjBase>();
+        //查找范围内 攻击目标
+        for (int i = -(int)attack_Scope.x; i <= (int)attack_Scope.x; i++)
+        {
+            for (int j = -(int)attack_Scope.y; j <= (int)attack_Scope.y; j++)
+            {
+                foreach (var item in allPointList)
+                {
+                    var point = item + new Vector2(i, j);
+                    if (BattleSceneManager.Instance.TryGetWap(point, out Wap wap))
+                    {
+                        if (wap.TryGetObject(out WapObjBase obj))
+                        {
+                            if (((int)Mathf.Pow(2, obj.gameObject.layer) & layer_attack) != 0 && !attack_targets.Contains(obj))
+                            {
+                                attack_targets.Add(obj);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.SetAttackTarget(attack_targets);
+        return attack_targets;
+    }
+
+    protected void AttactTarget(WapObjBase target, Action dieEvent)
+    {
+        if (!(BattleSceneManager.Instance.sceneMode != BattleSceneManager.SceneMode.Acttack) && target != null)
+        {
+            Debug.DrawLine(transform.position, target.transform.position, Color.red);
+            try
+            {
+                var data = MiDataManager.Instance.dataProceccing.AttackData(this, target);
+                var nowEnemyBlood = target.GetSetBlood(-data);
+
+                //attack number hint
+                var targetPos = BattleSceneManager.Instance.sceneMainCamera.WorldToScreenPoint(target.transform.position);
+                var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+                var hintObj = ResourceManager.Instance.GetUIElementAsync<UIElement_NumberHint>(hintPath, "UIElement_NumberHint", BattleSceneManager.Instance.mainConsole.GetComponent<RectTransform>(), targetPos, -data);
+
+                if (nowEnemyBlood <= 0)
+                {
+                    var list = target.Die();
+                    BattleSceneManager.Instance.AddProperty(list);
+                    dieEvent.Invoke();
+                }
+                SetStatus(Status.Attack);
+            }
+            catch (Exception)
+            {
+            }
+            BattleSceneManager.Instance.mainConsole.UpdatePlayerProperty().Wait();
         }
     }
 }
