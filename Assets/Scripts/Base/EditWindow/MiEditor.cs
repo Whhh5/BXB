@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEditor.SceneManagement;
 
-[CustomEditor(typeof(MiUISlider))]
+//[CustomEditor(typeof(MiUISlider))]
 public class MiEditor : Editor
 {
 

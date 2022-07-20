@@ -133,6 +133,11 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         mainConsole.UpdatePlayerProperty().Wait();
     }
 
+    //public void CreateEnemys(List<Vector4> )
+    //{
+
+    //}
+
     public void MoveToDirection(WapObjBase obj, MoveMode mode)
     {
         if (mode == MoveMode.None || mode == MoveMode.EnumCount || (sceneMode & SceneMode.Play) == 0) return;
@@ -195,6 +200,8 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
             point += item.GetOffset();
             MoveToVector2(item, point, playerMoveInterval);
         }
+
+        DetectionWap();
     }
     public void MoveToVector2(WapObjBase obj, Vector2 point, float moveTime = 1.0f, Ease ease = Ease.Linear)
     {
@@ -224,8 +231,9 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
     private void Update()
     {
-        DetectionWap();
         DetectionEnemy();
+        return;
+        DetectionWap();
     }
 
     private void DetectionEnemy()
@@ -235,7 +243,10 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         {
             if ((wap.GetLayerMask() & mainPlayer.GetSetAttackLayer()) != 0 && wap.TryGetObject(out WapObjBase wapObj))
             {
-                targets.Add(wapObj);
+                if (!targets.Contains(wapObj))
+                {
+                    targets.Add(wapObj);
+                }
             }
         }
         mainConsole.ShowEnemyList(targets).Wait();
@@ -244,32 +255,31 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     private void DetectionWap()
     {
         //计算周围检测
-        var waplist = lastDetectionWaps;
         //init
-        foreach (var item in waplist)
+        foreach (var item in lastDetectionWaps)
         {
-            item.SetMouseWap(0, 1);
+            item.SetMouseWap(0, 1, Color.green);
         }
-        waplist.Clear();
+        lastDetectionWaps.Clear();
 
-        TryGetRound(mainPlayer, playerNoDetectionLayer, ref waplist);
+        TryGetRound(mainPlayer, playerNoDetectionLayer, ref lastDetectionWaps);
         foreach (var player in mainPlayer.GetSetLegion())
         {
             //init
-            TryGetRound(player, playerNoDetectionLayer, ref waplist);
+            TryGetRound(player, playerNoDetectionLayer, ref lastDetectionWaps);
         }
         //--
 
         //区域变色
-        foreach (var item in waplist)
+        foreach (var item in lastDetectionWaps)
         {
             Vector2 endActive = new Vector2(0.2f, 0.5f);
             var l = item.GetLayerMask();
-            if ((l & playerDetectionLayer) != 0)
-            {
-                endActive = new Vector2(0, 1);
-            }
-            item.SetMouseWap(endActive.x, endActive.y);
+            //if ((l & playerDetectionLayer) != 0)
+            //{
+            //    endActive = new Vector2(0, 1);
+            //}
+            item.SetMouseWap(endActive.x, endActive.y, Color.green);
         }
     }
     //根据层级检测四方 方块

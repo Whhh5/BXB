@@ -133,11 +133,10 @@ MonoBehaviour:
   showTime: 0.5
   hideTime: 1
   maxTransparency: 0.5
-  tweenTime: 1
-  tweenEndValue: 0
-  mainColor: {fileID: 6380236784487466235}
+  mainSprite: {fileID: 6380236784487466235}
   article: {fileID: 0}
   point: {x: 0, y: 0}
+  infor: {fileID: 0}
 --- !u!61 &6380236784487466230
 BoxCollider2D:
   m_ObjectHideFlags: 0

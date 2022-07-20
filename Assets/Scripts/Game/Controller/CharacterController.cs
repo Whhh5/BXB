@@ -30,6 +30,10 @@ public class CharacterController : WapObjBase
         idExitCoroutine = false;
         float startIntervalTime = MiDataManager.Instance.dataProceccing.AttackInterval(this.GetSet(WapObjBase.PropertyFloat.attackInterval));
         var allPointList = GetAllPoint();
+        foreach (var item in GetSetLegion())
+        {
+            allPointList.AddRange(item.GetAllPoint());
+        }
         startIntervalTime = MiDataManager.Instance.dataProceccing.GetStartAttackInterval(startIntervalTime);
         yield return new WaitForSeconds(startIntervalTime * 0.1f);
         while (true)

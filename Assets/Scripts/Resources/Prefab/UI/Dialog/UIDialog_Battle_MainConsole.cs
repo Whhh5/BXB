@@ -13,6 +13,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] MiUIButton btn_RightLoop;
     [SerializeField] MiUIButton btn_Items;
     [SerializeField] MiUIButton btn_ShowAndHideHandle;
+    [SerializeField] RectTransform informationParent;
 
     [SerializeField] CanvasGroup loopBtnObjs;
     [SerializeField] RectTransform itemMainList;
@@ -205,7 +206,8 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             obj.SetStatus(WapObjBase.Status.Attack, 0.1f, true);
                             break;
                         case KeyCode.Alpha2:
-
+                            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+                            ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
                             break;
                         case KeyCode.Alpha3:
 
@@ -242,6 +244,8 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                 }
             }
         }
+
+
     }
 
     public async Task ShowEnemyList(List<WapObjBase> wapObjs)
@@ -313,5 +317,12 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     {
         var path = CommonManager.Instance.filePath.PreUIDialogPath;
         await ResourceManager.Instance.ShowDialogAsync<Dialog_Common_Hint_01>(path, "Dialog_Common_Hint_01", CanvasLayer.System, hint);
+    }
+
+    public async Task<UIDialog_Battle_MainConsole_InformationFrame> AddObjectInformation(ulong id, WapObjBase obj)
+    {
+        var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+        var dialog = await ResourceManager.Instance.GetUIElementAsync<UIDialog_Battle_MainConsole_InformationFrame>(path, "UIDialog_Battle_MainConsole_InformationFrame", informationParent, Vector3.zero, id, obj);
+        return dialog;
     }
 }

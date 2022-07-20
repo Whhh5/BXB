@@ -8,7 +8,7 @@ public class UISceneManager : MiSingletonMonoBeHaviour<UISceneManager>
 {
     private Dictionary<CanvasLayer, RectTransform> uiLayer = new Dictionary<CanvasLayer, RectTransform>();
     [SerializeField] public MiUIStack<MiUIDialog> stack = new MiUIStack<MiUIDialog>();
-    [SerializeField] Camera mainCamera;
+    public Camera mainCamera;
 
     public MiUIPage page = new MiUIPage();
     public MiUIpopupHander popup = new MiUIpopupHander();

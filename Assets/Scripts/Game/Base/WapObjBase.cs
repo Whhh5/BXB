@@ -78,7 +78,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     public Dictionary<PropertyListString, List<string>> dieAndRecruittGet { get => dieAndRecruittDic; }
 
 
-
     public bool TryGetMianCom<T>(out T component) where T : class
     {
         bool ret = false;
@@ -479,6 +478,30 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     public void SetAnimatorSpeedNorm(float speed)
     {
         anima.speed = 1;
+    }
+    public List<Wap> GetAttackScope()
+    {
+        var allPointList = GetAllPoint();
+        var retList = new List<Wap>();
+        for (int i = -(int)attack_Scope.x; i <= (int)attack_Scope.x; i++)
+        {
+            for (int j = -(int)attack_Scope.y; j <= (int)attack_Scope.y; j++)
+            {
+                foreach (var item in allPointList)
+                {
+                    var point = item + new Vector2(i, j);
+                    if (BattleSceneManager.Instance.TryGetWap(point, out Wap wap))
+                    {
+                        if (!wap.TryGetObject(out WapObjBase obj) || 
+                            ((obj.GetLayerMask() & GetLayerMask()) == 0 && !retList.Contains(wap)))
+                        {
+                            retList.Add(wap);
+                        }
+                    }
+                }
+            }
+        }
+        return retList;
     }
 
     protected List<WapObjBase> GetAtactTargets(List<Vector2> allPointList)

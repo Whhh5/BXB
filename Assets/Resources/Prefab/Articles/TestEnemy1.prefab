@@ -87,7 +87,7 @@ MonoBehaviour:
   extendPoint:
   - {x: 1, y: 0}
   - {x: 0, y: 1}
-  attack_Scope: {x: 0, y: 1}
+  attack_Scope: {x: 1, y: 1}
   legionPoint: []
   layer_attack:
     serializedVersion: 2
@@ -96,7 +96,8 @@ MonoBehaviour:
   level: 0
   attackRange: {x: 0, y: 0}
   anima: {fileID: 0}
-  attack_Target: {fileID: 0}
+  attack_Target:
+  - {fileID: 0}
 --- !u!1 &8743739134346333099
 GameObject:
   m_ObjectHideFlags: 0

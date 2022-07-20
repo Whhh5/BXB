@@ -6,6 +6,7 @@ using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class Wap : WordPoolBase
 {
@@ -13,21 +14,24 @@ public class Wap : WordPoolBase
     [SerializeField] float hideTime = 1f;
     [SerializeField] float maxTransparency = 0.5f;
     Tween setColorTween = null;
-    [SerializeField] SpriteRenderer mainColor;
+    [SerializeField] SpriteRenderer mainSprite;
 
     [SerializeField, ReadOnly] GameObject article;
     [SerializeField, ReadOnly] Vector2 point;
 
+    [SerializeField] UIDialog_Battle_MainConsole_InformationFrame infor = null;
+
+    [SerializeField] List<Wap> scopeList = new List<Wap>();
+    [SerializeField] float defentAlphaA = 0.2f;
     public override void OnInit()
     {
-        var color = mainColor.color;
-        color.a = 0;
-        mainColor.color = color;
-
-        if (mainColor == null)
+        if (mainSprite == null)
         {
-            mainColor.GetComponent<SpriteRenderer>();
+            mainSprite.GetComponent<SpriteRenderer>();
         }
+        var color = mainSprite.color;
+        color.a = 0;
+        mainSprite.color = color;
     }
 
     public override void OnSetInit(object[] value)
@@ -39,22 +43,52 @@ public class Wap : WordPoolBase
     private void OnMouseEnter()
     {
         BattleSceneManager.Instance.SetMouseWap(this);
-        SetMouseWap(maxTransparency, showTime);
+        SetMouseWap(maxTransparency, showTime, Color.green);
+        ShowObjInformation().Wait();
+        if (infor != null)
+        {
+            if (article != null)
+            {
+                var obj = article.GetComponent<WapObjBase>();
+                scopeList = obj.GetAttackScope();
+                foreach (var item in scopeList)
+                {
+                    item.SetMouseWap(0.2f, 0.2f, Color.red);
+                }
+            }
+            infor.SetTween(UIDialog_Battle_MainConsole_InformationFrame.Active.Show, 0.5f, () => { });
+
+        }
     }
 
     private void OnMouseExit()
     {
-        SetMouseWap(0.0f, hideTime);
+        SetMouseWap(0.0f, hideTime, Color.green);
+        if (infor != null)
+        {
+            var temp = infor;
+            infor.SetTween(UIDialog_Battle_MainConsole_InformationFrame.Active.Hide, 0.5f, () => 
+            {
+                temp.Destroy();
+            });
+            foreach (var item in scopeList)
+            {
+                item.SetMouseWap(0.0f, 0.2f, Color.red);
+            }
+            scopeList = new List<Wap>();
+        }
     }
 
-    public void SetMouseWap(float tweenEndValue, float tweenTime)
+    public void SetMouseWap(float tweenEndValue, float tweenTime, Color color)
     {
         setColorTween.Kill();
-        setColorTween = DOTween.To(() => mainColor.color.a, value =>
+        color.a = defentAlphaA;
+        mainSprite.color = color;
+        setColorTween = DOTween.To(() => mainSprite.color.a, value =>
         {
-            var color = mainColor.color;
+            var color = mainSprite.color;
             color.a = value;
-            mainColor.color = color;
+            mainSprite.color = color;
         }, tweenEndValue, tweenTime);
         setColorTween.Play();
     }
@@ -67,7 +101,7 @@ public class Wap : WordPoolBase
             com = article.GetComponent<T>();
             ret = true;
         }
-        catch (Exception exp)
+        catch (Exception)
         {
             com = null;
             ret = false;
@@ -97,5 +131,15 @@ public class Wap : WordPoolBase
             layer = article.layer;
         }
         return (int)Mathf.Pow(2, layer);
+    }
+
+    public async Task ShowObjInformation()
+    {
+        await AsyncDefaule();
+        if (article != null)
+        {
+            var obj = article.GetComponent<WapObjBase>();
+            infor = await BattleSceneManager.Instance.mainConsole.AddObjectInformation(obj.GetId(), obj);
+        }
     }
 }

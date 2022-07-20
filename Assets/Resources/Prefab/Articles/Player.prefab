@@ -98,6 +98,8 @@ MonoBehaviour:
   attackRange: {x: 0, y: 0}
   anima: {fileID: 1117496423322364589}
   attack_Target: []
+  sp: {fileID: 2744837511904835193}
+  testPoint: {x: 0, y: 0, z: 0}
 --- !u!95 &1117496423322364589
 Animator:
   serializedVersion: 3

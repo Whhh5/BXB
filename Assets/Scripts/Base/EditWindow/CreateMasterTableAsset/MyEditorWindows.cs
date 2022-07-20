@@ -494,13 +494,13 @@ public class CreateDataItem
                 for (int i = 1; i < parameter.Length; i++)
                 {
                     object paras;
-                    if (parameter[i].Contains(";") || string.Equals( paraType[i], "string[]") || string.Equals(paraType[i], "List<*>"))
+                    if (parameter[i].Contains(";") || string.Equals(paraType[i], "string[]") || string.Equals(paraType[i], "List<*>"))
                     {
                         var list = parameter[i].Split(';');
                         List<string> temporlateList = new List<string>();
                         foreach (var item in list)
                         {
-                            if (!string.Equals(item,string.Empty))
+                            if (!string.Equals(item, string.Empty))
                             {
                                 temporlateList.Add(item);
                             }

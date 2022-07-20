@@ -208,6 +208,36 @@ namespace BXB
                 }
                 return result;
             }
+            public T GetUIElement<T>(string f_path, string f_name, RectTransform f_parent, Vector3 f_anchor, params object[] f_parameter)
+where T : MiObjPoolPublicParameter, IUIElementPoolBase
+            {
+                var prefabName = f_name;
+                var path = f_path;
+                var startPosition = f_anchor;
+                var parameter = f_parameter;
+
+                GetOriginal(path, prefabName, out GameObject original);
+                if (original == null)
+                {
+                    Log(color: Color.red, f_path + "/" + prefabName);
+                    return null;
+                }
+
+                var obj = ObjPool.GetObject(original);
+                var rect = obj.GetComponent<RectTransform>();
+                rect.Normalization(f_parent);
+                rect.anchoredPosition3D = startPosition;
+                T result = obj.GetComponent<T>();
+                if (result != null)
+                {
+                    obj.SetActive(true);
+                    result.GetMain().GetComponent<RectTransform>().Normalization(rect);
+                    result.SettingId(0);
+                    result.OnInit();
+                    result.OnSetInit(parameter);
+                }
+                return result;
+            }
 
             public void GetOriginal(string path, string name, out GameObject original)
             {

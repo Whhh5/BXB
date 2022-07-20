@@ -5,7 +5,7 @@ namespace BXB
 {
     namespace Core
     {
-        public class MiAsyncManager : Core.MiSingleton<MiAsyncManager>
+        public class MiAsyncManager : MiSingleton<MiAsyncManager>
         {
             #region  StartAsync
             public void StartAsync(Func<Task> func)
