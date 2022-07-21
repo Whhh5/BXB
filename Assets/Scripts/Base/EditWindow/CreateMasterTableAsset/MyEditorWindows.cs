@@ -300,7 +300,6 @@ public class CreateDataItem
         {
             var file = File.ReadAllText(filePath);
             var lines = file.Split('\n');
-
             string itemName = "";
             List<string> itemType = new List<string>();
             List<string> itemParameter = new List<string>();
@@ -440,6 +439,7 @@ public class CreateDataItem
         foreach (var filePath in filesPath)
         {
             var file = File.ReadAllText(filePath);
+            file = file.Replace("\r", "");
             var lines = file.Split('\n');
             string chilTableName = "";
             List<string> paraType = new List<string>();
