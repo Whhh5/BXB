@@ -42,12 +42,12 @@ public class UIDialog_Battle_MainConsole_EnemyInformation : UIElementPoolBase
         btn_Battle.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
-            BattleSceneManager.Instance.ActiveBattle(BattleSceneManager.Instance.mainPlayer, enemy);
+            SceneDataManager.Instance.ActiveBattle(BattleSceneManager.Instance.mainPlayer, enemy);
         });
         btn_recruit.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
-            BattleSceneManager.Instance.RecruitLegion(BattleSceneManager.Instance.mainPlayer, enemy);
+            SceneDataManager.Instance.RecruitLegion(BattleSceneManager.Instance.mainPlayer, enemy);
         });
 
         ShowAsync().Wait();

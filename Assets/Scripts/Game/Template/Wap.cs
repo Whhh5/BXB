@@ -42,7 +42,7 @@ public class Wap : WordPoolBase
 
     private void OnMouseEnter()
     {
-        BattleSceneManager.Instance.SetMouseWap(this);
+        SceneDataManager.Instance.SetMouseWap(this);
         SetMouseWap(maxTransparency, showTime, Color.green);
         ShowObjInformation().Wait();
         if (infor != null)
@@ -81,16 +81,23 @@ public class Wap : WordPoolBase
 
     public void SetMouseWap(float tweenEndValue, float tweenTime, Color color)
     {
-        setColorTween.Kill();
-        color.a = defentAlphaA;
-        mainSprite.color = color;
-        setColorTween = DOTween.To(() => mainSprite.color.a, value =>
+        try
         {
-            var color = mainSprite.color;
-            color.a = value;
+            setColorTween.Kill();
+            color.a = defentAlphaA;
             mainSprite.color = color;
-        }, tweenEndValue, tweenTime);
-        setColorTween.Play();
+            setColorTween = DOTween.To(() => mainSprite.color.a, value =>
+            {
+                var color = mainSprite.color;
+                color.a = value;
+                mainSprite.color = color;
+            }, tweenEndValue, tweenTime);
+            setColorTween.Play();
+        }
+        catch (Exception)
+        {
+        }
+
     }
 
     public bool TryGetObject<T>(out T com) where T : class

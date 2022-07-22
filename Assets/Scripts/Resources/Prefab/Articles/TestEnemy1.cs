@@ -54,6 +54,6 @@ public class TestEnemy1 : WapObjBase
             var intervalTime = MiDataManager.Instance.dataProceccing.AttackInterval(this.GetSet(WapObjBase.PropertyFloat.attackInterval));
             yield return new WaitForSeconds(intervalTime);
         }
-        BattleSceneManager.Instance.SetSceneMode(BattleSceneManager.SceneMode.Play);
+        SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Play);
     }
 }

@@ -95,11 +95,15 @@ MonoBehaviour:
     m_Bits: 128
   moveMode: 1
   level: 0
-  attackRange: {x: 0, y: 0}
+  attackRange: {x: 1, y: 1}
   anima: {fileID: 1117496423322364589}
   attack_Target: []
-  sp: {fileID: 2744837511904835193}
-  testPoint: {x: 0, y: 0, z: 0}
+  playerNoDetectionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerDetectionLayer:
+    serializedVersion: 2
+    m_Bits: 640
 --- !u!95 &1117496423322364589
 Animator:
   serializedVersion: 3

@@ -304,6 +304,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             default:
                 break;
         }
+        SceneDataManager.Instance.DetectionEnemy();
     }
 
 
@@ -316,7 +317,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             if (Time.time - lastMoveTime >= BattleSceneManager.Instance.playerMoveInterval)
             {
                 lastMoveTime = Time.time;
-                BattleSceneManager.MoveMode moveMode = BattleSceneManager.MoveMode.None;
+                SceneDataManager.MoveMode moveMode = SceneDataManager.MoveMode.None;
 
                 foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
                 {
@@ -326,25 +327,25 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                         switch (keyCode)
                         {
                             case KeyCode.W:
-                                moveMode = BattleSceneManager.MoveMode.Top;
+                                moveMode = SceneDataManager.MoveMode.Top;
                                 isDown = true;
                                 break;
                             case KeyCode.A:
-                                moveMode = BattleSceneManager.MoveMode.Left;
+                                moveMode = SceneDataManager.MoveMode.Left;
                                 isDown = true;
                                 break;
                             case KeyCode.S:
-                                moveMode = BattleSceneManager.MoveMode.Down;
+                                moveMode = SceneDataManager.MoveMode.Down;
                                 isDown = true;
                                 break;
                             case KeyCode.D:
-                                moveMode = BattleSceneManager.MoveMode.Right;
+                                moveMode = SceneDataManager.MoveMode.Right;
                                 isDown = true;
                                 break;
                             default:
                                 break;
                         }
-                        BattleSceneManager.Instance.MoveToDirection(this, moveMode);
+                        SceneDataManager.Instance.MoveToDirection(this, moveMode);
                         if (isDown)
                         {
                             break;
@@ -367,7 +368,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
         foreach (var point in pointPath)
         {
-            BattleSceneManager.Instance.SetMapPoint(point, gameObject);
+            SceneDataManager.Instance.SetMapPoint(point, gameObject);
         }
 
         moveMode = nowMode;
@@ -395,7 +396,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         if (legion != null && legionPoint.Contains(legion))
         {
             legionPoint.Remove(legion);
-            BattleSceneManager.Instance.RemoveEnemyObj(legion);
+            SceneDataManager.Instance.RemoveEnemyObj(legion);
         }
         return legionPoint;
     }
@@ -422,7 +423,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         SetStatus(Status.Die);
         foreach (var item in listPoint)
         {
-            BattleSceneManager.Instance.SetMapPoint(item, null);
+            SceneDataManager.Instance.SetMapPoint(item, null);
         }
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
@@ -490,7 +491,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 foreach (var item in allPointList)
                 {
                     var point = item + new Vector2(i, j);
-                    if (BattleSceneManager.Instance.TryGetWap(point, out Wap wap))
+                    if (SceneDataManager.Instance.TryGetWap(point, out Wap wap))
                     {
                         if (!wap.TryGetObject(out WapObjBase obj) || 
                             ((obj.GetLayerMask() & GetLayerMask()) == 0 && !retList.Contains(wap)))
@@ -515,7 +516,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 foreach (var item in allPointList)
                 {
                     var point = item + new Vector2(i, j);
-                    if (BattleSceneManager.Instance.TryGetWap(point, out Wap wap))
+                    if (SceneDataManager.Instance.TryGetWap(point, out Wap wap))
                     {
                         if (wap.TryGetObject(out WapObjBase obj))
                         {
@@ -534,7 +535,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     protected void AttactTarget(WapObjBase target, Action dieEvent)
     {
-        if (!(BattleSceneManager.Instance.sceneMode != BattleSceneManager.SceneMode.Acttack) && target != null)
+        if (!(SceneDataManager.Instance.sceneMode != SceneDataManager.SceneMode.Acttack) && target != null)
         {
             Debug.DrawLine(transform.position, target.transform.position, Color.red);
             try
@@ -550,7 +551,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 if (nowEnemyBlood <= 0)
                 {
                     var list = target.Die();
-                    BattleSceneManager.Instance.AddProperty(list);
+                    SceneDataManager.Instance.AddProperty(list);
                     dieEvent.Invoke();
                 }
                 SetStatus(Status.Attack);
