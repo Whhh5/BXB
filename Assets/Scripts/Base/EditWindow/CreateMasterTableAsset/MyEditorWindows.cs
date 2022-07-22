@@ -440,6 +440,7 @@ public class CreateDataItem
         foreach (var filePath in filesPath)
         {
             var file = File.ReadAllText(filePath);
+            file = file.Replace("\r", "");
             var lines = file.Split('\n');
             string chilTableName = "";
             List<string> paraType = new List<string>();
