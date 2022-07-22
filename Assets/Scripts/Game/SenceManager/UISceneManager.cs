@@ -26,7 +26,8 @@ public class UISceneManager : MiSingletonMonoBeHaviour<UISceneManager>
     protected override async Task OnStartAsync()
     {
         var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "RegisterWindow", CanvasLayer.System);
+        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "MainWindow", CanvasLayer.System);
+        //await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_MainWindowSettins", CanvasLayer.System);
     }
     public async Task LoadCanvasLayer()
     {
