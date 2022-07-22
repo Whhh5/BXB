@@ -18,6 +18,15 @@ public class StartWindow : MiUIDialog
             Destroy();
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         });
+        //退出响应时间
+        LeaveButton.onClick.SubscribeEventAsync(async () =>
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+        });
 
     }
     public override void OnInit()
