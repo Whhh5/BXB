@@ -7,8 +7,8 @@ using System;
 public class CommonGameObject : MiObjPoolPublicParameter, ICommon_Weapon
 {
     [SerializeField] GameObject main;
-    [SerializeField] Sprite downImage;
-    [SerializeField] Sprite mainSprite;
+    [SerializeField] SpriteRenderer downImage;
+    [SerializeField] SpriteRenderer mainSprite;
     [SerializeField] Animator animator;
 
     public void Action(params object[] value)
@@ -33,9 +33,12 @@ public class CommonGameObject : MiObjPoolPublicParameter, ICommon_Weapon
 
     public void OnSetInit(object[] value)
     {
-        var downImage = (Sprite)value[0];
-        var mainSprite = (Sprite)value[1];
-        //var animator = ()
+        downImage.sprite = (Sprite)value[0];
+        mainSprite.sprite = (Sprite)value[1];
 
+        var animaControllerName = (string)value[2];
+        var path = CommonManager.Instance.filePath.ResAnima;
+        var animatorController = ResourceManager.Instance.Load<RuntimeAnimatorController>(path, animaControllerName);
+        animator.runtimeAnimatorController = animatorController;
     }
 }

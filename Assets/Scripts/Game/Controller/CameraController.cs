@@ -27,7 +27,6 @@ public class CameraController : MiBaseMonoBeHaviourClass
 
     private void Update()
     {
-
         try
         {
             var cameraSize = thisCamera.orthographicSize;
@@ -54,7 +53,7 @@ public class CameraController : MiBaseMonoBeHaviourClass
             endPos.y = endPos.y > leftTop.y ? leftTop.y : endPos.y;
             endPos.y = endPos.y < rightDown.y ? rightDown.y : endPos.y;
 
-            thisCamera.transform.position = Vector3.Lerp(thisCamera.transform.position, endPos, 1f);
+            transform.position = Vector3.Lerp(transform.position, endPos, 1f);
         }
         catch (Exception)
         {

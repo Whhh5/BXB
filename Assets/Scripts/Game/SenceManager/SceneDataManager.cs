@@ -5,6 +5,7 @@ using BXB.Core;
 using System;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class SceneDataManager : MiSingleton<SceneDataManager>
 {
@@ -67,6 +68,14 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         { MoveMode.Top, new Vector2(-1,0)},
         { MoveMode.Down, new Vector2(1,0)},
     };
+
+    public void LoadSceneAsset()
+    {
+        string levelAssetDataName = "";
+        string path = "";
+        Type type = Type.GetType("Asset_SceneLevelData");
+        var asset = AssetDatabase.LoadAssetAtPath(path, type);
+    }
 
     public void SetMouseWap(Wap wap)
     {
