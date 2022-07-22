@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CharacterController : WapObjBase
 {
+    public LayerMask playerNoDetectionLayer;
+    public LayerMask playerDetectionLayer;
     public override void OnInit()
     {
         base.OnInit();
@@ -20,7 +22,7 @@ public class CharacterController : WapObjBase
     public override List<string> Die()
     {
         //”Œœ∑Ω· ¯
-        BattleSceneManager.Instance.GameFinish();
+        SceneDataManager.Instance.GameFinish( ResourceManager.SceneMode.Battle, ResourceManager.SceneMode.Boss);
         Destroy();
         return new List<string>();
     }
@@ -52,7 +54,7 @@ public class CharacterController : WapObjBase
             var intervalTime = MiDataManager.Instance.dataProceccing.AttackInterval(this.GetSet(WapObjBase.PropertyFloat.attackInterval));
             yield return new WaitForSeconds(intervalTime);
         }
-        BattleSceneManager.Instance.SetSceneMode(BattleSceneManager.SceneMode.Play);
+        SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Play);
 
         #region old attack function
 
@@ -127,4 +129,6 @@ public class CharacterController : WapObjBase
         #endregion
         idExitCoroutine = true;
     }
+
+    
 }

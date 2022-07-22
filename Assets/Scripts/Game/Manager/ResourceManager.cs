@@ -90,9 +90,11 @@ namespace BXB
 
             public enum SceneMode
             {
+                None,
                 UI,
                 LevelSelect,
-                Battle
+                Battle,
+                Boss,
 
             }
             public AsyncOperation LoadSceneAsync(SceneMode sceneMode, LoadSceneMode mode)
@@ -112,7 +114,15 @@ namespace BXB
             }
             public AsyncOperation RemoveSceneAsync(SceneMode sceneMode, UnloadSceneOptions mode)
             {
-                var operation = SceneManager.UnloadSceneAsync(sceneMode.ToString(), mode);
+                AsyncOperation operation = null;
+                switch (sceneMode)
+                {
+                    case SceneMode.None:
+                        break;
+                    default:
+                        operation = SceneManager.UnloadSceneAsync(sceneMode.ToString(), mode);
+                        break;
+                }
                 return operation;
             }
 

@@ -169,18 +169,18 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         await AsyncDefaule();
     }
 
-    public void AddSystemItems(BattleSceneManager.ItemsType itemsType, int number)
+    public void AddSystemItems(SceneDataManager.ItemsType itemsType, int number)
     {
         switch (itemsType)
         {
-            case BattleSceneManager.ItemsType.None:
+            case SceneDataManager.ItemsType.None:
                 break;
-            case BattleSceneManager.ItemsType.Gold:
+            case SceneDataManager.ItemsType.Gold:
                 int oldNumber = int.Parse(goldText.GetRawText());
                 oldNumber += number;
                 goldText.SetRawText(oldNumber).Wait();
                 break;
-            case BattleSceneManager.ItemsType.EnumCount:
+            case SceneDataManager.ItemsType.EnumCount:
                 break;
             default:
                 break;
@@ -210,7 +210,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
                             break;
                         case KeyCode.Alpha3:
-
+                            SceneDataManager.Instance.GameFinish( ResourceManager.SceneMode.Battle, ResourceManager.SceneMode.Boss);
                             break;
                         case KeyCode.Alpha4:
 
