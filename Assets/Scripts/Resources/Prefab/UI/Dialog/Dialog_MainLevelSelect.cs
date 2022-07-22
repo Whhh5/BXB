@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 public class Dialog_MainLevelSelect : MiUIDialog
 {
     [SerializeField] MiUIButton btn_Level1;
+    [SerializeField] MiUIButton btn_Close;
     public override void OnInit()
     {
         ShowAsync().Wait();
-
     }
 
     public override void OnSetInit(object[] value)
@@ -27,7 +27,13 @@ public class Dialog_MainLevelSelect : MiUIDialog
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         });
 
+        btn_Close.onClick.SubscribeEventAsync(async () =>
+        {
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "MainWindow", CanvasLayer.System);
 
+            ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+        });
     }
 
     public override async Task OnSetInitAsync<T>(params object[] value)
