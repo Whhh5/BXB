@@ -4,6 +4,7 @@ using UnityEngine;
 using BXB.Core;
 using System.Threading.Tasks;
 using DG.Tweening;
+using System;
 
 public class UIDialog_TextPopup : MiUIDialog
 {
@@ -24,6 +25,7 @@ public class UIDialog_TextPopup : MiUIDialog
     [SerializeField] CanvasGroup group;
     [SerializeField] bool isRunning = false;
     [SerializeField] MiUIButton btn_close;
+    Action endAction = null;
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -32,6 +34,7 @@ public class UIDialog_TextPopup : MiUIDialog
         {
             if (!isRunning)
             {
+                endAction?.Invoke();
                 Destroy();
             }
             else
@@ -44,6 +47,7 @@ public class UIDialog_TextPopup : MiUIDialog
     public override void OnSetInit(object[] value)
     {
         var str = (string)value[0];
+        endAction = (Action)value[1];
         StartCoroutine(CreateTextPrefab(str, Mode.Show));
         DOTween.To(() => startAlpha, value => { group.alpha = value; }, endAlpha, 1.0f);
     }
