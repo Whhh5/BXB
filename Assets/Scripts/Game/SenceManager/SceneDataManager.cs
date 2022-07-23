@@ -26,10 +26,22 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
     public Wap mouseDownWap;
 
     public UIDialog_Battle_MainConsole mainConsole;
-    
+
     public SceneMode sceneMode = SceneMode.Play;
 
     public List<WapObjBase> enemys = new List<WapObjBase>();
+
+    public Camera sceneMainCamera;
+
+    public Action gameFinish = () => { };
+
+    public float schedule = 0.0f;
+
+    public float nextSceneSchedule = 0.0f;
+
+    public float allSchedule = 0.0f;
+
+
 
     public enum MoveMode
     {
@@ -69,12 +81,83 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         { MoveMode.Down, new Vector2(1,0)},
     };
 
-    public void LoadSceneAsset()
+    public void Removeenemys()
     {
-        string levelAssetDataName = "";
-        string path = "";
-        Type type = Type.GetType("Asset_SceneLevelData");
-        var asset = AssetDatabase.LoadAssetAtPath(path, type);
+        foreach (var item in enemys)
+        {
+            item?.gameObject.SetActive(false);
+        }
+        enemys.Clear();
+    }
+    public void RemoveAllGameObject()
+    {
+        Removeenemys();
+        if (mainPlayer!=null)
+        {
+            foreach (var item in mainPlayer.GetSetLegion())
+            {
+                item?.gameObject.SetActive(false);
+            }
+            mainPlayer?.gameObject.SetActive(false);
+
+        }
+
+    }
+    public void InitLevelData(float nextSchedule)
+    {
+        schedule = 0.0f;
+        this.nextSceneSchedule = nextSchedule;
+        allSchedule = schedule / nextSceneSchedule;
+    }
+    public float GetSetLevelSchedule(float increment)
+    {
+        schedule += increment;
+        schedule = schedule > nextSceneSchedule ? nextSceneSchedule : schedule;
+        allSchedule = schedule / nextSceneSchedule;
+        if (allSchedule >= 1)
+        {
+            GameFinish();
+        }
+        Log(Color.green, allSchedule);
+        return allSchedule;
+    }
+
+    public T GetGameObject<T>(ulong id, Vector2 startWap, WapObjBase.StatusMode mode, bool isEnemy = true) where T : WapObjBase
+    {
+        T obj = null;
+        try
+        {
+            var table = MasterData.Instance.GetTableData<LocalRolesData>(id);
+
+            var downImageIndex = table.downImage;
+            //var downPath = CommonManager.Instance.filePath.ResImSpDownImage;
+            //var downImageSprite = ResourceManager.Instance.Load<Sprite>(downPath, downImageIndex.ToString());
+            var path = CommonManager.Instance.filePath.ResRolesPrePath;
+            obj = ResourceManager.Instance.GetWorldObject<T>(path, id.ToString(), Vector3.zero, null, id);
+            obj.SetMoveMode(mode);
+            mapWapController.PlaceArticle(obj, startWap, pointToWap, 0, Ease.Linear);
+            if (isEnemy)
+            {
+                enemys.Add(obj);
+            }
+        }
+        catch (Exception exp)
+        {
+            Log(Color.red, exp);
+        }
+        return obj;
+    }
+
+    public Asset_SceneLevelData LoadSceneAsset(string name)
+    {
+        string levelAssetDataName = name;
+        string path = $"Assets/Scripts/Game.Asset/Asset_Scene_{levelAssetDataName}.asset";
+        var asset = AssetDatabase.LoadAssetAtPath<Asset_SceneLevelData>(path);
+        return asset;
+    }
+    public void AddGameFinishAction(Action action)
+    {
+        gameFinish += action;
     }
 
     public void SetMouseWap(Wap wap)
@@ -173,12 +256,6 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         mapWapController.PlaceArticle(obj, point, pointToWap, moveTime, ease);
     }
 
-    //private void Update()
-    //{
-    //    DetectionEnemy();
-    //    return;
-    //    DetectionWap();
-    //}
 
     public void DetectionEnemy()
     {
@@ -326,16 +403,10 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         mainPlayer.GetSetConsumable(id, number);
     }
 
-    public void GameFinish(ResourceManager.SceneMode removeMode, ResourceManager.SceneMode loadMode)
+    public void GameFinish()
     {
-        Log(Color.red, "Finish");
-        foreach (var item in enemys)
-        {
-            item.Destroy();
-        }
-        enemys.Clear();
-        ResourceManager.Instance.RemoveSceneAsync(removeMode, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        ResourceManager.Instance.LoadSceneAsync(loadMode, LoadSceneMode.Additive);
+        gameFinish?.Invoke();
+        gameFinish = null;
     }
 
     public void RecruitLegion(WapObjBase obj1, WapObjBase obj2)
@@ -392,6 +463,11 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
             obj2.SetLayer(obj1.gameObject.layer);
             obj2.GetSetAttackLayer(obj1.GetSetAttackLayer());
             hintStr = $"Recuit -{obj2.GetName()}- finish ...";
+            if (enemys.Contains(obj2))
+            {
+                enemys.Remove(obj2);
+            }
+            obj2.Change();
         }
         else
         {

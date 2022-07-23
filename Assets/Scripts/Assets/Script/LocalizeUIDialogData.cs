@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 [System.Serializable] 
-public class LocalizeUIDialogData 
+public class LocalizeUIDialogData 
 { 
 	public ulong id = default;
 
@@ -15,6 +15,6 @@ public class LocalizeUIDialogData
 
 	public uint number = default;
 
-	public string prefabName = default;
+	public string prefabName = default;
  
 } 

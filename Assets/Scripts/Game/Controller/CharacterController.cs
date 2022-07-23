@@ -8,13 +8,13 @@ public class CharacterController : WapObjBase
 {
     public LayerMask playerNoDetectionLayer;
     public LayerMask playerDetectionLayer;
+
     public override void OnInit()
     {
         base.OnInit();
     }
     public override void OnSetInit(object[] value)
     {
-
     }
 
 
@@ -22,8 +22,8 @@ public class CharacterController : WapObjBase
     public override List<string> Die()
     {
         //”Œœ∑Ω· ¯
-        SceneDataManager.Instance.GameFinish( ResourceManager.SceneMode.Battle, ResourceManager.SceneMode.Boss);
         Destroy();
+        Change();
         return new List<string>();
     }
 
@@ -130,5 +130,8 @@ public class CharacterController : WapObjBase
         idExitCoroutine = true;
     }
 
-    
+    public override void Change()
+    {
+        
+    }
 }

@@ -300,7 +300,6 @@ public class CreateDataItem
         {
             var file = File.ReadAllText(filePath);
             var lines = file.Split('\n');
-
             string itemName = "";
             List<string> itemType = new List<string>();
             List<string> itemParameter = new List<string>();
@@ -365,6 +364,7 @@ public class CreateDataItem
             //var cs = TemplateAssetClass.CreateParameterAndScript( TemplateAssetClass.TemplateFlags.commonClass, itemName, parameters);
             //生成 *.cs 文件
             var filesPath = scriptPath + $"/{itemName}.cs";
+            filesPath = filesPath.Replace("\r", "");
             File.WriteAllText(filesPath, cs);
         }
 

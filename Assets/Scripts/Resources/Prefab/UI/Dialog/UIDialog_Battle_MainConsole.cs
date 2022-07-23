@@ -210,7 +210,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
                             break;
                         case KeyCode.Alpha3:
-                            SceneDataManager.Instance.GameFinish( ResourceManager.SceneMode.Battle, ResourceManager.SceneMode.Boss);
+                            SceneDataManager.Instance.GameFinish();
                             break;
                         case KeyCode.Alpha4:
 

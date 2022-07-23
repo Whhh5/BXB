@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Main/GameObject
+    path: Main/Down Image
     classID: 212
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -63,7 +63,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 373825559
+      path: 24178582
       attribute: 2526845255
       script: {fileID: 0}
       typeID: 212
@@ -125,10 +125,17 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: Main/GameObject
+    path: Main/Down Image
     classID: 212
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.26666668
+    functionName: PlayAudio
+    data: jioadoi
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
