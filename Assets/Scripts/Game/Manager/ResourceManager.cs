@@ -62,6 +62,7 @@ namespace BXB
             /// <returns></returns>
             public T Load<T>(string filePath, string name, bool isInstantiate = false, RectTransform rectTr = null, Transform trTr = null) where T : UnityEngine.Object
             {
+
                 string paths = $"{filePath}/{name}";
                 T obj = Resources.Load<T>(paths);
                 if (isInstantiate)

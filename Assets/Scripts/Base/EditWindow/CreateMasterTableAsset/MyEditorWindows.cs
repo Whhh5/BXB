@@ -364,6 +364,7 @@ public class CreateDataItem
             //var cs = TemplateAssetClass.CreateParameterAndScript( TemplateAssetClass.TemplateFlags.commonClass, itemName, parameters);
             //生成 *.cs 文件
             var filesPath = scriptPath + $"/{itemName}.cs";
+            filesPath = filesPath.Replace("\r", "");
             File.WriteAllText(filesPath, cs);
         }
 

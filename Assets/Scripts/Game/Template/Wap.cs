@@ -83,7 +83,7 @@ public class Wap : WordPoolBase
     {
         try
         {
-            setColorTween.Kill();
+            setColorTween?.Kill();
             color.a = defentAlphaA;
             mainSprite.color = color;
             setColorTween = DOTween.To(() => mainSprite.color.a, value =>
