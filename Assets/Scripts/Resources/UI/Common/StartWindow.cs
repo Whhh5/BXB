@@ -28,6 +28,13 @@ public class StartWindow : MiUIDialog
 #endif
         });
 
+        SettingsButton.onClick.SubscribeEventAsync(async () =>
+        {
+            Debug.Log("[SettingsButton.onClick.SubscribeEventAsync]");
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_MainWindowSettings", CanvasLayer.System);
+        });
+
     }
     public override void OnInit()
     {

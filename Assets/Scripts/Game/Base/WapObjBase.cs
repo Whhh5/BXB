@@ -57,6 +57,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField] int level;
     [SerializeField] protected Vector2 attackRange;
     [SerializeField] Animator anima;
+
+    public SpriteRenderer downImage;
+
     [SerializeField, ReadOnly] List<WapObjBase> attack_Target = null;
 
     [SerializeField] Dictionary<PropertyFloat, float> levelPropertyDic = new Dictionary<PropertyFloat, float>();

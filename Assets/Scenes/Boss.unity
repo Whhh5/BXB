@@ -160,6 +160,7 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0, z: 0}
   mapSprote: {fileID: 0}
   maxDriction: {x: 50, y: -50, z: 0}
+  moveSpeed: 8
 --- !u!20 &18318994
 Camera:
   m_ObjectHideFlags: 0
@@ -292,3 +293,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapWidthAndHeight: {x: 30, y: 30}
   wapParent: {fileID: 1500376763}
+  sceneMainCamera: {fileID: 18318994}
