@@ -22,8 +22,8 @@ public class Audio : MonoBehaviour
     private Button btnSEDown;
     [SerializeField]
     private Button btnSEUp;
-    private int BGMvolumeValue = 50, SEvolumeValue = 50;
-    private int minVolume = -40;
+    private int BGMvolumeValue = 80, SEvolumeValue = 80;
+    public int minBGMVolume, minSEVolume;
     private int soundConvert;
 
     // Start is called before the first frame update
@@ -34,11 +34,12 @@ public class Audio : MonoBehaviour
     }
     void Start()
     {
-        soundConvert = Mathf.Abs(minVolume) / 10 - 10;
+        soundConvert = Mathf.Abs(minBGMVolume) / 10 - 10;
         btnBGMDown.onClick.AddListener(OnBGMBtnDownClick);
         btnBGMUp.onClick.AddListener(OnBGMBtnUpClick);
         btnSEDown.onClick.AddListener(OnSEBtnDownClick);
         btnSEUp.onClick.AddListener(OnSEBtnUpClick);
+
     }
 
     // Update is called once per frame
@@ -64,7 +65,7 @@ public class Audio : MonoBehaviour
         {
             BGMvolumeValue -= 10;
             int multiple = BGMvolumeValue / 10;
-            sliderBGM.value = BGMvolumeValue + (soundConvert * multiple + minVolume);
+            sliderBGM.value = BGMvolumeValue + (soundConvert * multiple + minBGMVolume);
         }
     }
 
@@ -74,7 +75,7 @@ public class Audio : MonoBehaviour
         {
             BGMvolumeValue += 10;
             int multiple = BGMvolumeValue / 10;
-            sliderBGM.value = BGMvolumeValue + (soundConvert * multiple + minVolume);
+            sliderBGM.value = BGMvolumeValue + (soundConvert * multiple + minBGMVolume);
         }
     }
 
@@ -84,7 +85,7 @@ public class Audio : MonoBehaviour
         {
             SEvolumeValue -= 10;
             int multiple = SEvolumeValue / 10;
-            sliderSE.value = SEvolumeValue + (soundConvert * multiple + minVolume);
+            sliderSE.value = SEvolumeValue + (soundConvert * multiple + minSEVolume);
         }
     }
 
@@ -94,7 +95,7 @@ public class Audio : MonoBehaviour
         {
             SEvolumeValue += 10;
             int multiple = SEvolumeValue / 10;
-            sliderSE.value = SEvolumeValue + (soundConvert * multiple + minVolume);
+            sliderSE.value = SEvolumeValue + (soundConvert * multiple + minSEVolume);
         }
     }
 }
