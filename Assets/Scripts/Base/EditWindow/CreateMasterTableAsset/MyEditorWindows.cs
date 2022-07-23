@@ -300,7 +300,6 @@ public class CreateDataItem
         {
             var file = File.ReadAllText(filePath);
             var lines = file.Split('\n');
-
             string itemName = "";
             List<string> itemType = new List<string>();
             List<string> itemParameter = new List<string>();
