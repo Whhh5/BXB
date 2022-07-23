@@ -44,11 +44,6 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         try
         {
             SceneDataManager.Instance.InitLevelData(10.0f);
-            foreach (var item in SceneDataManager.Instance.enemys)
-            {
-                item.Destroy();
-            }
-            SceneDataManager.Instance.mainPlayer?.Destroy();
 
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             SceneDataManager.Instance.ShowBattleMainConsole();
@@ -95,12 +90,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     public void Finish()
     {
         Log(Color.red, "Finish");
-        var enemys = SceneDataManager.Instance.enemys;
-        foreach (var item in enemys)
-        {
-            item.Destroy();
-        }
-        enemys.Clear();
+        SceneDataManager.Instance.Removeenemys();
         ResourceManager.Instance.RemoveSceneAsync( ResourceManager.SceneMode.Battle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         ResourceManager.Instance.LoadSceneAsync( ResourceManager.SceneMode.Boss, LoadSceneMode.Additive);
     }

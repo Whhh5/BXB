@@ -80,6 +80,29 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         { MoveMode.Top, new Vector2(-1,0)},
         { MoveMode.Down, new Vector2(1,0)},
     };
+
+    public void Removeenemys()
+    {
+        foreach (var item in enemys)
+        {
+            item?.gameObject.SetActive(false);
+        }
+        enemys.Clear();
+    }
+    public void RemoveAllGameObject()
+    {
+        Removeenemys();
+        if (mainPlayer!=null)
+        {
+            foreach (var item in mainPlayer.GetSetLegion())
+            {
+                item?.gameObject.SetActive(false);
+            }
+            mainPlayer?.gameObject.SetActive(false);
+
+        }
+
+    }
     public void InitLevelData(float nextSchedule)
     {
         schedule = 0.0f;
