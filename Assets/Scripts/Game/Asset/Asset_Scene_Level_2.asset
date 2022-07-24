@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34aaca0281e5cf246a740f0bb02f69e1, type: 3}
-  m_Name: Asset_Scene_Level_1
+  m_Name: Asset_Scene_Level_2
   m_EditorClassIdentifier: 
   data_Scene_Battle:
   - id: 110020001
@@ -20,9 +20,9 @@ MonoBehaviour:
     nextSceneSchedule: 10
     controller: 1
   data_Scene_Boss:
-  - id: 110020201
-    number: 1
-    downImageId: 1
+  - id: 0
+    number: 0
+    downImageId: 0
     scope_xxYY: {x: 0, y: 0, z: 0, w: 0}
     nextSceneSchedule: 0
     controller: 0

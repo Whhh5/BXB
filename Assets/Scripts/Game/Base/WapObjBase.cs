@@ -11,9 +11,11 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         None,
         maxBlood,
+        level,
         attack,
         defend,
         attackInterval,
+        exp,
         EnumCount,
     }
     public enum PropertyListString
@@ -74,6 +76,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     };
 
+    public float nowExp = 0.0f;
     public Dictionary<ulong, int> articleGet { get => articleDic; }
     public Dictionary<ulong, int> consumableGet { get => consumableDic; }
     public Dictionary<PropertyFloat, float> levelPropertyGet { get => levelPropertyDic; }
@@ -128,6 +131,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         levelPropertyDic = new Dictionary<PropertyFloat, float>();
         externalPropertyDic = new Dictionary<PropertyFloat, float>();
         dieAndRecruittDic = new Dictionary<PropertyListString, List<string>>();
+        nowExp = 0.0f;
         for (int i = 0; i < (int)PropertyFloat.EnumCount; i++)
         {
             levelPropertyDic.Add((PropertyFloat)i, 0.0f);
@@ -173,6 +177,19 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         nowBlood = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level).maxBlood;
         //
         playerName = rolestableData.name;
+    }
+    public float GetSetLevelExp(float increment)
+    {
+        float ret = nowExp;
+        float levelUpRxp = GetSet(PropertyFloat.exp);
+        ret += increment;
+        if (ret - levelUpRxp >= 0)
+        {
+            var level = GetSet(PropertyFloat.level, 1);
+            ret -= levelUpRxp;
+        }
+        nowExp = ret;
+        return ret;
     }
     public float GetSet(PropertyFloat mode, float increment = 0)
     {

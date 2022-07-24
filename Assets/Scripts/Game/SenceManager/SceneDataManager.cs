@@ -43,7 +43,7 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
 
     public Asset_SceneLevelData levelData;
 
-
+    public float upLevelExp;
 
     public enum MoveMode
     {
