@@ -13,8 +13,11 @@ public class TestEnemy1 : WapObjBase
         var gets = GetSet(WapObjBase.PropertyListString.recruitGetArticle);
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            var sched = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).forward;
+            SceneDataManager.Instance.GetSetLevelSchedule(sched);
             var level = GetSet(PropertyFloat.level);
-            var data = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
+            var upLevelExp = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
+            var exp = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).level;
         }
         return gets;
     }
@@ -68,8 +71,8 @@ public class TestEnemy1 : WapObjBase
     {
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            var sched = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).forward;
-            SceneDataManager.Instance.GetSetLevelSchedule(sched);
+            //var sched = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).forward;
+            //SceneDataManager.Instance.GetSetLevelSchedule(sched);
         }
     }
 }

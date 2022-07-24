@@ -192,6 +192,25 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         nowExp = ret;
         return ret;
     }
+    public void UpDateLevelData()
+    {
+        for (int i = 0; i < (int)PropertyFloat.EnumCount; i++)
+        {
+            try
+            {
+                var levelDataTable = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
+                var fileName = ((PropertyFloat)i).ToString();
+                var levelFiles = levelDataTable.GetType().GetField(fileName);
+                var value = levelFiles.GetValue(levelDataTable);
+                levelPropertyDic[(PropertyFloat)i] = (float)value;
+            }
+            catch (Exception)
+            {
+                Log(Color.red, $"Absent property   {((PropertyFloat)i).ToString()}");
+            }
+        }
+        levelPropertyDic[PropertyFloat.level] = (float)level;
+    }
     public float GetSet(PropertyFloat mode, float increment = 0)
     {
         float ret = 0.0f;
