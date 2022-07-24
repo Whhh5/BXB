@@ -14,7 +14,7 @@ public class Eff_Common_MotionTrail_1 : CommonEffectsBase
     {
         if (target != null)
         {
-            main.transform.position = Vector3.Lerp(main.transform.position, target.position, moveSpeed * Time.deltaTime);
+            m_main.transform.position = Vector3.Lerp(m_main.transform.position, target.position, moveSpeed * Time.deltaTime);
         }
         if (isDestroy && mainParticle.particleCount <= 0)
         {

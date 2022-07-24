@@ -1,4 +1,4 @@
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 public class MiDataService
@@ -17,7 +17,8 @@ public class MiDataService
             return;
         }
         userName = GetUserName(userName);
-        var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
+        var accountdata = Resources.Load<ServerAccountData>("DataAsset/Account Data Asset.asset");
+        //var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
         var data = accountdata.GetValue(userName);
         if (data == null)
         {
@@ -33,7 +34,8 @@ public class MiDataService
     public static bool Login(string userName, string password)
     {
         userName = GetUserName(userName);
-        var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
+        var accountdata = Resources.Load<ServerAccountData>("DataAsset/Account Data Asset.asset");
+        //var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
         var data = accountdata.GetValue(userName);
         bool active = false;
         if (data != null)
@@ -58,7 +60,8 @@ public class MiDataService
     public static void LogOut(string userName, string password)
     {
         userName = GetUserName(userName);
-        var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
+        var accountdata = Resources.Load<ServerAccountData>("DataAsset/Account Data Asset.asset");
+        //var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
         var data = accountdata.GetValue(userName);
         if (data != null && data.value.password == password)
         {
@@ -73,7 +76,8 @@ public class MiDataService
     public static Account GetAccountInfoData()
     {
         var account = accountNumber;
-        var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
+        var accountdata = Resources.Load<ServerAccountData>("DataAsset/Account Data Asset.asset");
+        //var accountdata = AssetDatabase.LoadAssetAtPath<ServerAccountData>("Assets/Service/Data/Account Data Asset.asset");
         var data = accountdata.GetValue(account);
         Account accountInfo = null;
         if (data != null)

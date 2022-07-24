@@ -3,7 +3,7 @@ using BXB.Core;
 
 public abstract class CommonEffectsBase : MiObjPoolPublicParameter, IEffects
 {
-    [SerializeField] protected GameObject main;
+    [SerializeField] protected GameObject m_main;
     [SerializeField] protected ParticleSystem mainParticle;
     [SerializeField, ReadOnly] protected ParticleSystem.MainModule mainMode;
     protected override void OnAwake()
@@ -50,12 +50,12 @@ public abstract class CommonEffectsBase : MiObjPoolPublicParameter, IEffects
     public override void Destroy()
     {
         base.Destroy();
-        main.transform.Normalization(gameObject.transform);
+        m_main.transform.Normalization(gameObject.transform);
     }
 
     public GameObject GetMain()
     {
-        return main;
+        return m_main;
     }
 
     public object GetInfo()

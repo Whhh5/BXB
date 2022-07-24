@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEditor;
+//using UnityEditor;
 using System.Reflection;
 
 namespace BXB
@@ -55,6 +55,7 @@ namespace BXB
                 tr.localScale = Vector3.one;
                 return tr;
             }
+            /*
             public static Dictionary<ulong, TDicValue> LoadData<TDicValue, TDataItem>(this Dictionary<ulong, TDicValue> dic, string assetName)
                 where TDataItem : UnityEngine.Object, IDataItemMothodBase
             {
@@ -77,7 +78,7 @@ namespace BXB
                     }
                 }
                 return tempDic;
-            }
+            }*/
         }
     }
 }

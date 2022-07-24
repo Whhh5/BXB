@@ -34,22 +34,23 @@ public class UIDialog_Battle_MainConsole_Bottom_Process : MonoBehaviour
     }
     private void SetProcess()
     {
-        if(scene.allSchedule!=float.NaN&&scene.schedule != float.NaN&&scene.allSchedule!=0)
-        {
-            
-            processValue = (float)(scene.schedule / scene.allSchedule);
+        
+        
+
+            //processValue = (float)(scene.schedule / scene.nextSceneSchedule);
+            processValue = scene.allSchedule;
             if (processValue > 1) {
                 processValue = 1.0f;
             }
             level.SetRawText("Level" + 1).Wait();
             processText.SetRawText((int)(processValue*100) + "%").Wait();
             slider.value = processValue;
-        }
-        else
-        {
-            processText.SetRawText("0"+ "%").Wait();
-            slider.value = 0.0f;
-        }
+       
+        
+        
+           // processText.SetRawText("0"+ "%").Wait();
+           // slider.value = 0.0f;
+        
         
         
        

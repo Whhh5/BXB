@@ -21,24 +21,28 @@ public class UIDialog_Battle_MainConsole_UpperCenter : MiUIBase
     {
 
     }
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+    }
+    public override void OnSetInit(object[] value)
+    {
+    }
+    //private void Update()
+    //{
+    //    SetUpperCenterParam();
+    //}
+    public void SetUpperCenterParam()
+    {
+        if (param == null)
+        {
+            Debug.Log("param == null");
+        }
         mainPlayer = SceneDataManager.Instance.mainPlayer;
         param = mainPlayer.articleGet;
         leadPower = GetComponentsInChildren<MiUIText>()[0];
         gold = GetComponentsInChildren<MiUIText>()[1];
         speech = GetComponentsInChildren<MiUIText>()[2];
-    }
-    public override void OnSetInit(object[] value)
-    {
-    }
-    private void Update()
-    {
-        SetUpperCenterParam();
-    }
-    public void SetUpperCenterParam()
-    {
-
         param.TryGetValue(leaderPowerId,out leaderNum);
         param.TryGetValue(goldId,out goldNum);
         param.TryGetValue(speechId,out speechNum);
