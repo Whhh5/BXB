@@ -35,23 +35,22 @@ public class CharacterController : WapObjBase
     {
         idExitCoroutine = false;
         float startIntervalTime = MiDataManager.Instance.dataProceccing.AttackInterval(this.GetSet(WapObjBase.PropertyFloat.attackInterval));
-        var allPointList = GetAllPoint();
-        foreach (var item in GetSetLegion())
-        {
-            allPointList.AddRange(item.GetAllPoint());
-        }
         startIntervalTime = MiDataManager.Instance.dataProceccing.GetStartAttackInterval(startIntervalTime);
         yield return new WaitForSeconds(startIntervalTime * 0.1f);
         while (true)
         {
             //
+            var allPointList = GetAllPoint();
+            foreach (var item in GetSetLegion())
+            {
+                allPointList.AddRange(item.GetAllPoint());
+            }
             List<WapObjBase> attack_targets = GetAtactTargets(allPointList);
 
-            if (attack_targets.Count == 0 || (SceneDataManager.Instance.sceneMode != SceneDataManager.SceneMode.Acttack))
+            if (attack_targets.Count == 0)
             {
                 break;
             }
-            SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Acttack);
             foreach (var target in attack_targets)
             {
                 AttactTarget(target, () => { /*enemys.Remove(target);*/ });

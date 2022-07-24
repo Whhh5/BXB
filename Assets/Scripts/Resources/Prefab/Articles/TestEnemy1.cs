@@ -49,11 +49,10 @@ public class TestEnemy1 : WapObjBase
             //
             List<WapObjBase> attack_targets = GetAtactTargets(allPointList);
 
-            if (attack_targets.Count == 0 || (SceneDataManager.Instance.sceneMode != SceneDataManager.SceneMode.Acttack))
+            if (attack_targets.Count == 0)
             {
                 break;
             }
-            SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Acttack);
             foreach (var target in attack_targets)
             {
                 AttactTarget(target, () => { /*enemys.Remove(target);*/ });
