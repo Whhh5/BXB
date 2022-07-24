@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 [System.Serializable] 
-public class LocalItemData 
+public class LocalItemData 
 { 
 	public ulong id = default;
 
@@ -9,6 +9,6 @@ public class LocalItemData
 
 	public string[] effect = default;
 
-	public int type = default;
+	public int type = default;
  
 } 

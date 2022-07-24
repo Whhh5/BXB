@@ -469,23 +469,6 @@ public class CreateDataItem
             List<Task> tasks = new List<Task>();
             foreach (var line in lines)
             {
-                //object[] objs =
-                //{
-                //    line,
-                //    chilTableName,
-                //    paraName.ToArray(),
-                //    paraType.ToArray(),
-                //};
-                //tasks.Add(new Task((objs) =>
-                //{
-                //    var obj = (object[])objs;
-                //    var line = (string)obj[0];
-                //    var chilTableName = (string)obj[1];
-                //    var arr2 = (object[])obj[2];
-                //    var arr3 = (object[])obj[2];
-                //    List<string> paraName = new List<string>((string[])arr2);
-                //    List<string> paraType = new List<string>((string[])arr3);
-
                 string[] parameter = line.Split('\t');
                 if (!Equals(parameter?[0], string.Empty))
                 {
@@ -586,7 +569,7 @@ public class CreateDataItem
         AssetDatabase.SaveAssets();
     }
     //[MenuItem("Create/Create DataManager", priority = 3)]
-    [RuntimeInitializeOnLoadMethod]
+    //[RuntimeInitializeOnLoadMethod]
     public static void AddDataManagerData()
     {
         CeateAssetAndMasterData();

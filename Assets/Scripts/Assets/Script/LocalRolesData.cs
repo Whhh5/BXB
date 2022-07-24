@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 [System.Serializable] 
-public class LocalRolesData 
+public class LocalRolesData 
 { 
 	public ulong id = default;
 
@@ -17,6 +17,6 @@ public class LocalRolesData
 
 	public float forward = default;
 
-	public float exp = default;
+	public float exp = default;
  
 } 

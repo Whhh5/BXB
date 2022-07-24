@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using BXB.Core;
-using UnityEditor;
+//using UnityEditor;
 
 public class ProjectManager : MiSingleton<ProjectManager>
 {
-    static string assResSetting = "Assets/Resources/SettingAsset/";
+    //static string assResSetting = "Assets/Resources/SettingAsset/";
+    static string assResSetting = "SettingAsset/";
     public enum AssetTypes
     {
         SystemStringAsset,
@@ -25,7 +26,9 @@ public class ProjectManager : MiSingleton<ProjectManager>
         try
         {
             var path = assetPath[type] + $"{type}.asset";
-            asset = AssetDatabase.LoadAssetAtPath<T>(path);
+
+            asset = Resources.Load<T>(path.ToString());
+            //asset = AssetDatabase.LoadAssetAtPath<T>(path);
         }
         catch (Exception exp)
         {

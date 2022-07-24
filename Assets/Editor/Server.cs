@@ -50,6 +50,7 @@ public class Server : MiSingleton<Server>
         {
             try
             {
+               
                 //ProjectManager.Instance.TryGetSettingAssets<SystemStringAsset>(ProjectManager.AssetTypes.SystemStringAsset,out SystemStringAsset asset);
                 //JsonData jsonData = new JsonData();
                 //jsonData["name"] = "Õı“ª";
