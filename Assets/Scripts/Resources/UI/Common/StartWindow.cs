@@ -43,7 +43,7 @@ public class StartWindow : MiUIDialog
     }
     public override void OnSetInit(object[] value)
     {
-        ShowAsync().Start();
+        ShowAsync().Wait();
     }
     public override async Task OnSetInitAsync<T>(params object[] value)
     {
