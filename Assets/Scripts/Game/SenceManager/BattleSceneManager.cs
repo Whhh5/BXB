@@ -97,6 +97,8 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
         //SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(5, 5), WapObjBase.StatusMode.Trusteeship);
 
+        mainPlayer.GetSetArticle(120010001, 66);
+        mainPlayer.GetSetArticle(120010002, 66);
         mainPlayer.GetSetArticle(120010003, 66);
         mainConsole.UpdatePlayerProperty().Wait();
 
