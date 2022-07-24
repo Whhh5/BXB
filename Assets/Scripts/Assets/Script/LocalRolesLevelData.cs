@@ -14,5 +14,7 @@ public class LocalRolesLevelData
 	public float maxBlood = default;
 
 	public float attackInterval = default;
+
+	public float level = default;
  
 } 
