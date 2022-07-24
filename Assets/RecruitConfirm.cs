@@ -81,6 +81,7 @@ public class RecruitConfirm : MiUIDialog
 
     private void OnCloseBtnClick()
     {
+        Time.timeScale = 1;
         Destroy();
     }
 }
