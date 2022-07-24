@@ -121,7 +121,13 @@ namespace BXB
                     case SceneMode.None:
                         break;
                     default:
-                        operation = SceneManager.UnloadSceneAsync(sceneMode.ToString(), mode);
+                        try
+                        {
+                            operation = SceneManager.UnloadSceneAsync(sceneMode.ToString(), mode);
+                        }
+                        catch (System.Exception)
+                        {
+                        }
                         break;
                 }
                 return operation;

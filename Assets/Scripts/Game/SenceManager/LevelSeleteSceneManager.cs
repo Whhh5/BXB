@@ -18,6 +18,8 @@ public class LevelSeleteSceneManager : MiSingletonMonoBeHaviour<LevelSeleteScene
         var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
         SceneDataManager.Instance.RemoveAllGameObject();
         var dialog = await ResourceManager.Instance.ShowDialogAsync<Dialog_MainLevelSelect>(path, "Dialog_MainLevelSelect", CanvasLayer.System);
+        ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Battle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+        ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Boss, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
     }
     public void AddDestroySceneClick(UnityAction<Scene> click)
     {

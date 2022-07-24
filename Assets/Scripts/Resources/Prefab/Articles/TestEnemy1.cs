@@ -60,11 +60,15 @@ public class TestEnemy1 : WapObjBase
             var intervalTime = MiDataManager.Instance.dataProceccing.AttackInterval(this.GetSet(WapObjBase.PropertyFloat.attackInterval));
             yield return new WaitForSeconds(intervalTime);
         }
+        idExitCoroutine = true;
         SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Play);
     }
 
     public override void Change()
     {
-        SceneDataManager.Instance.GetSetLevelSchedule(5.0f);
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            SceneDataManager.Instance.GetSetLevelSchedule(5.0f);
+        }
     }
 }
