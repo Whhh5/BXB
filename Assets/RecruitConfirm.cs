@@ -13,6 +13,8 @@ public class RecruitConfirm : MiUIDialog
     private TMP_Text nameText;
     [SerializeField]
     private TMP_Text demandText;
+    [SerializeField]
+    private TMP_Text DescText;
     [SerializeField, ReadOnly] WapObjBase enemy;
     // Start is called before the first frame update
 
@@ -55,9 +57,8 @@ public class RecruitConfirm : MiUIDialog
 
         var demandItems = enemy.GetSet(WapObjBase.PropertyListString.recruitDemandArticle);
         var name = obj.GetName();
+        bool canRecruit = true;
         string text = string.Format("{0}愿意加入您,", name);
-        nameText.text = name;
-
         string hintStr = "您只需要消耗";
         foreach (var item in demandItems)
         {
@@ -65,9 +66,29 @@ public class RecruitConfirm : MiUIDialog
             var id = ulong.Parse(itemAndNumber[0]);
             var itemName = MasterData.Instance.GetTableData<LocalItemData>(id).name;
             var number = int.Parse(itemAndNumber[1]);
+            if (number > 9999)
+            {
+                canRecruit = false;
+            }
             hintStr = hintStr + $"{number}{itemName}";
         }
-        demandText.text = hintStr;
+        if (canRecruit)
+        {
+            nameText.text = text;
+            demandText.text = hintStr;
+            DescText.enabled = true;
+            confirmBtn.enabled = true;
+            confirmBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            string failRecruitText = string.Format("{0}是怪物,", name);
+            nameText.text = failRecruitText;
+            demandText.text = "您无法招募";
+            DescText.enabled = false;
+            confirmBtn.enabled = false;
+            confirmBtn.gameObject.SetActive(false);
+        }
 
     }
     public override async Task OnSetInitAsync<T>(params object[] value)
