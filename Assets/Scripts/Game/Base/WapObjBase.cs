@@ -334,7 +334,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             default:
                 break;
         }
-        SceneDataManager.Instance.DetectionEnemy();
     }
 
 
@@ -445,7 +444,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     public override void Destroy()
     {
-        base.Destroy();
+        //base.Destroy();
         StopCoroutine(IE_Action(null, null));
         var point = GetPoint();
         target_Lord?.RemoveLegion(this);
@@ -458,8 +457,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         }
         foreach (var item in legionPoint)
         {
-            item.Destroy();
+            item.gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
     {

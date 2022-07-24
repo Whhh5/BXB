@@ -56,6 +56,7 @@ public class RecruitConfirm : MiUIDialog
             await AsyncDefaule();
             SceneDataManager.Instance.RecruitLegion(BattleSceneManager.Instance.mainPlayer, enemy);
             Destroy();
+            Time.timeScale = 1;
         });
 
         closeBtn.onClick.AddListener(OnCloseBtnClick);
