@@ -49,6 +49,7 @@ public class UIDialog_Battle_MainConsole_EnemyInformation : UIElementPoolBase
 
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_RecruitConfirmWidget", CanvasLayer.System, enemy);
+            Time.timeScale = 0;
         });
 
         ShowAsync().Wait();
