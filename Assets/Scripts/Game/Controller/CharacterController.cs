@@ -24,6 +24,10 @@ public class CharacterController : WapObjBase
         //”Œœ∑Ω· ¯
         Destroy();
         Change();
+
+        var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+        ResourceManager.Instance.ShowDialogAsync<UIDialog_BattleFalse>(path, "UIDialog_BattleFalse", CanvasLayer.System).Wait();
+
         return new List<string>();
     }
 
