@@ -33,4 +33,6 @@ public class CommonFilePath : MiBaseClass
 
     public readonly string ResAnima = "Animations";
 
+    public readonly string ResEff = "Prefab/Eff";
+
 }

@@ -35,12 +35,15 @@ public class MapWapController : MiBaseClass
             {
                 if (!(item.x < 0 || item.y < 0))
                 {
-                    var oldWap = pointToWap[item];
-                    if (oldWap.TryGetObject(out Transform oldObj))
+                    if (pointToWap.ContainsKey(item))
                     {
-                        if (oldObj.gameObject == obj.gameObject)
+                        var oldWap = pointToWap[item];
+                        if (oldWap.TryGetObject(out Transform oldObj))
                         {
-                            oldWap.SetArticle(null);
+                            if (oldObj.gameObject == obj.gameObject)
+                            {
+                                oldWap.SetArticle(null);
+                            }
                         }
                     }
                 }
