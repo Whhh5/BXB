@@ -114,7 +114,6 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
             mainPlayer?.gameObject.SetActive(false);
 
         }
-
     }
     public void InitLevelData(float nextSchedule)
     {
@@ -263,6 +262,8 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         }
 
         DetectionWap();
+
+        DetectionEnemy();
     }
     public void MoveToVector2(WapObjBase obj, Vector2 point, float moveTime = 1.0f, Ease ease = Ease.Linear)
     {
@@ -292,7 +293,7 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         //init
         foreach (var item in lastDetectionWaps)
         {
-            item.SetMouseWap(0, 1, Color.green);
+            item?.SetMouseWap(0, 1, Color.green);
         }
         lastDetectionWaps.Clear();
 
