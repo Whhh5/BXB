@@ -148,6 +148,7 @@ MonoBehaviour:
   layer_attack:
     serializedVersion: 2
     m_Bits: 0
+  HP: {fileID: 1204794928870359482}
   moveMode: 0
   level: 0
   attackRange: {x: 0, y: 0}
