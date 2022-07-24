@@ -88,6 +88,17 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         var asset = AssetDatabase.LoadAssetAtPath<Asset_SceneLevelData>(assetPath);
         levelData = asset;
     }
+    public void AddExp(float exp)
+    {
+        var playerRxp = mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, exp);
+        if (playerRxp >= upLevelExp)
+        {
+            mainPlayer.GetSet(WapObjBase.PropertyFloat.level, 1);
+            mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, -playerRxp);
+            mainPlayer.UpDateLevelData();
+
+        }
+    }
     public Asset_SceneLevelData GetLevelSceneData()
     {
         Asset_SceneLevelData ret = null;
