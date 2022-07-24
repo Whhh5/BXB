@@ -23,11 +23,14 @@ public class StartWindow : MiUIDialog
         //退出响应时间
         LeaveButton.onClick.SubscribeEventAsync(async () =>
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "LeaveCheckWindow", CanvasLayer.System);
+
+//#if UNITY_EDITOR
+//            UnityEditor.EditorApplication.isPlaying = false;
+//#else
+//                Application.Quit();
+//#endif
         });
 
         SettingsButton.onClick.SubscribeEventAsync(async () =>

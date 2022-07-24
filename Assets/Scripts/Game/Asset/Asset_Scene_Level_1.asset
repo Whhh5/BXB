@@ -19,13 +19,13 @@ MonoBehaviour:
     scope_xxYY: {x: 8, y: 8, z: 2, w: 2}
     nextSceneSchedule: 10
     controller: 2
-  - id: 110020003
+  - id: 110010001
     number: 1
     downImageId: 1
     scope_xxYY: {x: 6, y: 6, z: 4, w: 4}
     nextSceneSchedule: 10
     controller: 2
-  - id: 110020002
+  - id: 110010002
     number: 1
     downImageId: 1
     scope_xxYY: {x: 3, y: 3, z: 6, w: 6}
@@ -139,7 +139,7 @@ MonoBehaviour:
     scope_xxYY: {x: 8, y: 8, z: 43, w: 43}
     nextSceneSchedule: 10
     controller: 2
-  - id: 1100200010
+  - id: 110020010
     number: 1
     downImageId: 1
     scope_xxYY: {x: 4, y: 4, z: 47, w: 47}

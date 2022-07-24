@@ -42,7 +42,7 @@ public class UIDialog_Battle_MainConsole_InformationFrame : UIElementPoolBase
 
         var data = MasterData.Instance.GetTableData<LocalRolesData>(objId);
         var name = data.name;
-        var level = obj.GetLevel();
+        var level = obj.GetSetLevel();
         var propertys = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
         var attack = propertys.attack;
         var defend = propertys.defend;

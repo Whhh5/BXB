@@ -60,7 +60,7 @@ public class Common_Line_1 : CommonEffectsBase
             var pos = transform.TransformVector(localPosition2D);
             line.SetPosition(i, pos);
         }
-        main.transform.position = target.position;
+        m_main.transform.position = target.position;
     }
     public override void Destroy()
     {

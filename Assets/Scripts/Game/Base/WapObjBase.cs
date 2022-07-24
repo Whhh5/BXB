@@ -54,6 +54,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField] protected Vector2 attack_Scope = new Vector2(0, 0);
     [SerializeField] List<WapObjBase> legionPoint = new List<WapObjBase>();
     [SerializeField] protected LayerMask layer_attack;
+    [SerializeField] Transform HP;
 
     [SerializeField] protected StatusMode moveMode;
     [SerializeField] int level;
@@ -101,8 +102,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         return playerName;
     }
-    public int GetLevel()
+    public int GetSetLevel(int level = 0)
     {
+        level += 0;
         return level;
     }
     public void SetAttackTarget(List<WapObjBase> targets)
@@ -120,6 +122,11 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         ret += increment;
         ret = ret < 0 ? 0 : ret;
         nowBlood = ret;
+
+        var TmpHP = HP.localScale;
+        TmpHP.x = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
+        HP.localScale = TmpHP;
+
         return ret;
     }
     public virtual void OnInit()
@@ -161,6 +168,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 Log(Color.red, $"Absent property   {((PropertyFloat)i).ToString()}");
             }
         }
+        levelPropertyDic[PropertyFloat.level] = (float)level;
         for (int i = 0; i < (int)PropertyListString.EnumCount; i++)
         {
             try
@@ -190,6 +198,25 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         }
         nowExp = ret;
         return ret;
+    }
+    public void UpDateLevelData()
+    {
+        for (int i = 0; i < (int)PropertyFloat.EnumCount; i++)
+        {
+            try
+            {
+                var levelDataTable = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
+                var fileName = ((PropertyFloat)i).ToString();
+                var levelFiles = levelDataTable.GetType().GetField(fileName);
+                var value = levelFiles.GetValue(levelDataTable);
+                levelPropertyDic[(PropertyFloat)i] = (float)value;
+            }
+            catch (Exception)
+            {
+                Log(Color.red, $"Absent property   {((PropertyFloat)i).ToString()}");
+            }
+        }
+        levelPropertyDic[PropertyFloat.level] = (float)level;
     }
     public float GetSet(PropertyFloat mode, float increment = 0)
     {

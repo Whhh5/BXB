@@ -82,6 +82,11 @@ public abstract class MiUIBase : MiObjPoolPublicParameter, IUIDialog
 
     public GameObject GetMain()
     {
+        if (main == null)
+        {
+            Debug.LogError("main is null");
+        }
+        
         return main;
     }
 
