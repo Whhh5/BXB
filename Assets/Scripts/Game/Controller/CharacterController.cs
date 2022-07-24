@@ -134,4 +134,9 @@ public class CharacterController : WapObjBase
     {
         
     }
+
+    public void OnAttackPlaySE()
+    {
+        SoundManager.instance.PlayerWalkAudio();
+    }
 }
