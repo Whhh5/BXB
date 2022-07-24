@@ -57,7 +57,9 @@ public class Audio : MonoBehaviour
 
     public void SetSEVolume()
     {
-        audioMixer.SetFloat("SEVolume", sliderSE.value);
+        audioMixer.SetFloat("PlayerSEVolume", sliderSE.value);
+        audioMixer.SetFloat("EnemySEVolume", sliderSE.value);
+        audioMixer.SetFloat("MateSEVolume", sliderSE.value);
     }
 
     private void OnBGMBtnDownClick()
