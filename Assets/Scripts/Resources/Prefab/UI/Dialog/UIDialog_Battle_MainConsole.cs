@@ -213,7 +213,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             SceneDataManager.Instance.GameFinish();
                             break;
                         case KeyCode.Alpha4:
-
+                            SceneDataManager.Instance.mainPlayer.Die();
                             break;
                         case KeyCode.Alpha5:
 
