@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 [System.Serializable] 
-public class LocalizeSkillsData 
+public class LocalizeSkillsData 
 { 
 	public ulong id = default;
 
@@ -19,6 +19,6 @@ public class LocalizeSkillsData
 
 	public float attack = default;
 
-	public string prefabName = default;
+	public string prefabName = default;
  
 } 

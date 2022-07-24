@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using TMPro;
 using BXB.Core;
+using UnityEngine.UI;
 
 public class StartWindow : MiUIDialog
 {
@@ -31,7 +32,6 @@ public class StartWindow : MiUIDialog
 
         SettingsButton.onClick.SubscribeEventAsync(async () =>
         {
-            Debug.Log("[SettingsButton.onClick.SubscribeEventAsync]");
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_MainWindowSettings", CanvasLayer.System);
         });

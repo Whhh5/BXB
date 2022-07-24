@@ -255,7 +255,17 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         return ret;
     }
 
-    public abstract void OnSetInit(object[] value);
+    public virtual void OnSetInit(object[] value)
+    {
+        try
+        {
+            //downImage.sprite = (Sprite)value[0];
+        }
+        catch (Exception exp)
+        {
+            Log(Color.red, exp);
+        }
+    }
     public object Clone()
     {
         return MemberwiseClone();
@@ -424,9 +434,14 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         target_Lord?.RemoveLegion(this);
         var listPoint = GetAllPoint();
         SetStatus(Status.Die);
+        target_Lord = null;
         foreach (var item in listPoint)
         {
             SceneDataManager.Instance.SetMapPoint(item, null);
+        }
+        foreach (var item in legionPoint)
+        {
+            item.Destroy();
         }
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
@@ -477,8 +492,8 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         catch (Exception)
         {
         }
-
     }
+
     public void SetAnimatorSpeedNorm(float speed)
     {
         anima.speed = 1;
@@ -547,17 +562,19 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 var nowEnemyBlood = target.GetSetBlood(-data);
 
                 //attack number hint
-                var targetPos = BattleSceneManager.Instance.sceneMainCamera.WorldToScreenPoint(target.transform.position);
+                var targetPos = SceneDataManager.Instance.sceneMainCamera.WorldToScreenPoint(target.transform.position);
                 var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
                 var hintObj = ResourceManager.Instance.GetUIElementAsync<UIElement_NumberHint>(hintPath, "UIElement_NumberHint", BattleSceneManager.Instance.mainConsole.GetComponent<RectTransform>(), targetPos, -data);
 
+                SetStatus(Status.Attack);
                 if (nowEnemyBlood <= 0)
                 {
                     var list = target.Die();
                     SceneDataManager.Instance.AddProperty(list);
                     dieEvent.Invoke();
+                    BattleSceneManager.Instance.mainConsole.UpdatePlayerProperty().Wait();
+                    target.Change();
                 }
-                SetStatus(Status.Attack);
             }
             catch (Exception)
             {
@@ -565,4 +582,5 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             BattleSceneManager.Instance.mainConsole.UpdatePlayerProperty().Wait();
         }
     }
+    public abstract void Change();
 }

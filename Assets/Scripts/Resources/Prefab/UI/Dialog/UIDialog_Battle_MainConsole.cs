@@ -38,7 +38,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] RectTransform playerArticleListParent;
     [SerializeField] List<MiUIBase> playerArticleList = new List<MiUIBase>();
     [SerializeField] RectTransform playerConsumableListParent;
-    [SerializeField] List<MiUIBase> playerConsumableList = new List<MiUIBase>();
+    [SerializeField] public List<MiUIBase> playerConsumableList = new List<MiUIBase>();
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -210,7 +210,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
                             break;
                         case KeyCode.Alpha3:
-                            SceneDataManager.Instance.GameFinish( ResourceManager.SceneMode.Battle, ResourceManager.SceneMode.Boss);
+                            SceneDataManager.Instance.GameFinish();
                             break;
                         case KeyCode.Alpha4:
 

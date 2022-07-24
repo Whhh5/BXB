@@ -12,5 +12,7 @@ public class LocalRolesData
 	public string[] recruitDemandArticle = default;
 
 	public string[] recruitGetArticle = default;
+
+	public int downImage = default;
  
 } 

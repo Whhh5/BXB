@@ -13,6 +13,7 @@ public class TestEnemy1 : WapObjBase
         var gets = GetSet(WapObjBase.PropertyListString.recruitGetArticle);
         return gets;
     }
+    
 
     public override void OnInit()
     {
@@ -43,7 +44,7 @@ public class TestEnemy1 : WapObjBase
             //
             List<WapObjBase> attack_targets = GetAtactTargets(allPointList);
 
-            if (attack_targets.Count == 0)
+            if (attack_targets.Count != 0)
             {
                 break;
             }
@@ -55,5 +56,10 @@ public class TestEnemy1 : WapObjBase
             yield return new WaitForSeconds(intervalTime);
         }
         SceneDataManager.Instance.SetSceneMode(SceneDataManager.SceneMode.Play);
+    }
+
+    public override void Change()
+    {
+        SceneDataManager.Instance.GetSetLevelSchedule(5.0f);
     }
 }
