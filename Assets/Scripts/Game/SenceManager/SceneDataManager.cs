@@ -93,10 +93,9 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         var playerRxp = mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, exp);
         if (playerRxp >= upLevelExp)
         {
-            mainPlayer.GetSet(WapObjBase.PropertyFloat.level, 1);
+            mainPlayer.GetSetLevel(1);
             mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, -playerRxp);
             mainPlayer.UpDateLevelData();
-
         }
     }
     public Asset_SceneLevelData GetLevelSceneData()

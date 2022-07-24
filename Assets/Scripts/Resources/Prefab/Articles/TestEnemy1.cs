@@ -17,7 +17,8 @@ public class TestEnemy1 : WapObjBase
             SceneDataManager.Instance.GetSetLevelSchedule(sched);
             var level = GetSet(PropertyFloat.level);
             var upLevelExp = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
-            var exp = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).level;
+            var exp = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).exp;
+            SceneDataManager.Instance.AddExp(exp);
         }
         return gets;
     }

@@ -102,8 +102,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         return playerName;
     }
-    public int GetLevel()
+    public int GetSetLevel(int level = 0)
     {
+        level += 0;
         return level;
     }
     public void SetAttackTarget(List<WapObjBase> targets)

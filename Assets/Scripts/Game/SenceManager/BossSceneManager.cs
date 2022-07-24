@@ -31,7 +31,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     {
         base.OnAwake();
         SceneDataManager.Instance.pointToWap.Clear();
-        SceneDataManager.Instance.InitLevelData(80);
+        SceneDataManager.Instance.InitLevelData(5);
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
         SceneDataManager.Instance.AddGameFinishAction(() => { Finish(); });
