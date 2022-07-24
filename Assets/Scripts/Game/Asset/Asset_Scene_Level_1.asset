@@ -139,7 +139,7 @@ MonoBehaviour:
     scope_xxYY: {x: 8, y: 8, z: 43, w: 43}
     nextSceneSchedule: 10
     controller: 2
-  - id: 1100200010
+  - id: 110020010
     number: 1
     downImageId: 1
     scope_xxYY: {x: 4, y: 4, z: 47, w: 47}

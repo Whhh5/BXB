@@ -161,6 +161,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 Log(Color.red, $"Absent property   {((PropertyFloat)i).ToString()}");
             }
         }
+        levelPropertyDic[PropertyFloat.level] = (float)level;
         for (int i = 0; i < (int)PropertyListString.EnumCount; i++)
         {
             try
