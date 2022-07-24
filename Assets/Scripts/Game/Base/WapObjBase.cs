@@ -54,6 +54,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField] protected Vector2 attack_Scope = new Vector2(0, 0);
     [SerializeField] List<WapObjBase> legionPoint = new List<WapObjBase>();
     [SerializeField] protected LayerMask layer_attack;
+    [SerializeField] Transform HP;
 
     [SerializeField] protected StatusMode moveMode;
     [SerializeField] int level;
@@ -121,6 +122,11 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         ret += increment;
         ret = ret < 0 ? 0 : ret;
         nowBlood = ret;
+
+        var TmpHP = HP.localScale;
+        TmpHP.x = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
+        HP.localScale = TmpHP;
+
         return ret;
     }
     public virtual void OnInit()

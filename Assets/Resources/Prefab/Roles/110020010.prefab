@@ -214,6 +214,7 @@ MonoBehaviour:
   layer_attack:
     serializedVersion: 2
     m_Bits: 256
+  HP: {fileID: 2078341278822439480}
   moveMode: 2
   level: 0
   attackRange: {x: 0, y: 0}
@@ -221,7 +222,6 @@ MonoBehaviour:
   downImage: {fileID: 2744837511904835193}
   attack_Target:
   - {fileID: 0}
-  HP_UP: {fileID: 2078341278822439480}
   nowExp: 0
 --- !u!95 &2473452543407521130
 Animator:
