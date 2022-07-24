@@ -46,8 +46,9 @@ public class UIDialog_Battle_MainConsole_EnemyInformation : UIElementPoolBase
         });
         btn_recruit.AddOnPointerClick(async () =>
         {
-            await AsyncDefaule();
-            SceneDataManager.Instance.RecruitLegion(BattleSceneManager.Instance.mainPlayer, enemy);
+
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "Dialog_RecruitConfirmWidget", CanvasLayer.System, enemy);
         });
 
         ShowAsync().Wait();
