@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.Events;
 using System.Threading.Tasks;
+using UnityEditor;
 
 public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 {
@@ -44,11 +45,6 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         try
         {
             SceneDataManager.Instance.InitLevelData(10.0f);
-            foreach (var item in SceneDataManager.Instance.enemys)
-            {
-                item.Destroy();
-            }
-            SceneDataManager.Instance.mainPlayer?.Destroy();
 
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             SceneDataManager.Instance.ShowBattleMainConsole();
@@ -67,6 +63,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     {
         base.OnAwake();
         pointToWap.Clear();
+        //var 
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
     }
@@ -79,13 +76,26 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     protected override void OnStart()
     {
         base.OnStart();
+
+        var levelData = SceneDataManager.Instance.GetLevelSceneData();
+        foreach (var item in levelData.data_Scene_Battle)
+        {
+            for (int i = 0; i < item.number; i++)
+            {
+                var posX = (int)UnityEngine.Random.Range(item.scope_xxYY.x, item.scope_xxYY.y);
+                var posY = (int)UnityEngine.Random.Range(item.scope_xxYY.z, item.scope_xxYY.w);
+                var enemy = SceneDataManager.Instance.GetGameObject<TestEnemy1>(item.id, new Vector2(posX, posY), WapObjBase.StatusMode.Trusteeship);
+            }
+        }
+
+
         var charObj = SceneDataManager.Instance.GetGameObject<CharacterController>(110000001, new Vector2(2, 2), WapObjBase.StatusMode.Manual, false);
 
         SceneDataManager.Instance.mainPlayer = charObj;
 
-        SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(3, 3), WapObjBase.StatusMode.Trusteeship);
+        //SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(3, 3), WapObjBase.StatusMode.Trusteeship);
 
-        SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(5, 5), WapObjBase.StatusMode.Trusteeship);
+        //SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(5, 5), WapObjBase.StatusMode.Trusteeship);
 
         mainPlayer.GetSetArticle(120050001, 66);
         mainConsole.UpdatePlayerProperty().Wait();
@@ -95,12 +105,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     public void Finish()
     {
         Log(Color.red, "Finish");
-        var enemys = SceneDataManager.Instance.enemys;
-        foreach (var item in enemys)
-        {
-            item.Destroy();
-        }
-        enemys.Clear();
+        SceneDataManager.Instance.Removeenemys();
         ResourceManager.Instance.RemoveSceneAsync( ResourceManager.SceneMode.Battle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         ResourceManager.Instance.LoadSceneAsync( ResourceManager.SceneMode.Boss, LoadSceneMode.Additive);
     }

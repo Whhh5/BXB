@@ -4,9 +4,10 @@ T	ulong	string	string[]	int
 H	id	name	effect	type
 #	编号	名称	作用	
 #				
-	120010001	drumastick1	1:10	3
-	120010002	drumastick2	1:20	3
-	120010003	drumastick3	1:30	3
+	120010001	zhanli		2
+	120010002	food		2
+	120010003	gold		2
+				
 #				
 	120020001	sword1	2:10	3
 	120020002	sword2	2:20	3

@@ -38,7 +38,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] RectTransform playerArticleListParent;
     [SerializeField] List<MiUIBase> playerArticleList = new List<MiUIBase>();
     [SerializeField] RectTransform playerConsumableListParent;
-    [SerializeField] List<MiUIBase> playerConsumableList = new List<MiUIBase>();
+    [SerializeField] public List<MiUIBase> playerConsumableList = new List<MiUIBase>();
     public override void OnInit()
     {
         ShowAsync().Wait();

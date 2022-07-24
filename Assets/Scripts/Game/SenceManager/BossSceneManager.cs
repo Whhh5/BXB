@@ -50,12 +50,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
         Action action = () =>
         {
             Log(Color.red, "Finish");
-            var enemys = SceneDataManager.Instance.enemys;
-            foreach (var item in enemys)
-            {
-                item.Destroy();
-            }
-            enemys.Clear();
+            SceneDataManager.Instance.Removeenemys();
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Boss, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         };

@@ -16,6 +16,7 @@ public class Dialog_MainLevelSelect : MiUIDialog
     public override void OnSetInit(object[] value)
     {
         btn_Level1.onClick.RemoveAllListeners();
+        btn_Close.onClick.RemoveAllListeners();
         btn_Level1.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
@@ -23,6 +24,7 @@ public class Dialog_MainLevelSelect : MiUIDialog
             {
                 item.Value.Destroy();
             }
+            SceneDataManager.Instance.CreateLevelSceneData(1);
             var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         });
