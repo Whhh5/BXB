@@ -44,7 +44,7 @@ public class TestEnemy1 : WapObjBase
             //
             List<WapObjBase> attack_targets = GetAtactTargets(allPointList);
 
-            if (attack_targets.Count != 0)
+            if (attack_targets.Count == 0)
             {
                 break;
             }
