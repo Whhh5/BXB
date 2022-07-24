@@ -51,7 +51,7 @@ public class UIDialog_Battle_MainConsole_Consumable : UIElementPoolBase
 
         SetMainPlayer();
         SetLegion();
-        uIDialog_Battle_MainConsole.UpdatePlayerProperty();
+        await uIDialog_Battle_MainConsole.UpdatePlayerProperty();
         //await AsyncDefaule();
     }
 

@@ -11,6 +11,11 @@ public class TestEnemy1 : WapObjBase
     {
         Destroy();
         var gets = GetSet(WapObjBase.PropertyListString.recruitGetArticle);
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            var level = GetSet(PropertyFloat.level);
+            var data = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level);
+        }
         return gets;
     }
     

@@ -42,7 +42,17 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
         var player = (CharacterController)SceneDataManager.Instance.data;
         mapWapController.PlaceArticle(player, new Vector2(5, 5), pointToWap, 0.0f, DG.Tweening.Ease.Linear);
 
-        SceneDataManager.Instance.GetGameObject<TestEnemy1>(110020001, new Vector2(4, 16), WapObjBase.StatusMode.Trusteeship);
+
+        var levelData = SceneDataManager.Instance.GetLevelSceneData();
+        foreach (var item in levelData.data_Scene_Boss)
+        {
+            for (int i = 0; i < item.number; i++)
+            {
+                var posX = (int)UnityEngine.Random.Range(item.scope_xxYY.x, item.scope_xxYY.y);
+                var posY = (int)UnityEngine.Random.Range(item.scope_xxYY.z, item.scope_xxYY.w);
+                var enemy = SceneDataManager.Instance.GetGameObject<TestEnemy1>(item.id, new Vector2(posX, posY), WapObjBase.StatusMode.Trusteeship);
+            }
+        }
 
     }
     async void Finish()

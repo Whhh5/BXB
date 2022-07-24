@@ -14,5 +14,9 @@ public class LocalRolesData
 	public string[] recruitGetArticle = default;
 
 	public int downImage = default;
+
+	public float forward = default;
+
+	public float exp = default;
  
 } 

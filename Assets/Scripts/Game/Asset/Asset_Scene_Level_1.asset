@@ -16,13 +16,25 @@ MonoBehaviour:
   - id: 110020001
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 5, y: 10, z: 5, w: 10}
+    scope_xxYY: {x: 4, y: 4, z: 4, w: 4}
     nextSceneSchedule: 10
-    controller: 1
+    controller: 2
+  - id: 110020002
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 5, y: 5, z: 6, w: 6}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020003
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 7, w: 7}
+    nextSceneSchedule: 10
+    controller: 2
   data_Scene_Boss:
-  - id: 0
-    number: 0
-    downImageId: 0
-    scope_xxYY: {x: 0, y: 0, z: 0, w: 0}
-    nextSceneSchedule: 0
-    controller: 0
+  - id: 110020201
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 5, y: 5, z: 10, w: 10}
+    nextSceneSchedule: 10
+    controller: 2
