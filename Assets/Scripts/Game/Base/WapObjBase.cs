@@ -470,12 +470,12 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         return ret;
     }
 
-    public void SetStatus(Status toState, float speed = 1, bool isforcePlay = true)
+    public void SetStatus(Status toState, float speed = 1, bool isforcePlay = false)
     {
         try
         {
             var name = anima.name.Split(new string[] { "(Clone)" }, StringSplitOptions.RemoveEmptyEntries);
-            var clickName = $"{name[0]}_{toState}";
+            var clickName = $"{GetId()}_{toState}";
             var stateId = Animator.StringToHash(clickName);
             var isAnimatorHash = anima.HasState(0, stateId);
             if (isAnimatorHash)
@@ -553,7 +553,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     protected void AttactTarget(WapObjBase target, Action dieEvent)
     {
-        if (!(SceneDataManager.Instance.sceneMode != SceneDataManager.SceneMode.Acttack) && target != null)
+        if (/*!(SceneDataManager.Instance.sceneMode != SceneDataManager.SceneMode.Acttack) && */target != null)
         {
             Debug.DrawLine(transform.position, target.transform.position, Color.red);
             try

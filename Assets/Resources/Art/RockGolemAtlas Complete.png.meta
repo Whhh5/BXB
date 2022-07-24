@@ -75,6 +75,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -83,12 +84,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -4930,30 +4931,50 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: bone_1
+        guid: 
         position: {x: 76.240906, y: 151.37708, z: 0}
         rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
         length: 137.8459
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: bone_2
+        guid: 
         position: {x: -262.09784, y: 31.372925, z: 0}
         rotation: {x: 0, y: 0, z: 0.3261686, w: 0.9453116}
         length: 133.05716
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: bone_3
+        guid: 
         position: {x: 753.9415, y: -120.50925, z: 0}
         rotation: {x: 0, y: 0, z: -0.60775226, w: 0.7941267}
         length: 240.54301
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: bone_4
+        guid: 
         position: {x: 822.0266, y: 434.64624, z: 0}
         rotation: {x: 0, y: 0, z: 0.2966124, w: 0.95499796}
         length: 135.58711
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       - name: bone_5
+        guid: 
         position: {x: 458.90613, y: 523.6806, z: 0}
         rotation: {x: 0, y: 0, z: -0.67546266, w: 0.7373942}
         length: 259.36905
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: 3176a2a1bd1fc1940800000000000000
       internalID: 5268351587455756051
       vertices:
@@ -6335,10 +6356,14 @@ TextureImporter:
       tessellationDetail: 0
       bones:
       - name: bone_1
+        guid: 
         position: {x: 96.589294, y: 29.420746, z: 0}
         rotation: {x: 0, y: 0, z: 0.68664074, w: 0.7269969}
         length: 109.4778
         parentId: -1
+        color:
+          serializedVersion: 2
+          rgba: 0
       spriteID: c614817908e250850800000000000000
       internalID: 6342526780046852460
       vertices:
@@ -8434,6 +8459,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      RockGolemAtlas Complete_8: -3129662669161406665
+      RockGolemAtlas Complete_14: 149438402343020314
+      RockGolemAtlas Complete_15: -6577999628374065915
+      RockGolemAtlas Complete_10: -2615415393824651000
+      RockGolemAtlas Complete_0: 6007289997508029098
+      RockGolemAtlas Complete_3: 8971746680172310199
+      RockGolemAtlas Complete_5: -886109490142999279
+      RockGolemAtlas Complete_12: 6342526780046852460
+      RockGolemAtlas Complete_1: -3814083579149704934
+      RockGolemAtlas Complete_6: 6562166419201095191
+      RockGolemAtlas Complete_16: -217072701827196258
+      RockGolemAtlas Complete_2: 3546221332347928250
+      RockGolemAtlas Complete_4: -996494536587777431
+      RockGolemAtlas Complete_7: 4834147618393920397
+      RockGolemAtlas Complete_11: 1309808655213203097
+      RockGolemAtlas Complete_13: 2571123475769518370
+      RockGolemAtlas Complete_9: 5268351587455756051
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

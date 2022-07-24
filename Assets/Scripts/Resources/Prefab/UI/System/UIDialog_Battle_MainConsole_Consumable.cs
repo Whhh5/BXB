@@ -36,7 +36,6 @@ public class UIDialog_Battle_MainConsole_Consumable : UIElementPoolBase
         UIDialog_Battle_MainConsole uIDialog_Battle_MainConsole = BattleSceneManager.Instance.mainConsole;
         
         number=number-1;
-        Log(Color.red, "UseItem"+number);
         if (number > 0)
         {
            Dictionary<ulong,int> dic= BattleSceneManager.Instance.mainPlayer.consumableGet;

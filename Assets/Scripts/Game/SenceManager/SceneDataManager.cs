@@ -41,6 +41,8 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
 
     public float allSchedule = 0.0f;
 
+    public Asset_SceneLevelData levelData;
+
 
 
     public enum MoveMode
@@ -80,7 +82,18 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         { MoveMode.Top, new Vector2(-1,0)},
         { MoveMode.Down, new Vector2(1,0)},
     };
-
+    public void CreateLevelSceneData(short level)
+    {
+        var assetPath = $"Assets/Scripts/Game/Asset/Asset_Scene_Level_{level}.asset"; ;
+        var asset = AssetDatabase.LoadAssetAtPath<Asset_SceneLevelData>(assetPath);
+        levelData = asset;
+    }
+    public Asset_SceneLevelData GetLevelSceneData()
+    {
+        Asset_SceneLevelData ret = null;
+        ret = levelData;
+        return ret;
+    }
     public void Removeenemys()
     {
         foreach (var item in enemys)
@@ -417,7 +430,7 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         string hintStr;
         foreach (var item in demandItems)
         {
-            var itemAndNumber = item.Split(':');
+            var itemAndNumber = item.Split(':');// id:number 1£º10
             var id = ulong.Parse(itemAndNumber[0]);
             var number = int.Parse(itemAndNumber[1]);
             items.Add($"{id}:{-number}");
@@ -468,6 +481,11 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
                 enemys.Remove(obj2);
             }
             obj2.Change();
+
+
+
+
+
         }
         else
         {
