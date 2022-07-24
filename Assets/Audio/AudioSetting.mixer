@@ -19,6 +19,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-5337961556144793719
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 74f77a9d01122d94e81d18f0eb046ec6
+  m_EffectName: Attenuation
+  m_MixLevel: cc6cc01074fe47945a36dd4b9ca0c501
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-2701073552006943447
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -65,16 +79,21 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: bb0b08eb05f205541a6e59ed072784ec
     name: BGMVolume
+  - guid: aaa691651bf5e37468caad06be34f1a3
+    name: EnemyVolume
   - guid: 348de0efe66fb054986477a0978553ca
     name: MainVolume
+  - guid: 462c9f892956cd64fa9c2a0759a3d919
+    name: MateSEVolume
   - guid: d6b064bb7e590ec4e9400a3a3a0516f5
-    name: SEVolume
+    name: PlayerSEVolume
   m_AudioMixerGroupViews:
   - guids:
     - e761cafaf2357854682459b05ea6fadb
     - 027a498edcba7da49af912ad39968991
     - 8af8dc8a0b3ca3845ab51cdf721c9669
     - d559005329abe1b4e8fa3a7debf448bd
+    - b832aa3b25381274c83868beeb52715f
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -91,6 +110,7 @@ AudioMixerGroupController:
   - {fileID: 5514069215845704771}
   - {fileID: -8077440751066317172}
   - {fileID: 4989318569601091990}
+  - {fileID: 1956573056745934821}
   m_Volume: 348de0efe66fb054986477a0978553ca
   m_Pitch: 44fb190545642134592a5267386ff20f
   m_Send: 00000000000000000000000000000000
@@ -124,10 +144,31 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e94bf47c26f036b4e8534d770f37b953
   m_FloatValues:
-    d6b064bb7e590ec4e9400a3a3a0516f5: -16
+    aaa691651bf5e37468caad06be34f1a3: -8
+    462c9f892956cd64fa9c2a0759a3d919: -8
+    d6b064bb7e590ec4e9400a3a3a0516f5: -8
     bb0b08eb05f205541a6e59ed072784ec: -16
     348de0efe66fb054986477a0978553ca: 0
   m_TransitionOverrides: {}
+--- !u!243 &1956573056745934821
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MateSE
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: b832aa3b25381274c83868beeb52715f
+  m_Children: []
+  m_Volume: 462c9f892956cd64fa9c2a0759a3d919
+  m_Pitch: 3afcc1f93381e8b43a6f9db2e9d19137
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -5337961556144793719}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &2490110941082904085
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

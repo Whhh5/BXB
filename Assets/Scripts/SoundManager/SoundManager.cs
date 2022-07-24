@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource audioPlayerSESource;
     [SerializeField]
+    private AudioSource audioMateSESource;
+    [SerializeField]
     private AudioClip globalBGMSound;
     [SerializeField]
     private AudioClip playerWalkSound; /*playerAttackSound;*/
@@ -24,6 +26,8 @@ public class SoundManager : MonoBehaviour
     private AudioClip BossAttackSound;
     [SerializeField]
     private AudioClip EnemyAttackSound;
+    [SerializeField]
+    private AudioClip MateAttackSound;
     [SerializeField]
     private AudioClip BossBgmSound;
 
@@ -67,6 +71,12 @@ public class SoundManager : MonoBehaviour
     {
         audioEnemySESource.clip = EnemyAttackSound;
         audioEnemySESource.Play();
+    }
+
+    public void MateAttackAudio()
+    {
+        audioMateSESource.clip = MateAttackSound;
+        audioMateSESource.Play();
     }
 
     public void EntryBossEnviroment()
