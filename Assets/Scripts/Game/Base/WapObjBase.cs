@@ -69,7 +69,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     [SerializeField] Dictionary<PropertyListString, List<string>> dieAndRecruittDic = new Dictionary<PropertyListString, List<string>>();
     [SerializeField] Dictionary<ulong, int> consumableDic = new Dictionary<ulong, int>();
     [SerializeField] Dictionary<ulong, int> articleDic = new Dictionary<ulong, int>();
-    [SerializeField] Transform HP_UP;
     [SerializeField]
     Dictionary<PropertyFloat, short> additionDic = new Dictionary<PropertyFloat, short>
     {
@@ -121,11 +120,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         ret += increment;
         ret = ret < 0 ? 0 : ret;
         nowBlood = ret;
-
-        var TmpHP = HP_UP.localScale;
-        TmpHP.x = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
-        HP_UP.localScale = TmpHP;
-        
         return ret;
     }
     public virtual void OnInit()
@@ -340,7 +334,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             default:
                 break;
         }
-        SceneDataManager.Instance.DetectionEnemy();
     }
 
 
@@ -451,7 +444,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     public override void Destroy()
     {
-        base.Destroy();
+        //base.Destroy();
         StopCoroutine(IE_Action(null, null));
         var point = GetPoint();
         target_Lord?.RemoveLegion(this);
@@ -464,8 +457,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         }
         foreach (var item in legionPoint)
         {
-            item.Destroy();
+            item.gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
     {
@@ -583,7 +577,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             {
                 var data = MiDataManager.Instance.dataProceccing.AttackData(this, target);
                 var nowEnemyBlood = target.GetSetBlood(-data);
-                
+
                 //attack number hint
                 var targetPos = SceneDataManager.Instance.sceneMainCamera.WorldToScreenPoint(target.transform.position);
                 var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
