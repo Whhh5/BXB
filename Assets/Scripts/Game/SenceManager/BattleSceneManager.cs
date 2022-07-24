@@ -44,7 +44,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     {
         try
         {
-            SceneDataManager.Instance.InitLevelData(10.0f);
+            SceneDataManager.Instance.InitLevelData(80);
 
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             SceneDataManager.Instance.ShowBattleMainConsole();
