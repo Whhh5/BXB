@@ -8,6 +8,7 @@ public class StartWindow : MiUIDialog
 {
     [SerializeField] MiUIButton StartButton;
     [SerializeField] MiUIButton LeaveButton;
+    [SerializeField] MiUIButton SettingsButton;
     protected override async Task OnAwakeAsync()
     {
         await base.OnAwakeAsync();
