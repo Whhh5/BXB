@@ -18,11 +18,5 @@ MonoBehaviour:
     downImageId: 1
     scope_xxYY: {x: 5, y: 10, z: 5, w: 10}
     nextSceneSchedule: 10
-    controller: 1
-  data_Scene_Boss:
-  - id: 110020201
-    number: 1
-    downImageId: 1
-    scope_xxYY: {x: 0, y: 0, z: 0, w: 0}
-    nextSceneSchedule: 0
-    controller: 0
+    controller: 2
+  data_Scene_Boss: []
