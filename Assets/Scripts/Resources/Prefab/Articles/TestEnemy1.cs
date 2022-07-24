@@ -68,7 +68,8 @@ public class TestEnemy1 : WapObjBase
     {
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            SceneDataManager.Instance.GetSetLevelSchedule(5.0f);
+            var sched = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).forward;
+            SceneDataManager.Instance.GetSetLevelSchedule(sched);
         }
     }
 }
