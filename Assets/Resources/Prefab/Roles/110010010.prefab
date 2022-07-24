@@ -76,10 +76,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2581302526687342066}
-  - component: {fileID: 2581302526687342028}
   - component: {fileID: 1117496423322364589}
+  - component: {fileID: 3559521893252277339}
   m_Layer: 8
-  m_Name: 1100100010
+  m_Name: 110010010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,47 +101,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2581302526687342028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2581302526687342029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b31426b79eac34191d68e1a2161c0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  original: {fileID: 0}
-  main: {fileID: 805015375956188675}
-  playerName: 
-  nowBlood: 0
-  lastMoveTime: 0
-  target_Lord: {fileID: 0}
-  target_Lord_Offset: {x: 0, y: 0}
-  nowPoint: {x: -1, y: -1}
-  extendPoint:
-  - {x: -1, y: 0}
-  attack_Scope: {x: 1, y: 1}
-  legionPoint: []
-  layer_attack:
-    serializedVersion: 2
-    m_Bits: 128
-  moveMode: 1
-  level: 0
-  attackRange: {x: 1, y: 1}
-  anima: {fileID: 1708022366695663961}
-  downImage: {fileID: 2744837511904835193}
-  attack_Target: []
-  HP_UP: {fileID: 1204794928870359482}
-  playerNoDetectionLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  playerDetectionLayer:
-    serializedVersion: 2
-    m_Bits: 640
 --- !u!95 &1117496423322364589
 Animator:
   serializedVersion: 4
@@ -162,6 +121,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3559521893252277339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581302526687342029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9fc931be004f94a900df72d6075de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  original: {fileID: 0}
+  main: {fileID: 0}
+  playerName: 
+  nowBlood: 0
+  lastMoveTime: 0
+  target_Lord: {fileID: 0}
+  target_Lord_Offset: {x: 0, y: 0}
+  nowPoint: {x: -1, y: -1}
+  extendPoint: []
+  attack_Scope: {x: 0, y: 0}
+  legionPoint: []
+  layer_attack:
+    serializedVersion: 2
+    m_Bits: 0
+  moveMode: 0
+  level: 0
+  attackRange: {x: 0, y: 0}
+  anima: {fileID: 0}
+  downImage: {fileID: 0}
+  attack_Target: []
+  nowExp: 0
 --- !u!1 &4616643072463372124
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,11 +728,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45911b02b8ab39246b19772a63251b83, type: 3}
---- !u!95 &1708022366695663961 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8364689023821211050, guid: 45911b02b8ab39246b19772a63251b83, type: 3}
-  m_PrefabInstance: {fileID: 7179095226263915763}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5625840813360056466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3292770675517899873, guid: 45911b02b8ab39246b19772a63251b83, type: 3}

@@ -11,9 +11,11 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
     {
         None,
         maxBlood,
+        level,
         attack,
         defend,
         attackInterval,
+        exp,
         EnumCount,
     }
     public enum PropertyListString
@@ -74,6 +76,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     };
 
+    public float nowExp = 0.0f;
     public Dictionary<ulong, int> articleGet { get => articleDic; }
     public Dictionary<ulong, int> consumableGet { get => consumableDic; }
     public Dictionary<PropertyFloat, float> levelPropertyGet { get => levelPropertyDic; }
@@ -128,6 +131,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         levelPropertyDic = new Dictionary<PropertyFloat, float>();
         externalPropertyDic = new Dictionary<PropertyFloat, float>();
         dieAndRecruittDic = new Dictionary<PropertyListString, List<string>>();
+        nowExp = 0.0f;
         for (int i = 0; i < (int)PropertyFloat.EnumCount; i++)
         {
             levelPropertyDic.Add((PropertyFloat)i, 0.0f);
@@ -173,6 +177,19 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         nowBlood = MasterData.Instance.GetTableData<LocalRolesLevelData>((ulong)level).maxBlood;
         //
         playerName = rolestableData.name;
+    }
+    public float GetSetLevelExp(float increment)
+    {
+        float ret = nowExp;
+        float levelUpRxp = GetSet(PropertyFloat.exp);
+        ret += increment;
+        if (ret - levelUpRxp >= 0)
+        {
+            var level = GetSet(PropertyFloat.level, 1);
+            ret -= levelUpRxp;
+        }
+        nowExp = ret;
+        return ret;
     }
     public float GetSet(PropertyFloat mode, float increment = 0)
     {
@@ -317,7 +334,6 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             default:
                 break;
         }
-        SceneDataManager.Instance.DetectionEnemy();
     }
 
 
@@ -428,7 +444,7 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
 
     public override void Destroy()
     {
-        base.Destroy();
+        //base.Destroy();
         StopCoroutine(IE_Action(null, null));
         var point = GetPoint();
         target_Lord?.RemoveLegion(this);
@@ -441,8 +457,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         }
         foreach (var item in legionPoint)
         {
-            item.Destroy();
+            item.gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
     public LayerMask GetSetAttackLayer(LayerMask layerMask = default)
     {
@@ -565,8 +582,10 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
                 var targetPos = SceneDataManager.Instance.sceneMainCamera.WorldToScreenPoint(target.transform.position);
                 var hintPath = CommonManager.Instance.filePath.PreUIDialogSystemPath;
                 var hintObj = ResourceManager.Instance.GetUIElementAsync<UIElement_NumberHint>(hintPath, "UIElement_NumberHint", BattleSceneManager.Instance.mainConsole.GetComponent<RectTransform>(), targetPos, -data);
-
-                SetStatus(Status.Attack);
+                var speed = MiDataManager.Instance.dataProceccing.AttackInterval(GetSet(PropertyFloat.attackInterval));
+                var effPath = CommonManager.Instance.filePath.ResEff;
+                ResourceManager.Instance.GetWorldObject<Eff_AttackHint>(effPath, "Eff_AttackHint", Vector3.zero, null, 0, transform.position, target.transform.position, speed);
+                SetStatus(Status.Attack, speed);
                 if (nowEnemyBlood <= 0)
                 {
                     var list = target.Die();
