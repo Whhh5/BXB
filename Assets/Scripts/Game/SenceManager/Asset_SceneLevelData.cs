@@ -27,6 +27,9 @@ public class Asset_SceneLevelData : ScriptableObject
     }
     public List<LevelDataStruct> data_Scene_Battle;
     public List<LevelDataStruct> data_Scene_Boss;
+
+    public ulong mapId_Battle;
+    public ulong mapId_Boss;
     public float overAllProgram;
     [TextArea]
     public string startStory;
