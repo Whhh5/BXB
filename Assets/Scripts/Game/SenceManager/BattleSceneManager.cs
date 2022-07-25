@@ -66,6 +66,9 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         base.OnAwake();
         pointToWap.Clear();
         //var 
+        level_200000001?.SetActive(false);
+        level_200000002?.SetActive(false);
+        level_200000003?.SetActive(false);
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
     }
@@ -86,9 +89,9 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         var o = GameObject.Instantiate(spriteMap, transform);
         o.transform.position = Vector3.zero;
         SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
-        level_200000001.SetActive(false);
-        level_200000002.SetActive(false);
-        level_200000003.SetActive(false);
+        level_200000001?.SetActive(false);
+        level_200000002?.SetActive(false);
+        level_200000003?.SetActive(false);
         var fiekd = $"level_{levelData.mapId_Battle}";
         var type = GetType().GetField(fiekd).GetValue(Instance);
         type.GetType().GetMethod("SetActive").Invoke(type, new object[] { true });
