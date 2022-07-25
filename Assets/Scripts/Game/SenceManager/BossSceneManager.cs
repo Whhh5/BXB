@@ -45,6 +45,9 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
 
 
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
+        var path = CommonManager.Instance.filePath.ResPreMap;
+        var spriteMap = Resources.Load<GameObject>(path + levelData.data_Scene_Boss);
+        var o = GameObject.Instantiate(spriteMap);
         foreach (var item in levelData.data_Scene_Boss)
         {
             for (int i = 0; i < item.number; i++)
