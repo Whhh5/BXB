@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34aaca0281e5cf246a740f0bb02f69e1, type: 3}
+  m_Name: Asset_Scene_Level_1 -w
+  m_EditorClassIdentifier: 
+  data_Scene_Battle:
+  - id: 110020001
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 2, w: 2}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020003
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 4, w: 4}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020002
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 6, w: 6}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020004
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 9, w: 9}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020001
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 9, w: 9}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020003
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 9, w: 9}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020005
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 12, w: 12}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020004
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 4, y: 4, z: 15, w: 15}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020003
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 13, w: 13}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020002
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 5, y: 5, z: 17, w: 17}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 1100200010
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 17, w: 17}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020001
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 21, w: 21}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020007
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 21, w: 21}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020004
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 23, w: 23}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020009
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 28, w: 28}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020002
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 29, w: 29}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020008
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 29, w: 29}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020005
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 33, w: 33}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020008
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 4, y: 4, z: 35, w: 35}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020006
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 39, w: 39}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110020004
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 43, w: 43}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 1100200010
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 4, y: 4, z: 47, w: 47}
+    nextSceneSchedule: 10
+    controller: 2
+  data_Scene_Boss:
+  - id: 110020201
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 5, y: 5, z: 10, w: 10}
+    nextSceneSchedule: 10
+    controller: 2
