@@ -18,6 +18,9 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     public List<Wap> lastDetectionWaps => SceneDataManager.Instance.lastDetectionWaps;
     public LayerMask playerNoDetectionLayer;
     public LayerMask playerDetectionLayer;
+    public GameObject level_200000001;
+    public GameObject level_200000002;
+    public GameObject level_200000003;
     //player
 
     //camera
@@ -76,12 +79,19 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     {
         base.OnStart();
 
+
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
         var path = CommonManager.Instance.filePath.ResPreMap;
         var spriteMap = Resources.Load<GameObject>(path + levelData.mapId_Battle);
         var o = GameObject.Instantiate(spriteMap, transform);
         o.transform.position = Vector3.zero;
         SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
+        level_200000001.SetActive(false);
+        level_200000002.SetActive(false);
+        level_200000003.SetActive(false);
+        var fiekd = $"level_{levelData.mapId_Battle}";
+        var type = GetType().GetField(fiekd).GetValue(Instance);
+        type.GetType().GetMethod("SetActive").Invoke(type, new object[] { true });
 
         foreach (var item in levelData.data_Scene_Battle)
         {
@@ -107,6 +117,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         mainPlayer.GetSetConsumable(120020003, 66);
 
         mainConsole.UpdatePlayerProperty().Wait();
+
 
     }
 
