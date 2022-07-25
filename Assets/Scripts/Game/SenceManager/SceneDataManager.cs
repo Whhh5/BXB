@@ -297,7 +297,14 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
                 }
             }
         }
-        mainConsole.ShowEnemyList(targets).Wait();
+        if (targets.Count >=1)
+        {
+            var t = targets[0];
+            var list = new List<WapObjBase>();
+            list.Add(t);
+            mainConsole.ShowEnemyList(list).Wait();
+        }
+        
     }
 
     private void DetectionWap()
