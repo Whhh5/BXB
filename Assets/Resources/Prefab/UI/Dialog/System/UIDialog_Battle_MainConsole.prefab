@@ -360,6 +360,7 @@ MonoBehaviour:
   - {fileID: 2112763038215184537}
   - {fileID: 2901727742212510015}
   - {fileID: 2036992984914908722}
+  - {fileID: 2036992984914908722}
   main: {fileID: 3161845167990071288}
   anima: {fileID: 0}
   showClip: {fileID: 7400000, guid: 6a71489055072664daf0ca2da1c8b8ca, type: 2}
@@ -1635,6 +1636,22 @@ PrefabInstance:
     - target: {fileID: 2986423335899329465, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
       propertyPath: m_Name
       value: UIDialolg_Battle_MainConsole_Bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554806558620177697, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554806558620177697, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554806558620177697, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554806558620177697, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6290912570909314104, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
       propertyPath: m_SizeDelta.x

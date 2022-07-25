@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 public class Dialog_MainLevelSelect : MiUIDialog
 {
     [SerializeField] MiUIButton btn_Level1;
+    [SerializeField] MiUIButton btn_Level2;
+    [SerializeField] MiUIButton btn_Level3;
     [SerializeField] MiUIButton btn_Close;
     [SerializeField] MiUIButton btn_Story;
     public override void OnInit()
@@ -17,6 +19,8 @@ public class Dialog_MainLevelSelect : MiUIDialog
     public override void OnSetInit(object[] value)
     {
         btn_Level1.onClick.RemoveAllListeners();
+        btn_Level2.onClick.RemoveAllListeners();
+        btn_Level3.onClick.RemoveAllListeners();
         btn_Close.onClick.RemoveAllListeners();
         btn_Story.onClick.RemoveAllListeners();
 
@@ -28,6 +32,28 @@ public class Dialog_MainLevelSelect : MiUIDialog
                 item.Value.Destroy();
             }
             SceneDataManager.Instance.CreateLevelSceneData(1);
+            var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+        });
+        btn_Level2.AddOnPointerClick(async () =>
+        {
+            await AsyncDefaule();
+            foreach (var item in ResourceManager.Instance.dialogs)
+            {
+                item.Value.Destroy();
+            }
+            SceneDataManager.Instance.CreateLevelSceneData(2);
+            var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+            ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+        });
+        btn_Level3.AddOnPointerClick(async () =>
+        {
+            await AsyncDefaule();
+            foreach (var item in ResourceManager.Instance.dialogs)
+            {
+                item.Value.Destroy();
+            }
+            SceneDataManager.Instance.CreateLevelSceneData(3);
             var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         });

@@ -66,8 +66,6 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         };
         var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "UIDialog_TextPopup", CanvasLayer.System, "" +
-            "ashiduhaosfapfh[asfoaishfpahspojhjapfas" +
-            "ashf", action);
+        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "UIDialog_TextPopup", CanvasLayer.System, SceneDataManager.Instance.levelData.endStory, action);
     }
 }
