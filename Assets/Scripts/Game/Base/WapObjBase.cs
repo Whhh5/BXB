@@ -124,7 +124,9 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         nowBlood = ret;
 
         var TmpHP = HP.localScale;
-        TmpHP.x = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
+        var tmp = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
+        if (tmp > 1) TmpHP.x = 1;
+        else TmpHP.x = tmp;
         HP.localScale = TmpHP;
         //if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         //{
