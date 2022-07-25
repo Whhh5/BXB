@@ -31,7 +31,6 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     {
         base.OnAwake();
         SceneDataManager.Instance.pointToWap.Clear();
-        SceneDataManager.Instance.InitLevelData(5);
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
         SceneDataManager.Instance.AddGameFinishAction(() => { Finish(); });
@@ -45,6 +44,11 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
 
 
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
+        var path = CommonManager.Instance.filePath.ResPreMap;
+        var spriteMap = Resources.Load<GameObject>(path + levelData.data_Scene_Boss);
+        var o = GameObject.Instantiate(spriteMap,transform);
+        o.transform.position = Vector3.zero;
+        SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
         foreach (var item in levelData.data_Scene_Boss)
         {
             for (int i = 0; i < item.number; i++)
