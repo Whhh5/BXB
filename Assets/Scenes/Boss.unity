@@ -159,7 +159,7 @@ MonoBehaviour:
   thisCamera: {fileID: 0}
   targetOffset: {x: 0, y: 0, z: 0}
   mapSprote: {fileID: 0}
-  maxDriction: {x: 22, y: -12.4, z: 0}
+  maxDriction: {x: 24.5, y: -12.4, z: 0}
   moveSpeed: 8
 --- !u!20 &18318994
 Camera:
