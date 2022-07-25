@@ -163,7 +163,7 @@ MonoBehaviour:
     downImageId: 1
     scope_xxYY: {x: 8, y: 8, z: 47, w: 47}
     controller: 2
-  - id: 110020008
+  - id: 110020009
     number: 1
     downImageId: 1
     scope_xxYY: {x: 1, y: 1, z: 48, w: 48}
@@ -179,8 +179,8 @@ MonoBehaviour:
     downImageId: 1
     scope_xxYY: {x: 5, y: 5, z: 20, w: 20}
     controller: 2
-  mapId_Battle: 200000001
-  mapId_Boss: 200100001
+  mapId_Battle: 200000002
+  mapId_Boss: 200100002
   overAllProgram: 80
   startStory: l[lpl];];];[[;];
-  endStory: "\u606D\u559C\u96EA\u5B9D\u9171\u6210\u529F\u653B\u514B\u8D44\u91D1\u94FE\u96BE\u9898\uFF0C\u5B8C\u6210\u6E38\u620F\u5F00\u53D1\uFF01\u540E\u7EED\u6E38\u620F\u8FED\u4EE3\u4F18\u5316\u95EE\u9898\u63A5\u8E35\u800C\u81F3\uFF0C\u594B\u6597\u5427\uFF0C\u96EA\u5B9D\u9171\uFF5E"
+  endStory: "\u592A\u68D2\u4E86\uFF01\u606D\u559C\u96EA\u5B9D\u9171\u987A\u5229\u5B8C\u6210\u6E38\u620F\u53D1\u884C\u4E0A\u7EBF\uFF0C\u4F46\u73A9\u5BB6\u8BC4\u4EF7\u8912\u8D2C\u4E0D\u4E00\u3002\u518D\u63A5\u518D\u5389\u5427\uFF0C\u96EA\u5B9D\u9171\uFF5E"
