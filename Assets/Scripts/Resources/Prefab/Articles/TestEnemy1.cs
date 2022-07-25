@@ -13,6 +13,7 @@ public class TestEnemy1 : WapObjBase
         var gets = GetSet(WapObjBase.PropertyListString.recruitGetArticle);
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            SceneDataManager.Instance.RangArticle(20, 40);
             var sched = MasterData.Instance.GetTableData<LocalRolesData>(GetId()).forward;
             SceneDataManager.Instance.GetSetLevelSchedule(sched);
             var level = GetSet(PropertyFloat.level);

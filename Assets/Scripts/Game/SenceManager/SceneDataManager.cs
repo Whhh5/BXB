@@ -307,6 +307,19 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
         
     }
 
+    public void RangArticle(int min, int max)
+    {
+        mainPlayer.GetSetConsumable(120020001, UnityEngine.Random.Range(min, max));
+        mainPlayer.GetSetConsumable(120020002, UnityEngine.Random.Range(min, max));
+        mainPlayer.GetSetConsumable(120020003, UnityEngine.Random.Range(min, max));
+
+        mainPlayer.GetSetArticle(120010001, (int)UnityEngine.Random.Range(min, 40));
+        mainPlayer.GetSetArticle(120010002, (int)UnityEngine.Random.Range(min, 40));
+        mainPlayer.GetSetArticle(120010003, (int)UnityEngine.Random.Range(min, 40));
+        mainConsole.UpdatePlayerProperty().Wait();
+
+    }
+
     private void DetectionWap()
     {
         //º∆À„÷‹ŒßºÏ≤‚
