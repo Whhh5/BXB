@@ -186,7 +186,7 @@ MonoBehaviour:
   moveMode: 2
   level: 0
   attackRange: {x: 0, y: 0}
-  anima: {fileID: 0}
+  anima: {fileID: 4157801740572540571}
   downImage: {fileID: 2744837511904835193}
   attack_Target:
   - {fileID: 0}
@@ -576,33 +576,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
+--- !u!95 &4157801740572540571 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 817111135728543133, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
+  m_PrefabInstance: {fileID: 3667492059688606470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5167674755536603848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8454039728072511950, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
   m_PrefabInstance: {fileID: 3667492059688606470}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6304860375263744683 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7321394507101374893, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
-  m_PrefabInstance: {fileID: 3667492059688606470}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &987377170681190763
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6304860375263744683}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a53ac425ed51260449882df44731127a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

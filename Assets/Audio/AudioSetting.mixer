@@ -80,7 +80,7 @@ AudioMixerController:
   - guid: bb0b08eb05f205541a6e59ed072784ec
     name: BGMVolume
   - guid: aaa691651bf5e37468caad06be34f1a3
-    name: EnemyVolume
+    name: EnemySEVolume
   - guid: 348de0efe66fb054986477a0978553ca
     name: MainVolume
   - guid: 462c9f892956cd64fa9c2a0759a3d919

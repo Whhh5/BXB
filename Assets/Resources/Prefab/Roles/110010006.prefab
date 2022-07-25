@@ -270,7 +270,7 @@ MonoBehaviour:
   moveMode: 2
   level: 0
   attackRange: {x: 0, y: 0}
-  anima: {fileID: 0}
+  anima: {fileID: 3632218287943498638}
   downImage: {fileID: 2744837511904835193}
   attack_Target:
   - {fileID: 0}
@@ -572,6 +572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dfba8810e8aef640a73172eceddf4bb, type: 3}
+--- !u!95 &3632218287943498638 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1392191641597478561, guid: 3dfba8810e8aef640a73172eceddf4bb, type: 3}
+  m_PrefabInstance: {fileID: 2394285138430344495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5311444650158932872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7533465964675628711, guid: 3dfba8810e8aef640a73172eceddf4bb, type: 3}
