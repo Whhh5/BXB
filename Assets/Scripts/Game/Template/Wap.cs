@@ -39,6 +39,7 @@ public class Wap : WordPoolBase
         var scale = (Vector3)value[0];
         transform.localScale = scale;
     }
+    /*
 
     //private void OnMouseEnter()
     //{
@@ -80,7 +81,7 @@ public class Wap : WordPoolBase
     //        scopeList = new List<Wap>();
     //    }
     //}
-
+    */
     public void SetMouseWap(float tweenEndValue, float tweenTime, Color color)
     {
         try

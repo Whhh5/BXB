@@ -126,7 +126,10 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
         var TmpHP = HP.localScale;
         TmpHP.x = nowBlood / levelPropertyDic[PropertyFloat.maxBlood];
         HP.localScale = TmpHP;
-
+        //if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //{
+        //    Action(SceneDataManager.Instance.mainPlayer);
+        //}
         return ret;
     }
     public virtual void OnInit()
@@ -627,6 +630,10 @@ public abstract class WapObjBase : MiObjPoolPublicParameter, ICommon_Weapon
             }
             BattleSceneManager.Instance.mainConsole.UpdatePlayerProperty().Wait();
         }
+    }
+    public void StopAction()
+    {
+        StopCoroutine(IE_Action(null, null));
     }
     public abstract void Change();
 }

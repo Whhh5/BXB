@@ -17,6 +17,7 @@ public class StartWindow : MiUIDialog
         StartButton.onClick.SubscribeEventAsync(async () =>
         {
             await MainSceneManager.Instance.GameStart();
+            Debug.Log("StartButton");
             Destroy();
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         });

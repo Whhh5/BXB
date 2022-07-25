@@ -45,7 +45,9 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     protected override void OnStart()
     {
         base.OnStart();
-        var player = (CharacterController)SceneDataManager.Instance.data;
+        var player = (CharacterController)SceneDataManager.Instance.mainPlayer;
+        mainPlayer.StopAction();
+
         mapWapController.PlaceArticle(player, new Vector2(5, 5), pointToWap, 0.0f, DG.Tweening.Ease.Linear);
 
 
