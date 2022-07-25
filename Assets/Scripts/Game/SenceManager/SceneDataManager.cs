@@ -98,6 +98,7 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
             mainPlayer.GetSetLevel(1);
             upLevelExp = MasterData.Instance.GetTableData<LocalRolesLevelData>( (ulong)mainPlayer.GetSetLevel()).level;
             nowExp -= upLevelExp;
+            mainPlayer.UpDateLevelData();
         }
     }
     public Asset_SceneLevelData GetLevelSceneData()
