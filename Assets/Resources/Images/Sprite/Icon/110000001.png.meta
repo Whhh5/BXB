@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d5308764865e3fa41aecd41dde23db56
+guid: 90fb1d57c1480704fa37c2b49a306f9c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
-    mipMapMode: 1
+    mipMapMode: 0
     enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
@@ -38,7 +38,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -89,27 +89,27 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 1024
+    buildTarget: Server
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 50
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
