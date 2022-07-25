@@ -11,7 +11,7 @@ public class GridLayoutGroup : MiUIDialog
         horizontal,
         vertical,
     }
-    [SerializeField] RectTransform main;
+    //[SerializeField] RectTransform main;
     [SerializeField] GameObject primary;
     [SerializeField] Direction startDirection;
     [Tooltip("Horizontal - Vertical"), SerializeField] Vector2 ranksCount;
@@ -51,7 +51,7 @@ public class GridLayoutGroup : MiUIDialog
                 loopHorFirst = parameter;
             }
             data[index].Add(parameter);
-            parameter.Normalization(main);
+            //parameter.Normalization(main);
             parameter.anchoredPosition3D = loopHorFirst.anchoredPosition3D;
 
             parameter.DOAnchorPos3DX((data[index].Count - 1) * intervalPosition.x, intervalTime.x * (data[index].Count - 1), false);

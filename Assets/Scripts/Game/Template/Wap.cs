@@ -40,28 +40,7 @@ public class Wap : WordPoolBase
         transform.localScale = scale;
     }
 
-    //private void OnMouseEnter()
-    //{
-    //    Debug.Log("ON Mouse Enter!");
-    //    SceneDataManager.Instance.SetMouseWap(this);
-    //    SetMouseWap(maxTransparency, showTime, Color.green);
-    //    ShowObjInformation().Wait();
-    //    if (infor != null)
-    //    {
-    //        if (article != null)
-    //        {
-    //            var obj = article.GetComponent<WapObjBase>();
-    //            scopeList = obj.GetAttackScope();
-    //            foreach (var item in scopeList)
-    //            {
-    //                item.SetMouseWap(0.2f, 0.2f, Color.red);
-    //            }
-    //        }
-    //        infor.SetTween(UIDialog_Battle_MainConsole_InformationFrame.Active.Show, 0.5f, () => { });
-
-    //    }
-    //}
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnMouseEnter()
     {
         Debug.Log("ON Mouse Enter!");
         SceneDataManager.Instance.SetMouseWap(this);
@@ -83,7 +62,7 @@ public class Wap : WordPoolBase
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnMouseExit()
     {
         Debug.Log("ON Mouse Exit!");
         SetMouseWap(0.0f, hideTime, Color.green);
@@ -101,25 +80,6 @@ public class Wap : WordPoolBase
             scopeList = new List<Wap>();
         }
     }
-
-    //private void OnMouseExit()
-    //{
-    //    Debug.Log("ON Mouse Exit!");
-    //    SetMouseWap(0.0f, hideTime, Color.green);
-    //    if (infor != null)
-    //    {
-    //        var temp = infor;
-    //        infor.SetTween(UIDialog_Battle_MainConsole_InformationFrame.Active.Hide, 0.5f, () => 
-    //        {
-    //            temp.Destroy();
-    //        });
-    //        foreach (var item in scopeList)
-    //        {
-    //            item.SetMouseWap(0.0f, 0.2f, Color.red);
-    //        }
-    //        scopeList = new List<Wap>();
-    //    }
-    //}
 
     public void SetMouseWap(float tweenEndValue, float tweenTime, Color color)
     {
