@@ -522,6 +522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: jiaban
       objectReference: {fileID: 0}
+    - target: {fileID: 7483775854256473377, guid: d0bb3ee24f252dc46a8a52636b73cf2a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c0cd2b56da35a1d4c88df1fc1921e2e4, type: 2}
     - target: {fileID: 8139236486581042418, guid: d0bb3ee24f252dc46a8a52636b73cf2a, type: 3}
       propertyPath: m_RootOrder
       value: 4

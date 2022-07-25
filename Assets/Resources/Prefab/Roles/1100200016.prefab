@@ -502,6 +502,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8611535773224948960}
     m_Modifications:
+    - target: {fileID: 817111135728543133, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 385b2128bd584e2438ec9c593bed556c, type: 2}
     - target: {fileID: 2937000334941356060, guid: 5b6fcf7e6b3c51c4dbf6cc84a557698f, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: -0.25614095

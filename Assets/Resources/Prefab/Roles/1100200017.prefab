@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1385288948077222470, guid: c75318a093a245e49827389e65fb1ef4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5beebaf31a656984eaf415aa2d40b0f6, type: 2}
     - target: {fileID: 1503717574120340472, guid: c75318a093a245e49827389e65fb1ef4, type: 3}
       propertyPath: m_Name
       value: yinxiao
