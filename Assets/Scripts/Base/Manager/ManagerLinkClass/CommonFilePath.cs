@@ -35,6 +35,6 @@ public class CommonFilePath : MiBaseClass
 
     public readonly string ResEff = "Prefab/Eff";
 
-    public readonly string ResPreMap = "Prefab/Map";
+    public readonly string ResPreMap = "Prefab/Map/";
 
 }

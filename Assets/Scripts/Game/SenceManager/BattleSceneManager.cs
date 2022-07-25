@@ -80,7 +80,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
         var path = CommonManager.Instance.filePath.ResPreMap;
         var spriteMap = Resources.Load<GameObject>(path + levelData.mapId_Battle);
-        var o = GameObject.Instantiate(spriteMap);
+        var o = GameObject.Instantiate(spriteMap, transform);
         o.transform.position = Vector3.zero;
 
         foreach (var item in levelData.data_Scene_Battle)
