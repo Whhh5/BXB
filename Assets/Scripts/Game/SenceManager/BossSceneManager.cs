@@ -33,6 +33,9 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     protected override void OnAwake()
     {
         base.OnAwake();
+        level_200100001?.SetActive(false);
+        level_200100002?.SetActive(false);
+        level_200100003?.SetActive(false);
         SceneDataManager.Instance.pointToWap.Clear();
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;

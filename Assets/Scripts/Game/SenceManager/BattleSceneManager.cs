@@ -84,10 +84,10 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
 
 
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
-        var path = CommonManager.Instance.filePath.ResPreMap;
-        var spriteMap = Resources.Load<GameObject>(path + levelData.mapId_Battle);
-        var o = GameObject.Instantiate(spriteMap, transform);
-        o.transform.position = Vector3.zero;
+        //var path = CommonManager.Instance.filePath.ResPreMap;
+        //var spriteMap = Resources.Load<GameObject>(path + levelData.mapId_Battle);
+        //var o = GameObject.Instantiate(spriteMap, transform);
+        //o.transform.position = Vector3.zero;
         SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
         level_200000001?.SetActive(false);
         level_200000002?.SetActive(false);
