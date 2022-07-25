@@ -84,7 +84,7 @@ public abstract class MiUIBase : MiObjPoolPublicParameter, IUIDialog
     {
         if (main == null)
         {
-            Debug.LogError($"main is null   {gameObject.name}");
+            Debug.LogError("main is null");
         }
         
         return main;

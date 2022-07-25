@@ -44,7 +44,6 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
     {
         try
         {
-            SceneDataManager.Instance.InitLevelData(5);
 
             var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
             SceneDataManager.Instance.ShowBattleMainConsole();
@@ -78,6 +77,12 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         base.OnStart();
 
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
+        var path = CommonManager.Instance.filePath.ResPreMap;
+        var spriteMap = Resources.Load<GameObject>(path + levelData.mapId_Battle);
+        var o = GameObject.Instantiate(spriteMap, transform);
+        o.transform.position = Vector3.zero;
+        SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
+
         foreach (var item in levelData.data_Scene_Battle)
         {
             for (int i = 0; i < item.number; i++)

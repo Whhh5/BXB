@@ -6,7 +6,6 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
 
 public class MainSceneManager : MiSingletonMonoBeHaviour<MainSceneManager>
 {
@@ -32,21 +31,24 @@ public class MainSceneManager : MiSingletonMonoBeHaviour<MainSceneManager>
 
             //Log(Color.green, item);
         }
+    }
 
-        //var tablePath = Application.dataPath + "/Resources/MasterTables";
-        //var filesPath = Directory.EnumerateFiles(tablePath, "*.txt", SearchOption.TopDirectoryOnly);
-        List<string> filesPath = new List<string>
-        {
-            "MasterTables/LocalItemData",
-            "MasterTables/LocalPropertyData",
-            "MasterTables/LocalRolesData",
-            "MasterTables/LocalRolesLevelData",
-        };
+    protected override void OnStart()
+    {
+        base.OnStart();
+    }
+
+    protected override async Task OnStartAsync()
+    {
+        await base.OnStartAsync();
+        //DontDestroyOnLoad(gameObject);
+
+        var tablePath = $"{Application.dataPath}/MasterTables";
+        var filesPath = Directory.EnumerateFiles(tablePath, "*.txt", SearchOption.TopDirectoryOnly);
 
         foreach (var filePath in filesPath)
         {
-            //var file = File.ReadAllText(filePath);
-            var file = Resources.Load<TextAsset>(filePath).ToString();
+            var file = File.ReadAllText(filePath);
             file = file.Replace("\r", "");
             var lines = file.Split('\n');
             string chilTableName = "";
@@ -71,7 +73,7 @@ public class MainSceneManager : MiSingletonMonoBeHaviour<MainSceneManager>
             if (paraType.Count != paraName.Count && paraType.Count == 0 && chilTableName == string.Empty)
             {
                 Debug.Log($"<color=#FF0000>Error: paraType and paraName number not empty  or  csName is null</color>");
-                //continue;
+                continue;
             }
             List<Task> tasks = new List<Task>();
             foreach (var line in lines)
@@ -138,29 +140,44 @@ public class MainSceneManager : MiSingletonMonoBeHaviour<MainSceneManager>
                 var mathod = field_.GetValue(MasterData.Instance).GetType().GetMethod("Add");
                 var data2 = field_.GetValue(MasterData.Instance);
                 var id = data.GetType().GetField("id").GetValue(data);
-                mathod.Invoke(data2, new object[] { id, data });
+                mathod.Invoke(data2, new object[] { id ,data });
             }
         }
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
         ResourceManager.Instance.LoadSceneAsync( ResourceManager.SceneMode.UI, mode: LoadSceneMode.Additive);
-    }
-
-    protected override void OnStart()
-    {
-        base.OnStart();
-
-
-    }
-
-    protected override async Task OnStartAsync()
-    {
-        await base.OnStartAsync();
-        //DontDestroyOnLoad(gameObject);
-
     }
 
     public async Task GameStart()
