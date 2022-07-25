@@ -46,7 +46,7 @@ public class Dialog_MainLevelSelect : MiUIDialog
             var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
         });
-        btn_Level3.AddOnPointerClick(async () =>
+        /*btn_Level3.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
             foreach (var item in ResourceManager.Instance.dialogs)
@@ -56,7 +56,7 @@ public class Dialog_MainLevelSelect : MiUIDialog
             SceneDataManager.Instance.CreateLevelSceneData(3);
             var operation = ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.Battle, UnityEngine.SceneManagement.LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.LevelSelect, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-        });
+        });*/
 
         btn_Close.onClick.SubscribeEventAsync(async () =>
         {
