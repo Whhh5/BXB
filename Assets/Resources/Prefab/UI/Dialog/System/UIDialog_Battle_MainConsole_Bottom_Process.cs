@@ -42,8 +42,8 @@ public class UIDialog_Battle_MainConsole_Bottom_Process : MonoBehaviour
             if (processValue > 1) {
                 processValue = 1.0f;
             }
-            level.SetRawText("Level" + 1).Wait();
-            processText.SetRawText((int)(processValue*100) + "%").Wait();
+            level.SetRawText("第" + 1+"关").Wait();
+            processText.SetRawText("进度："+(int)(processValue*100) + "%").Wait();
             slider.value = processValue;
        
         
