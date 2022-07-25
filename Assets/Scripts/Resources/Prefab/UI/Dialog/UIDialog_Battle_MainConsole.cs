@@ -40,6 +40,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] RectTransform playerConsumableListParent;
     [SerializeField] public List<MiUIBase> playerConsumableList = new List<MiUIBase>();
     public UIDialog_Battle_MainConsole_UpperCenter upper;
+    [SerializeField] MiUIButton btn_Pay;
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -47,6 +48,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         btn_LeftLoop.onClickPersist.RemoveAllListeners();
         btn_RightLoop.onClickPersist.RemoveAllListeners();
         btn_ShowAndHideHandle.onClick.RemoveAllListeners();
+        btn_Pay.onClick.RemoveAllListeners();
         LoopBtnActiveTween(0, itemLoopBtnShowAndHideTime.y);
 
         btn_LeftLoop.AddOnPointerLongDownClick(async () =>
@@ -89,6 +91,12 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         {
             await AsyncDefaule();
             LoopBtnActiveTween(0, itemLoopBtnShowAndHideTime.y);
+        });
+        btn_Pay.AddOnPointerClick(async () =>
+        {
+            await AsyncDefaule();
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<UIDialog_Pay>(path, "UIDialog_Pay", CanvasLayer.System);
         });
 
         void LoopBtnActiveTween(float endAlpha, float time)
