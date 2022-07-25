@@ -271,10 +271,10 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         //更新属性
         var mainPlayer = BattleSceneManager.Instance.mainPlayer;
         await tex_PlayerName.SetRawText(mainPlayer.GetName());
-        await tex_Blood.SetRawText(mainPlayer.GetSetBlood());
-        await tex_Attack.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attack));
-        await tex_Defent.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.defend));
-        await tex_AttackInterval.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attackInterval));
+        await tex_Blood.SetRawText(" HP  " + mainPlayer.GetSetBlood());
+        await tex_Attack.SetRawText(" 攻击  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.attack));
+        await tex_Defent.SetRawText(" 防御  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.defend));
+        await tex_AttackInterval.SetRawText(" 速度  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.attackInterval));
         playerIcon.sprite = ResourceManager.Instance.Load<Sprite>($"Images/Sprite/Icon", mainPlayer.GetId().ToString());
 
         //更新物品
@@ -310,6 +310,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
             playerConsumableList.Add(dialog);
         }
         upper.SetUpperCenterParam();
+        
     }
     public int GetGlod()
     {
