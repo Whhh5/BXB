@@ -200,7 +200,7 @@ MonoBehaviour:
   hideObjs:
   - {fileID: 2901727742212510015}
   - {fileID: 2036992984914908722}
-  - {fileID: 2036992984914908722}
+  - {fileID: 2112763038215184537}
   main: {fileID: 3161845167990071288}
   anima: {fileID: 0}
   showClip: {fileID: 7400000, guid: 6a71489055072664daf0ca2da1c8b8ca, type: 2}
@@ -219,7 +219,7 @@ MonoBehaviour:
   itemLoopBtnShowAndHideTime: {x: 0.5, y: 1}
   handleActive: 0
   goldText: {fileID: 2256794111315457444}
-  enemyInformationListParent: {fileID: 0}
+  enemyInformationListParent: {fileID: 3538620631534643837}
   enemyList: []
   playerIcon: {fileID: 1082624875037701206}
   tex_PlayerName: {fileID: 402748992218252002}
@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIDialog_Battle_MainConsloe_UpperCenter
       objectReference: {fileID: 0}
+    - target: {fileID: 7721617520229793079, guid: 33775992bace93f4ab5105c1cd113b44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33775992bace93f4ab5105c1cd113b44, type: 3}
 --- !u!114 &5291373955441349444 stripped
@@ -890,6 +894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIDialolg_Battle_MainConsole_Bottom
       objectReference: {fileID: 0}
+    - target: {fileID: 3302477535840645155, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3322425467730348866, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -960,6 +968,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290866860394100071, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511882956293308463, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511882956293308463, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511882956293308463, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5921167226941725693, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
@@ -1074,6 +1094,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7105271765677397161, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105271765677397161, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8009295331778058118, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1096,6 +1124,16 @@ CanvasGroup:
 --- !u!1 &2036992984914908722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3035630861677168963, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+  m_PrefabInstance: {fileID: 3919363664107003761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2112763038215184537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3113793525306621928, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
+  m_PrefabInstance: {fileID: 3919363664107003761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3538620631534643837 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 540384452574344460, guid: 92208e40e2e36ea409e4c15280c351f4, type: 3}
   m_PrefabInstance: {fileID: 3919363664107003761}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3823875311618707508 stripped
@@ -1924,6 +1962,10 @@ PrefabInstance:
     - target: {fileID: 5234316080520061557, guid: ed51e0f99d40e5c49addc6e5ee2a5c40, type: 3}
       propertyPath: m_Name
       value: UIDialog_Battle_MainConsole_PlayerOriginal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234316080520061557, guid: ed51e0f99d40e5c49addc6e5ee2a5c40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5918825660149328006, guid: ed51e0f99d40e5c49addc6e5ee2a5c40, type: 3}
       propertyPath: m_AnchorMax.y
