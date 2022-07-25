@@ -50,10 +50,10 @@ public class UIDialog_Battle_MainConsole_InformationFrame : UIElementPoolBase
         var nowBlood = obj.GetSetBlood();
 
         objName.SetRawText(name).Wait();
-        blood.SetRawText(nowBlood).Wait();
-        this.attack.SetRawText(attack).Wait();
-        this.defend.SetRawText(defend).Wait();
-        this.attackInterval.SetRawText(attackInterval).Wait();
+        blood.SetRawText(" HP "+nowBlood).Wait();
+        this.attack.SetRawText("¹¥»÷ " + attack).Wait();
+        this.defend.SetRawText("·ÀÓù "+defend).Wait();
+        this.attackInterval.SetRawText("ËÙ¶È "+attackInterval).Wait();
 
         string path = CommonManager.Instance.filePath.ResImSpIcon;
         icon.sprite = ResourceManager.Instance.Load<Sprite>(path, objId.ToString());

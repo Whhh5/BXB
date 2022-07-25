@@ -27,17 +27,17 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537628279040470423}
   m_LocalRotation: {x: -0, y: 0.017454883, z: -0, w: 0.99984765}
-  m_LocalPosition: {x: 0, y: 0, z: -4.536034}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6602008376849103420}
   m_Father: {fileID: 6112934097919331703}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.15842174, y: 75}
+  m_AnchoredPosition: {x: -0, y: 128}
   m_SizeDelta: {x: 124, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8144561577834914296
@@ -359,7 +359,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6112934097919331703}
-  - {fileID: 5444559622797024703}
   m_Father: {fileID: 3274051918976765178}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -436,6 +435,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5444559622797024703}
   - {fileID: 2379479939271682553}
   m_Father: {fileID: 2938965914044741441}
   m_RootOrder: 0
@@ -508,18 +508,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033942119509959741}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.017454883, z: -0, w: 0.99984765}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2938965914044741441}
-  m_RootOrder: 1
+  m_Father: {fileID: 6112934097919331703}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 53.38498}
-  m_SizeDelta: {x: -100, y: -286.77}
+  m_AnchoredPosition: {x: -0, y: 106}
+  m_SizeDelta: {x: 1504.079, y: 367.5264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7352671043618822891
 CanvasRenderer:
@@ -576,8 +576,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

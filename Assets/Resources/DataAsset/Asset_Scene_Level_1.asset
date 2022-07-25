@@ -21,99 +21,99 @@ MonoBehaviour:
   - id: 110020004
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 6, w: 6}
+    scope_xxYY: {x: 1, y: 1, z: 6, w: 6}
     controller: 2
   - id: 110020002
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 9, w: 9}
+    scope_xxYY: {x: 2, y: 2, z: 9, w: 9}
     controller: 2
   - id: 110020001
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 7, y: 7, z: 9, w: 9}
+    scope_xxYY: {x: 6, y: 6, z: 9, w: 9}
     controller: 2
   - id: 110020003
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 39, w: 39}
+    scope_xxYY: {x: 1, y: 1, z: 39, w: 39}
     controller: 2
   - id: 110020005
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 12, w: 12}
+    scope_xxYY: {x: 5, y: 5, z: 12, w: 12}
     controller: 2
   - id: 110020004
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 4, y: 4, z: 15, w: 15}
+    scope_xxYY: {x: 3, y: 3, z: 15, w: 15}
     controller: 2
   - id: 110020003
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 13, w: 13}
+    scope_xxYY: {x: 2, y: 2, z: 13, w: 13}
     controller: 2
   - id: 110020002
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 5, y: 5, z: 17, w: 17}
+    scope_xxYY: {x: 3, y: 3, z: 17, w: 17}
     controller: 2
   - id: 1100200010
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 2, y: 2, z: 42, w: 42}
+    scope_xxYY: {x: 1, y: 1, z: 42, w: 42}
     controller: 2
   - id: 110020001
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 21, w: 21}
+    scope_xxYY: {x: 2, y: 2, z: 21, w: 21}
     controller: 2
   - id: 110020007
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 21, w: 21}
+    scope_xxYY: {x: 7, y: 7, z: 20, w: 20}
     controller: 2
   - id: 110020004
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 23, w: 23}
+    scope_xxYY: {x: 6, y: 6, z: 23, w: 23}
     controller: 2
   - id: 110020009
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 28, w: 28}
+    scope_xxYY: {x: 2, y: 2, z: 28, w: 28}
     controller: 2
   - id: 110020002
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 29, w: 29}
+    scope_xxYY: {x: 5, y: 5, z: 29, w: 29}
     controller: 2
   - id: 110020008
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 29, w: 29}
+    scope_xxYY: {x: 8, y: 8, z: 29, w: 29}
     controller: 2
   - id: 110020005
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 33, w: 33}
+    scope_xxYY: {x: 5, y: 5, z: 33, w: 33}
     controller: 2
   - id: 110020008
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 4, y: 4, z: 35, w: 35}
+    scope_xxYY: {x: 3, y: 3, z: 35, w: 35}
     controller: 2
   - id: 110020006
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 39, w: 39}
+    scope_xxYY: {x: 8, y: 8, z: 39, w: 39}
     controller: 2
   - id: 110020004
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 43, w: 43}
+    scope_xxYY: {x: 7, y: 7, z: 43, w: 43}
     controller: 2
-  - id: 1100200010
+  - id: 110020008
     number: 1
     downImageId: 1
     scope_xxYY: {x: 4, y: 4, z: 47, w: 47}
@@ -121,52 +121,52 @@ MonoBehaviour:
   - id: 110010003
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 5, w: 5}
+    scope_xxYY: {x: 8, y: 8, z: 5, w: 5}
     controller: 2
   - id: 110010004
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 13, w: 13}
+    scope_xxYY: {x: 8, y: 8, z: 14, w: 14}
     controller: 2
   - id: 110010005
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 20, w: 20}
+    scope_xxYY: {x: 6, y: 6, z: 17, w: 17}
     controller: 2
   - id: 110010006
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 4, y: 4, z: 23, w: 23}
+    scope_xxYY: {x: 2, y: 2, z: 23, w: 23}
     controller: 2
   - id: 110010007
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 25, w: 25}
+    scope_xxYY: {x: 1, y: 1, z: 25, w: 25}
     controller: 2
   - id: 110010008
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 36, w: 36}
+    scope_xxYY: {x: 6, y: 6, z: 36, w: 36}
     controller: 2
-  - id: 110010001
+  - id: 110010007
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 7, y: 7, z: 41, w: 41}
+    scope_xxYY: {x: 5, y: 5, z: 41, w: 41}
     controller: 2
   - id: 110010009
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 44, w: 44}
+    scope_xxYY: {x: 1, y: 1, z: 34, w: 34}
     controller: 2
   - id: 110010002
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 9, y: 9, z: 47, w: 47}
+    scope_xxYY: {x: 8, y: 8, z: 47, w: 47}
     controller: 2
   - id: 110020008
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 3, y: 3, z: 47, w: 47}
+    scope_xxYY: {x: 1, y: 1, z: 48, w: 48}
     controller: 2
   - id: 110010005
     number: 1
@@ -183,4 +183,4 @@ MonoBehaviour:
   mapId_Boss: 200100001
   overAllProgram: 80
   startStory: l[lpl];];];[[;];
-  endStory: p;[lp[l[lp[lpp[l
+  endStory: "\u606D\u559C\u96EA\u5B9D\u9171\u6210\u529F\u653B\u514B\u8D44\u91D1\u94FE\u96BE\u9898\uFF0C\u5B8C\u6210\u6E38\u620F\u5F00\u53D1\uFF01\u540E\u7EED\u6E38\u620F\u8FED\u4EE3\u4F18\u5316\u95EE\u9898\u63A5\u8E35\u800C\u81F3\uFF0C\u594B\u6597\u5427\uFF0C\u96EA\u5B9D\u9171\uFF5E"
