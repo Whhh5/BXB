@@ -29,6 +29,7 @@ public class UIDialog_BattleFalse : MiUIDialog
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Battle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Boss, UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            SoundManager.instance.StopBossBGM();
         });
     }
 

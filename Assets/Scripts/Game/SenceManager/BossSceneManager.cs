@@ -54,7 +54,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
                 var enemy = SceneDataManager.Instance.GetGameObject<TestEnemy1>(item.id, new Vector2(posX, posY), WapObjBase.StatusMode.Trusteeship);
             }
         }
-
+        SoundManager.instance.EntryBossEnviroment();
     }
     async void Finish()
     {
@@ -63,6 +63,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
             Log(Color.red, "Finish");
             SceneDataManager.Instance.Removeenemys();
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Boss, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            SoundManager.instance.StopBossBGM();
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         };
         var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
