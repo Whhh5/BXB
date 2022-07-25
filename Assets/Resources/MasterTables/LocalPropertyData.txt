@@ -1,0 +1,5 @@
+C	LocalPropertyData
+T	ulong	string
+H	id	name
+#	编号	名称
+#		
