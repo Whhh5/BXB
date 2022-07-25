@@ -31,6 +31,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     {
         base.OnAwake();
         SceneDataManager.Instance.pointToWap.Clear();
+        SceneDataManager.Instance.InitLevelData(5);
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
         SceneDataManager.Instance.AddGameFinishAction(() => { Finish(); });
@@ -53,7 +54,7 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
                 var enemy = SceneDataManager.Instance.GetGameObject<TestEnemy1>(item.id, new Vector2(posX, posY), WapObjBase.StatusMode.Trusteeship);
             }
         }
-
+        SoundManager.instance.EntryBossEnviroment();
     }
     async void Finish()
     {
@@ -62,11 +63,10 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
             Log(Color.red, "Finish");
             SceneDataManager.Instance.Removeenemys();
             ResourceManager.Instance.RemoveSceneAsync(ResourceManager.SceneMode.Boss, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+            SoundManager.instance.StopBossBGM();
             ResourceManager.Instance.LoadSceneAsync(ResourceManager.SceneMode.LevelSelect, LoadSceneMode.Additive);
         };
         var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "UIDialog_TextPopup", CanvasLayer.System, "" +
-            "ashiduhaosfapfh[asfoaishfpahspojhjapfas" +
-            "ashf", action);
+        await ResourceManager.Instance.ShowDialogAsync<MiUIDialog>(path, "UIDialog_TextPopup", CanvasLayer.System, SceneDataManager.Instance.levelData.endStory, action);
     }
 }

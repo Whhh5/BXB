@@ -163,7 +163,10 @@ namespace BXB
                 if (result != null)
                 {
                     obj.SetActive(true);
-                    result.GetMain().transform.Normalization(obj.transform);
+                    if (result.GetMain() != null)
+                    {
+                        result.GetMain().transform.Normalization(obj.transform);
+                    }
                     result.SettingId(id);
                     result.OnInit();
                     result.OnSetInit(status);
@@ -218,7 +221,10 @@ namespace BXB
                 if (result != null)
                 {
                     obj.SetActive(true);
-                    result.GetMain().GetComponent<RectTransform>().Normalization(rect);
+                    if (result.GetMain() != null)
+                    {
+                        result.GetMain().GetComponent<RectTransform>().Normalization(rect);
+                    }
                     result.SettingId(0);
                     result.OnInit();
                     result.OnSetInit(parameter);

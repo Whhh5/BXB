@@ -5,7 +5,7 @@ using BXB.Core;
 using System;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+//using UnityEditor;
 
 public class SceneDataManager : MiSingleton<SceneDataManager>
 {
@@ -84,9 +84,19 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
     };
     public void CreateLevelSceneData(short level)
     {
-        var assetPath = $"Assets/Scripts/Game/Asset/Asset_Scene_Level_{level}.asset"; ;
-        var asset = AssetDatabase.LoadAssetAtPath<Asset_SceneLevelData>(assetPath);
+        var assetPath = "DataAsset/Asset_Scene_Level_" + level;
+        Asset_SceneLevelData asset = Resources.Load<Asset_SceneLevelData>(assetPath);
         levelData = asset;
+    }
+    public void AddExp(float exp)
+    {
+        var playerRxp = mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, exp);
+        if (playerRxp >= upLevelExp)
+        {
+            mainPlayer.GetSetLevel(1);
+            mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, -playerRxp);
+            mainPlayer.UpDateLevelData();
+        }
     }
     public Asset_SceneLevelData GetLevelSceneData()
     {
@@ -162,10 +172,10 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
 
     public Asset_SceneLevelData LoadSceneAsset(string name)
     {
-        string levelAssetDataName = name;
-        string path = $"Assets/Scripts/Game.Asset/Asset_Scene_{levelAssetDataName}.asset";
-        var asset = AssetDatabase.LoadAssetAtPath<Asset_SceneLevelData>(path);
-        return asset;
+        var assetPath = $"DataAsset/Asset_Scene_{name}.asset"; ;
+        var asset = Resources.Load<Asset_SceneLevelData>(assetPath);
+        levelData = asset;
+        return levelData;
     }
     public void AddGameFinishAction(Action action)
     {

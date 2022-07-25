@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine; 
 [System.Serializable] 
-public class LocalRolesLevelData 
+public class LocalRolesLevelData 
 { 
 	public ulong id = default;
 
@@ -15,6 +15,6 @@ public class LocalRolesLevelData
 
 	public float attackInterval = default;
 
-	public float level = default;
+	public float level = default;
  
 } 

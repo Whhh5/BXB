@@ -39,6 +39,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] List<MiUIBase> playerArticleList = new List<MiUIBase>();
     [SerializeField] RectTransform playerConsumableListParent;
     [SerializeField] public List<MiUIBase> playerConsumableList = new List<MiUIBase>();
+    public UIDialog_Battle_MainConsole_UpperCenter upper;
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -213,7 +214,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             SceneDataManager.Instance.GameFinish();
                             break;
                         case KeyCode.Alpha4:
-                            SceneDataManager.Instance.mainPlayer.Die();
+
                             break;
                         case KeyCode.Alpha5:
 
@@ -308,6 +309,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
             var dialog = await ResourceManager.Instance.GetUIElementAsync<UIDialog_Battle_MainConsole_Consumable>(path, "UIDialog_Battle_MainConsole_Consumable", playerConsumableListParent, Vector3.zero, item.Key, number);
             playerConsumableList.Add(dialog);
         }
+        upper.SetUpperCenterParam();
     }
     public int GetGlod()
     {
