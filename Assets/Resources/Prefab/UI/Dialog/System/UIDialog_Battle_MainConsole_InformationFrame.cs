@@ -58,7 +58,7 @@ public class UIDialog_Battle_MainConsole_InformationFrame : UIElementPoolBase
         string path = CommonManager.Instance.filePath.ResImSpIcon;
         icon.sprite = ResourceManager.Instance.Load<Sprite>(path, objId.ToString());
 
-       main.GetComponent<RectTransform>().anchoredPosition = hidePos;
+        main.GetComponent<RectTransform>().anchoredPosition = hidePos;
     }
 
     public override async Task OnSetInitAsync<T>(params object[] value)
