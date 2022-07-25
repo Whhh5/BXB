@@ -9,6 +9,9 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
 {
     [SerializeField] Vector2 mapWidthAndHeight;
     [SerializeField] Transform wapParent;
+    public GameObject level_200100001;
+    public GameObject level_200100002;
+    public GameObject level_200100003;
 
     //plsyer
     public CharacterController mainPlayer => SceneDataManager.Instance.mainPlayer;
@@ -30,6 +33,9 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
     protected override void OnAwake()
     {
         base.OnAwake();
+        level_200100001?.SetActive(false);
+        level_200100002?.SetActive(false);
+        level_200100003?.SetActive(false);
         SceneDataManager.Instance.pointToWap.Clear();
         mapWapController.CreateMapWap(wapUnit, mapWidthAndHeight, pointToWap, wapParent);
         SceneDataManager.Instance.sceneMainCamera = sceneMainCamera;
@@ -44,10 +50,20 @@ public class BossSceneManager : MiSingletonMonoBeHaviour<BossSceneManager>
 
 
         var levelData = SceneDataManager.Instance.GetLevelSceneData();
-        var path = CommonManager.Instance.filePath.ResPreMap;
-        var spriteMap = Resources.Load<GameObject>(path + levelData.data_Scene_Boss);
-        var o = GameObject.Instantiate(spriteMap,transform);
-        o.transform.position = Vector3.zero;
+
+
+        //var path = CommonManager.Instance.filePath.ResPreMap;
+        //var spriteMap = Resources.Load<GameObject>(path + levelData.data_Scene_Boss);
+        //var o = GameObject.Instantiate(spriteMap,transform);
+        //o.transform.position = Vector3.zero;
+        level_200100001?.SetActive(false);
+        level_200100002?.SetActive(false);
+        level_200100003?.SetActive(false);
+        var fiekd = $"level_{levelData.mapId_Boss}";
+        var type = GetType().GetField(fiekd).GetValue(BossSceneManager.Instance);
+        type.GetType().GetMethod("SetActive").Invoke(type, new object[] { true});
+
+
         SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
         foreach (var item in levelData.data_Scene_Boss)
         {
