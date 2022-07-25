@@ -31,4 +31,14 @@ public class SoundLogic : MonoBehaviour
         SoundManager.instance.BossAttackAudio();
     }
 
+    public void OnEnemyAttackPlaySound()
+    {
+        SoundManager.instance.EnemyAttackAudio();
+    }
+
+    public void OnMateAttackPlaySound()
+    {
+        SoundManager.instance.MateAttackAudio();
+    }
+
 }

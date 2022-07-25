@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294527272591762331}
   - component: {fileID: 1385288948077222470}
+  - component: {fileID: 990706120388166633}
   m_Layer: 0
   m_Name: yinxiao
   m_TagString: Untagged
@@ -160,6 +161,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &990706120388166633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503717574120340472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecdb05c65bcd8b479a0cca0b80f09c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1614435510394723107
 GameObject:
   m_ObjectHideFlags: 0
