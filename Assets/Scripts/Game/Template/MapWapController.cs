@@ -20,6 +20,7 @@ public class MapWapController : MiBaseClass
                 var point = new Vector2(i, j);
                 wap.SetPoint(point);
                 pointToWap.Add(point, wap);
+                wap.SetArticle(null);
             }
         }
         Log(Color.green, 1 << 80, (1 << 95), (1 << 31), 1 << 10);
