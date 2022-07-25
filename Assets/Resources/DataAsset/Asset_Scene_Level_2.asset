@@ -174,7 +174,7 @@ MonoBehaviour:
     scope_xxYY: {x: 3, y: 3, z: 42, w: 42}
     controller: 2
   data_Scene_Boss:
-  - id: 110020201
+  - id: 110020202
     number: 1
     downImageId: 1
     scope_xxYY: {x: 5, y: 5, z: 20, w: 20}

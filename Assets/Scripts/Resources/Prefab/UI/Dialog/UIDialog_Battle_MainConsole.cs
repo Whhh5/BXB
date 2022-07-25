@@ -198,6 +198,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
 
     private void Update()
     {
+#if UNITY_EDITOR_WIN
         if (Input.anyKeyDown)
         {
             foreach (KeyCode keyCode in Enum.GetValues(typeof(KeyCode)))
@@ -210,13 +211,10 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                             btn_ShowAndHideHandleClick();
                             break;
                         case KeyCode.Alpha1:
-                            //obj.GetSet(WapObjBase.PropertyFloat.attackInterval)
-                            var obj = BattleSceneManager.Instance.mainPlayer;
-                            obj.SetStatus(WapObjBase.Status.Attack, 0.1f, true);
                             break;
                         case KeyCode.Alpha2:
-                            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
-                            ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
+                            //var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+                            //ResourceManager.Instance.ShowDialogAsync<UIDialog_TextPopup>(path, "UIDialog_TextPopup", CanvasLayer.System, "dasdioagiodugaugfiaguiagidagiudgaioughoagfoahfoahfoahfoahf;oafsjfoiafafasfasfagiagdigaidfa").Wait();
                             break;
                         case KeyCode.Alpha3:
                             SceneDataManager.Instance.GameFinish();
@@ -253,8 +251,9 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
                 }
             }
         }
+#else
 
-
+#endif
     }
 
     public async Task ShowEnemyList(List<WapObjBase> wapObjs)
@@ -318,7 +317,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
             playerConsumableList.Add(dialog);
         }
         upper.SetUpperCenterParam();
-        
+
     }
     public int GetGlod()
     {
