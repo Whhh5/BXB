@@ -45,6 +45,8 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
 
     public float upLevelExp;
 
+    public float nowExp;
+
     public enum MoveMode
     {
         None,
@@ -90,12 +92,12 @@ public class SceneDataManager : MiSingleton<SceneDataManager>
     }
     public void AddExp(float exp)
     {
-        var playerRxp = mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, exp);
-        if (playerRxp >= upLevelExp)
+        nowExp += exp;
+        if (nowExp >= upLevelExp)
         {
             mainPlayer.GetSetLevel(1);
-            mainPlayer.GetSet(WapObjBase.PropertyFloat.exp, -playerRxp);
-            mainPlayer.UpDateLevelData();
+            upLevelExp = MasterData.Instance.GetTableData<LocalRolesLevelData>( (ulong)mainPlayer.GetSetLevel()).level;
+            nowExp -= upLevelExp;
         }
     }
     public Asset_SceneLevelData GetLevelSceneData()
