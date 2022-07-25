@@ -40,6 +40,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
     [SerializeField] RectTransform playerConsumableListParent;
     [SerializeField] public List<MiUIBase> playerConsumableList = new List<MiUIBase>();
     public UIDialog_Battle_MainConsole_UpperCenter upper;
+    [SerializeField] MiUIButton btn_Pay;
     public override void OnInit()
     {
         ShowAsync().Wait();
@@ -47,6 +48,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         btn_LeftLoop.onClickPersist.RemoveAllListeners();
         btn_RightLoop.onClickPersist.RemoveAllListeners();
         btn_ShowAndHideHandle.onClick.RemoveAllListeners();
+        btn_Pay.onClick.RemoveAllListeners();
         LoopBtnActiveTween(0, itemLoopBtnShowAndHideTime.y);
 
         btn_LeftLoop.AddOnPointerLongDownClick(async () =>
@@ -89,6 +91,12 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         {
             await AsyncDefaule();
             LoopBtnActiveTween(0, itemLoopBtnShowAndHideTime.y);
+        });
+        btn_Pay.AddOnPointerClick(async () =>
+        {
+            await AsyncDefaule();
+            var path = CommonManager.Instance.filePath.PreUIDialogSystemPath;
+            await ResourceManager.Instance.ShowDialogAsync<UIDialog_Pay>(path, "UIDialog_Pay", CanvasLayer.System);
         });
 
         void LoopBtnActiveTween(float endAlpha, float time)
@@ -271,10 +279,10 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
         //更新属性
         var mainPlayer = BattleSceneManager.Instance.mainPlayer;
         await tex_PlayerName.SetRawText(mainPlayer.GetName());
-        await tex_Blood.SetRawText(mainPlayer.GetSetBlood());
-        await tex_Attack.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attack));
-        await tex_Defent.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.defend));
-        await tex_AttackInterval.SetRawText(mainPlayer.GetSet(WapObjBase.PropertyFloat.attackInterval));
+        await tex_Blood.SetRawText(" HP  " + mainPlayer.GetSetBlood());
+        await tex_Attack.SetRawText(" 攻击  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.attack));
+        await tex_Defent.SetRawText(" 防御  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.defend));
+        await tex_AttackInterval.SetRawText(" 速度  " + mainPlayer.GetSet(WapObjBase.PropertyFloat.attackInterval));
         playerIcon.sprite = ResourceManager.Instance.Load<Sprite>($"Images/Sprite/Icon", mainPlayer.GetId().ToString());
 
         //更新物品
@@ -310,6 +318,7 @@ public class UIDialog_Battle_MainConsole : MiUIDialog
             playerConsumableList.Add(dialog);
         }
         upper.SetUpperCenterParam();
+        
     }
     public int GetGlod()
     {

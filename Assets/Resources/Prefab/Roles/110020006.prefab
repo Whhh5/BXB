@@ -218,7 +218,7 @@ MonoBehaviour:
   moveMode: 2
   level: 0
   attackRange: {x: 0, y: 0}
-  anima: {fileID: 0}
+  anima: {fileID: 5288944655698786318}
   downImage: {fileID: 2744837511904835193}
   attack_Target:
   - {fileID: 0}
