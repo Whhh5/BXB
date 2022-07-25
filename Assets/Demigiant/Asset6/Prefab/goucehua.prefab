@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3475578371271880451}
   - component: {fileID: 5468932973197989657}
+  - component: {fileID: 3155416488762097232}
   m_Layer: 0
   m_Name: goucehua
   m_TagString: Untagged
@@ -118,6 +119,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3155416488762097232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374423713748334432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecdb05c65bcd8b479a0cca0b80f09c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2377396805676086729
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +235,7 @@ MonoBehaviour:
   - {fileID: 8859434002616490489}
   m_Bounds:
     m_Center: {x: -0.0004248619, y: -0.00000047683716, z: 0}
-    m_Extent: {x: 3.169575, y: 6.6549997, z: 0}
+    m_Extent: {x: 3.169575, y: 6.655, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

@@ -36,4 +36,9 @@ public class SoundLogic : MonoBehaviour
         SoundManager.instance.EnemyAttackAudio();
     }
 
+    public void OnMateAttackPlaySound()
+    {
+        SoundManager.instance.MateAttackAudio();
+    }
+
 }
