@@ -18,7 +18,7 @@ MonoBehaviour:
     downImageId: 1
     scope_xxYY: {x: 6, y: 6, z: 4, w: 4}
     controller: 2
-  - id: 110020001
+  - id: 110020004
     number: 1
     downImageId: 1
     scope_xxYY: {x: 3, y: 3, z: 6, w: 6}
@@ -31,12 +31,12 @@ MonoBehaviour:
   - id: 110020001
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 6, y: 6, z: 9, w: 9}
+    scope_xxYY: {x: 7, y: 7, z: 9, w: 9}
     controller: 2
   - id: 110020003
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 9, w: 9}
+    scope_xxYY: {x: 8, y: 8, z: 39, w: 39}
     controller: 2
   - id: 110020005
     number: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   - id: 1100200010
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 17, w: 17}
+    scope_xxYY: {x: 2, y: 2, z: 42, w: 42}
     controller: 2
   - id: 110020001
     number: 1
@@ -162,6 +162,16 @@ MonoBehaviour:
     number: 1
     downImageId: 1
     scope_xxYY: {x: 9, y: 9, z: 47, w: 47}
+    controller: 2
+  - id: 110020008
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 47, w: 47}
+    controller: 2
+  - id: 110010005
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 42, w: 42}
     controller: 2
   data_Scene_Boss:
   - id: 110020201
