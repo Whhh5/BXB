@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1737023268645211706}
   - component: {fileID: 7189175439065904700}
+  - component: {fileID: 3937011103589418297}
   m_Layer: 0
   m_Name: wenan
   m_TagString: Untagged
@@ -54,6 +55,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3937011103589418297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635918636634396249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecdb05c65bcd8b479a0cca0b80f09c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &639138019972470000
 GameObject:
   m_ObjectHideFlags: 0
