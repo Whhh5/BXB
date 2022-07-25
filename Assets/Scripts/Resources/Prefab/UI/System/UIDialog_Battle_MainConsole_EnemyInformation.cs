@@ -64,9 +64,9 @@ public class UIDialog_Battle_MainConsole_EnemyInformation : UIElementPoolBase
         var defenese = obj.GetSet(WapObjBase.PropertyFloat.defend);
         var icon = ResourceManager.Instance.Load<Sprite>($"Images/Sprite/Icon", obj.GetId().ToString());
 
-        nameTxt.SetRawText(name).Wait();
-        attackTxt.SetRawText(attack).Wait();
-        defenseTxt.SetRawText(defenese).Wait();
+        nameTxt.SetRawText("Ãû×Ö"+name).Wait();
+        attackTxt.SetRawText("¹¥»÷"+attack).Wait();
+        defenseTxt.SetRawText("·ÀÓù"+defenese).Wait();
         iconImage.sprite = icon;
         enemy = obj;
     }
