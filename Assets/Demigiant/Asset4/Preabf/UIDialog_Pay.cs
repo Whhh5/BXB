@@ -12,7 +12,7 @@ public class UIDialog_Pay : MiUIDialog
     [SerializeField] MiUIButton btn_648;
     public override void OnInit()
     {
-
+        ShowAsync().Wait();
     }
 
     public override void OnSetInit(object[] value)
@@ -26,17 +26,17 @@ public class UIDialog_Pay : MiUIDialog
             await AsyncDefaule();
             Pay(100.0f);
         });
-        btn_100.AddOnPointerClick(async () =>
+        btn_200.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
             Pay(200.0f);
         });
-        btn_100.AddOnPointerClick(async () =>
+        btn_300.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
             Pay(300.0f);
         });
-        btn_100.AddOnPointerClick(async () =>
+        btn_648.AddOnPointerClick(async () =>
         {
             await AsyncDefaule();
             Pay(648.0f);
