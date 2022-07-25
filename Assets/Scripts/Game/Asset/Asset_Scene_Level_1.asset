@@ -13,25 +13,19 @@ MonoBehaviour:
   m_Name: Asset_Scene_Level_1
   m_EditorClassIdentifier: 
   data_Scene_Battle:
-  - id: 110020001
-    number: 1
-    downImageId: 1
-    scope_xxYY: {x: 8, y: 8, z: 2, w: 2}
-    nextSceneSchedule: 10
-    controller: 2
-  - id: 110010001
+  - id: 110020003
     number: 1
     downImageId: 1
     scope_xxYY: {x: 6, y: 6, z: 4, w: 4}
     nextSceneSchedule: 10
     controller: 2
-  - id: 110010002
+  - id: 110020001
     number: 1
     downImageId: 1
     scope_xxYY: {x: 3, y: 3, z: 6, w: 6}
     nextSceneSchedule: 10
     controller: 2
-  - id: 110020004
+  - id: 110020002
     number: 1
     downImageId: 1
     scope_xxYY: {x: 3, y: 3, z: 9, w: 9}
@@ -139,16 +133,70 @@ MonoBehaviour:
     scope_xxYY: {x: 8, y: 8, z: 43, w: 43}
     nextSceneSchedule: 10
     controller: 2
-  - id: 110020010
+  - id: 1100200010
     number: 1
     downImageId: 1
     scope_xxYY: {x: 4, y: 4, z: 47, w: 47}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010003
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 5, w: 5}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010004
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 13, w: 13}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010005
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 20, w: 20}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010006
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 4, y: 4, z: 23, w: 23}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010007
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 6, y: 6, z: 25, w: 25}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010008
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 8, y: 8, z: 36, w: 36}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010001
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 7, y: 7, z: 41, w: 41}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010009
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 3, y: 3, z: 44, w: 44}
+    nextSceneSchedule: 10
+    controller: 2
+  - id: 110010002
+    number: 1
+    downImageId: 1
+    scope_xxYY: {x: 9, y: 9, z: 47, w: 47}
     nextSceneSchedule: 10
     controller: 2
   data_Scene_Boss:
   - id: 110020201
     number: 1
     downImageId: 1
-    scope_xxYY: {x: 5, y: 5, z: 10, w: 10}
+    scope_xxYY: {x: 5, y: 5, z: 20, w: 20}
     nextSceneSchedule: 10
     controller: 2

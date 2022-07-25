@@ -23,9 +23,16 @@ public class Asset_SceneLevelData : ScriptableObject
         public int number;
         public int downImageId;
         public Vector4 scope_xxYY;
-        public float nextSceneSchedule;
         public Controllers controller;
     }
     public List<LevelDataStruct> data_Scene_Battle;
     public List<LevelDataStruct> data_Scene_Boss;
+
+    public ulong mapId_Battle;
+    public ulong mapId_Boss;
+    public float overAllProgram;
+    [TextArea]
+    public string startStory;
+    [TextArea]
+    public string endStory;
 }
