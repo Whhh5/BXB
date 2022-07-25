@@ -16,14 +16,14 @@ public class SettingsWindow : MiUIDialog
 
         CloseButton.onClick.SubscribeEventAsync(async () =>
         {
-           gameObject.SetActive(false);
+           Destroy();
            image.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         });
 
     }
     public override void OnInit()
     {
-        gameObject.SetActive(true);
+        ShowAsync().Wait();
         image.color = new Color(0.0f, 0.0f, 0.0f, 0.88f);
     }
     public override void OnSetInit(object[] value)
