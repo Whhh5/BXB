@@ -86,7 +86,7 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         var o = GameObject.Instantiate(spriteMap, transform);
         o.transform.position = Vector3.zero;
         SceneDataManager.Instance.InitLevelData(levelData.overAllProgram);
-        level_200000001.SetActive(false);
+        level_200000001.SetActive(false); 
         level_200000002.SetActive(false);
         level_200000003.SetActive(false);
         var fiekd = $"level_{levelData.mapId_Battle}";
@@ -116,6 +116,9 @@ public class BattleSceneManager : MiSingletonMonoBeHaviour<BattleSceneManager>
         mainPlayer.GetSetConsumable(120020002, 66);
         mainPlayer.GetSetConsumable(120020003, 66);
 
+        mainPlayer.GetSetArticle(120010001,20);
+        mainPlayer.GetSetArticle(120010002,20);
+        mainPlayer.GetSetArticle(120010003,20);
         mainConsole.UpdatePlayerProperty().Wait();
 
 

@@ -399,7 +399,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988227666116892410}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 6a71489055072664daf0ca2da1c8b8ca, type: 2}
   m_Animations:
@@ -2120,11 +2120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330269911282178579, guid: bc23049b40ef366438f7dbcedafa105e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -195.6
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 3330269911282178579, guid: bc23049b40ef366438f7dbcedafa105e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -41.4
+      value: -40.5
       objectReference: {fileID: 0}
     - target: {fileID: 3404688999569056357, guid: bc23049b40ef366438f7dbcedafa105e, type: 3}
       propertyPath: m_AnchorMax.x
