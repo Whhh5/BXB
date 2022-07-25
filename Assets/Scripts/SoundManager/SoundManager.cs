@@ -88,4 +88,14 @@ public class SoundManager : MonoBehaviour
         audioBGMSource.clip = BossBgmSound;
         audioBGMSource.Play();
     }
+
+    public void StopBossBGM()
+    {
+        if (audioBGMSource.isPlaying)
+        {
+            audioBGMSource.Stop();
+        }
+        audioBGMSource.clip = globalBGMSound;
+        audioBGMSource.Play();
+    }
 }
